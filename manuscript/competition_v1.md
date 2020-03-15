@@ -5,13 +5,13 @@ author: parris t humphrey
 
 ## Indirect effects of antibiotic production can neutralize competitive hierarchies among phyllosphere bacteria
 
-#### Parris T. Humphrey$^{1,2,*}$, Trang N. Nguyen$^{2}$, Noah K. Whiteman$^{1,2}$
+#### Parris T. Humphrey<sup>1,2</sup>, Trang N. Nguyen<sup>2</sup>, Noah K. Whiteman<sup>1,2</sup>
 
-$^1$Organismic & Evolutionary Biology, Harvard University, Cambridge, MA 02138, USA<br>
-$^3$Integrative Biology, University of California, Berkeley, CA 94720, USA<br>
-$^3$Department of Plant Sciences, University of Arizona, Tucson, AZ 85721, USA
+<sup>1</sup>Organismic & Evolutionary Biology, Harvard University, Cambridge, MA 02138, USA<br>
+<sup>2</sup>Integrative Biology, University of California, Berkeley, CA 94720, USA<br>
+<sup>3</sup>Department of Plant Sciences, University of Arizona, Tucson, AZ 85721, USA
 
-$^{*}$Corresponding author: PTH ([phumphrey@g.harvard.edu](phumphrey@g.harvard.edu))
+Corresponding author: PTH ([phumphrey@g.harvard.edu](phumphrey@g.harvard.edu))
 
 <hr>
 
@@ -66,7 +66,7 @@ To examine fundamental axes of trait co-variances, we conducted principle compon
 
 We determined when the outcomes of all pairwise interactions between strains $i$ and $j$ ($i \neq j$) took following forms: reciprocal invasibility (RI), where strains $i$ and $j$ each invade one another; reciprocal non-invasibility (RNI), where strains $i$ and $j$ cannot invade each other; and asymmetric (AS), where strain $i$ invades strain $j$ but $j$ cannot invade $i$. We constructed binomial generalized linear models (GLMs) in \texttt{R} with the canonical logit link function to estimate the probability of RI, RNI, and AS as a function of genetic distance as well as trait distance between strains. Genetic distance ($D_g$) was calculated as the pairwise raw nucleotide distance between 2690 bp of sequence comprised of four partial housekeeping gene sequences previously generated for each strain from Humphrey et al. (2014). Orthologous sequences from the genome of Psm4326 were derived from its published genome sequence (Baltrus et al 2011; RefSeq ID `NZ_AEAK00000000.1`).
 
-Euclidean distances between each growth trait $r_m$, $L$, and $K$ for all pairs of strains were measured as $D_{ij} = \sqrt{{(x_{i} - x_{j})}^{2}}$. We first examined a binomial model for each outcome type using $D_g$ as the only fixed effect, and then computed models including each growth trait, which took the form 
+Euclidean distances between each growth trait $r_m$, $L$, and $K$ for all pairs of strains were measured as $D_{ij} = \sqrt{{(x_{i} - x_{j})}^{2}}$. We first examined a binomial model for each outcome type using $D_g$ as the only fixed effect, and then computed models including each growth trait, which took the form
 
 $$
 \text{logit}\left(P(y_{\text{ij}}|x_{\text{ij}}) \right)\ \sim\ \beta_{0} + \beta_{d}x_{d} + \beta_{r_{m}}x_{r_{m}} + \beta_{L}x_{L} + \beta_{K}x_{K}
