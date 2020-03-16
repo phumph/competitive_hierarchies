@@ -5,7 +5,7 @@ author: parris t humphrey
 
 ## Indirect effects of antibiotic production can neutralize competitive hierarchies among phyllosphere bacteria
 
-#### Parris T. Humphrey<sup>1,2</sup>, Trang N. Nguyen<sup>2</sup>, Noah K. Whiteman<sup>1,2</sup>
+#### Parris T. Humphrey<sup>1,2</sup>, Trang N. Nguyen<sup>3</sup>, Noah K. Whiteman<sup>1,2</sup>
 
 <sup>1</sup>Organismic & Evolutionary Biology, Harvard University, Cambridge, MA 02138, USA<br>
 <sup>2</sup>Integrative Biology, University of California, Berkeley, CA 94720, USA<br>
@@ -27,7 +27,27 @@ Competition is rife within bacterial communities, but we poorly understand the t
 
 ### Introduction
 
-Ecologists have long recognized that distinct forms of competition operate simultaneously within communities: competition to exploit shared resources, and competition to interfere with another species’ ability to do so. Competition of both sorts is a potent source of natural selection operating within microbial communities (Hibbing et al. 2009; Cornforth and Foster 2013; Mitri and Richard Foster 2013). Teasing apart how exploitative and interference competition interact in a community context remains a long-standing challenge (DeLong and Vasseur 2013).
+Ecologists have long recognized that distinct forms of competition operate simultaneously within communities: competition to exploit shared resources, and competition to interfere with another species’ ability to do so. Competition of both sorts is a potent source of natural selection operating within microbial communities (Hibbing et al. 2009; Cornforth and Foster 2013; Mitri and Richard Foster 2013). Teasing apart how exploitative and interference competition interact in a community context remains a long-standing challenge (DeLong and Vasseur 2013). In this study, we explore how diversity within communities influences the outcome of competitive interactions between genotypes and affects the predicted strength or direction of selection on phenotypic traits (Ohgushi et al. 2012). 
+
+Because bacterial communities in nature exhibit high species diversity, the outcome of any focal interaction may be reversed by nearby species (Rojas-Echenique and Allesina 2011). This effect is captured by the concept of intransitivity, which is the non-hierarchical arrangement of competitive abilities among diverse genotypes or species. The net effect of intransitivity is that competitiveness is highly context-dependent: one genotype’s ability to dominate another depends on the frequency of any number of other genotypes. Empirical intransitive interaction networks have been discovered both within (Sinervo and Lively 1996) and between species (Lankau and Strauss 2007), and theoretical studies have shown that introducing even modest intransitivity into competitive interaction networks can provide a buffer against species (or genotype) extinction (Laird and Schamp 2006; Laird and Schamp 2008; Rojas-Echenique and Allesina 2011; Laird 2014).
+
+
+Despite extensive theoretical predictions, very little empirical work has attempted to describe how exploitative and interference competition traits interact in natural bacterial communities. Much of the work on intransitivity in bacterial assemblages involves toxin-mediated interference competition in pair-wise and three-way comparisons (Kerr et al. 2002; Lenski and Riley 2002; Kirkup and Riley 2004) in laboratory settings, using model strains of bacteria. While crucial for advancing the field from a theoretical standpoint, studies are needed that directly measure the frequency of different exploitative and interference competitive abilities in natural bacterial assemblages. Studies like ours fill this gap and help provide a detailed view of the potential for facilitation and other forms of intransitivity to maintain life history diversity within natural bacterial communities.
+
+<!-- Perhaps the most famous type of intransitivity takes the form of the rock–paper–scissors (R–P–S) game, where A invades B, B invades C, while C invades A. However, other forms of intransitivity such as facilitation may be common in nature (Brooker et al. 2008; Bronstein 2009; McIntire and Fajardo 2013).-->
+
+<!--One potentially avenue of facilitation in bacterial communities is through differential sensitivities of the two focal competing species to interference competition (e.g., a secreted toxin) from a third player. This scenario lies at the intersection of exploitative and interference competition, and its occurrence is likely maximized by intermediate frequencies of both the production of, and resistance, to secreted inhibitors.-->
+
+The principal goals of this study were to (1) characterize the distribution of life history trait variances and co-variances among a diverse set of isolates from a wild bacterial meta-community, (2) examine how this life history variation relates to a network of competitive interactions, and (3) estimate how frequently intransitive competitive asymmetries among strains might promote co-existence. To address these goals, we build upon prior work using a natural community of endophytic *Pseudomonas* spp. bacteria isolated from a systematic survey of leaves of a perennial forb, bittercress (Brassicaceae; *Cardamine cordifolia* A. Gray) in the Rocky Mountains of North America. Bacterial strains were isolated from the internal leaf (endophytic) compartment of bittercress and include a broad range of strains from the cosmopolitan phytopathogen *P. syringae* (Morris et al. 2008) and  *P. fluorescens*, a member of the rhizosphere that was found here to be a common endophytic species. Competitive interactions between functionally diverse *P. syringae* isolates have been shown to alter the success of leaf colonization by other strains (Kinkel and Lindow 1993; Wilson and Lindow 1994a; Wilson and Lindow 1994b). 
+
+Although the types of traits that contribute to these competitive interaction outcomes are unknown, both phenotype-modifying compounds and toxins are secreted by phyllosphere-dwelling bacteria, especially among Pseudomonas spp. (Lindow and Brandl 2003; Quiñones et al. 2005; Dulla and Lindow 2009; Dulla et al. 2010; Ma et al. 2013). Phyllosphere bacteria co-localize the surface and interior of leaves (Monier and Lindow 2005). Thus, there is potential for direct interactions between competing bacteria to affect the patterns of assembly within phyllosphere communities.
+
+We obtained 39 phyllosphere Pseudomonas spp. isolates from a bittercress population and a well-characterized laboratory reference strain (P. syringae pv. maculicola str. ES4326). We measured the outcome of pairwise competitive interactions among strains in this set, wherein strains competed for shared resources in spatially explicit microcosms. We quantified each strain’s ability to invade and defend against invasion and derived a composite measure of competitiveness that incorporated both invasive and defensive ability. We simultaneously assessed each strain’s capacity to inhibit surrounding competitors and their ability to resist strains with inhibitory capacities. Using independent measurements of maximum rate of increase, lag phase, and maximum yield in vitro, we then determined the underlying correlates of both exploitative and interference competitive abilities as well as the phylogenetic structure of such correlations.
+
+Our analyses revealed major differences in both exploitative and interference competitiveness between the two major clades comprising the Pseudomonas spp. phyllosphere community of bittercress, as well as distinctions in how such competitiveness relates to underlying life history traits. Instead of the predicted trade-offs discussed above, we uncovered distinct correlates of competitiveness that involved shorter lag phase duration for P. fluorescens, and higher maximum growth rates for P. syringae. Canonical trade-offs between rate and yield were not observed across either bacterial clade; instead, we found a novel trade-off between lag phase and growth rate present only within P. fluorescens. Inhibition ability (i.e. interference competitive ability) did not trade-off with exploitative ability but was positively correlated with it. Such patterns suggest that the evolution of competitiveness may involve different components of life history for these bacterial groups. 
+
+Examining the community context of these interactions revealed that a modest but potentially important fraction of all three-way interactions result in the reversal of competitive outcomes that would otherwise lead to competitive exclusion of an inferior competitor. A small set of R–P–S interactions was discovered, which may lead to cyclical invasion dynamics and thus net neutrality of genotypes; but the intransitivity in our interaction network generally took the form of facilitation, whereby a toxic strain displaced a superior competitor thereby facilitating a resistant but weaker recipient. The community context of interference competition is important for predicting the exploitative capacity of resistant strains by buffering them from competitive exclusion, which alters the premium on exploitative capacity if a strain is also resistant. Such a dataset allows dissection of several dimensions of in vitro fitness exhibited by a natural community of phyllosphere Pseudomonas spp., and provides a platform for testing hypotheses about the mechanistic bases of competitive traits (e.g. toxin production and resistance). Together, this work helps build an understanding of how competitive traits might evolve in tandem with other life history traits in representatives from real communities that interact in nature.
+
 
 ### Materials & Methods
 
@@ -87,7 +107,7 @@ To test for genetic correlations in trait values, we ran Mantel tests between pa
 
 #### Inferring indirect interactions from the pair-wise network
 
-We assembled all possible combinations of strain trios and evaluated whether their patterns of interactions fulfilled the criteria for facilitation described in the Introduction. Specifically, we calculated the net first order linkage effects on each strain serving as the focal strain in the presence of each other as the 'competitor' strain, where the interaction between the two is mediated by a nearby third strain. Briefly, facilitation can occur by strain A releasing strain C from inhibition from B (where A also has to be resistant to B's inhibitors), or from resource competition from the superior competitor B. This analysis remains agnostic to mechanism, but merely calculates the proportion of conditions under which facilitation of an otherwise less-fit competitor is expected to arise. We also determined the prevalence of strain trios resulting in R--P--S intransitivity as well as synergistic inhibition, where strain $C$ is both out-competed by $B$ and inhibited by $A$, to which the $$B strain is resistant. For each strain, we calculated the net effect of antagonistic vs. facilitative indirect interactions across all possible trios and compare this to underlying fitness metrics derived from the pair-wise interaction network.
+We assembled all possible combinations of strain trios and evaluated whether their patterns of interactions fulfilled the criteria for facilitation described in the Introduction. Specifically, we calculated the net first order linkage effects on each strain serving as the focal strain in the presence of each other as the 'competitor' strain, where the interaction between the two is mediated by a nearby third strain. Briefly, facilitation can occur by strain $A$ releasing strain $C$ from inhibition from $B$ (where $A$ also has to be resistant to $B$'s inhibitors), or from resource competition from the superior competitor $B$. This analysis remains agnostic to mechanism, but merely calculates the proportion of conditions under which facilitation of an otherwise less-fit competitor is expected to arise. We also determined the prevalence of strain trios resulting in R--P--S intransitivity as well as synergistic inhibition, where strain $C$ is both out-competed by $B$ and inhibited by $A$, to which the $B$ strain is resistant. For each strain, we calculated the net effect of antagonistic vs. facilitative indirect interactions across all possible trios and compare this to underlying fitness metrics derived from the pair-wise interaction network.
 
 We calculated the magnitude of such opportunity costs of being non-resistant to quantify the predicted dependence of the indirect cost of susceptibility and the indirect benefit of resistance. We compared these two variables to their underlying dependence on relative competitiveness in terms of resource use ($C_w$). Strong competitors lose more by being sensitive, because they would have already won most resource contests. In contrast, weaker resource competitors have much to gain by being resistant, but little to lose: the relative improvement in fitness increases dramatically as more contests are won owing to their increased resistance. We modeled how the costs and benefits of susceptibility and resistance depend on underlying resource competitiveness by simulating so-called first-order linkage indirect effects, where the focal interaction is impacted by a third associate strain.
 
@@ -122,12 +142,10 @@ Offense ($C_{o}$) and defense ($C_{d}$) were strongly positively correlated over
 <!-- FIGURE 2 -->
 <!-- ******** -->
 <p>
-  <center>
-    <img src="figures/figure2.png" width = "600"><br>
-    <small>
-    <strong>Fig. 2. Phylogenetic distribution of life history trait variation within a Pseudomonas spp. community.</strong> <strong>a</strong>. Life history components are maximum growth rate ($r_{m}$), lag phase ($l$), maximum yield ($K$), derived from individual microcosm growth experiments; and components of offensive ($C_{o}$), defensive ($C_{d}$), overall ($C_{w}$) competitiveness, resistance to toxicity ($C_{r}$), and toxicity ($C_{t}$), measured on derived from a pairwise competitive interaction network (see Methods). Column $$z-score of each trait value indicated by color. <strong>b</strong>. Smoothed frequency distributions of trait values for each measured trait by clade (*P. fluorescens* and *P. syringae*). Mean ($\mu$) estimates per clade with $\pm 2\times$ standard errors depicted to the right of the curves. Note the $x$-axis value scale modifiers to the right of the axis labels.
-    </small>
-  </center>
+  <center><img src="figures/figure2.png" width = "600"></center><br>
+  <small>
+      <strong>Fig. 2. Phylogenetic distribution of life history trait variation within a Pseudomonas spp. community.</strong>     <strong>a</strong>. Life history components are maximum growth rate ($r_{m}$), lag phase ($l$), maximum yield ($K$), derived from individual microcosm growth experiments; and components of offensive ($C_{o}$), defensive ($C_{d}$), overall ($C_{w}$) competitiveness, resistance to toxicity ($C_{r}$), and toxicity ($C_{t}$), measured on derived from a pairwise competitive interaction network (see Methods). Column $$z-score of each trait value indicated by color. <strong>b</strong>. Smoothed frequency distributions of trait values for each measured trait by clade (*P. fluorescens* and *P. syringae*). Mean ($\mu$) estimates per clade with $\pm 2\times$ standard errors depicted to the right of the curves. Note the $x$-axis value scale modifiers to the right of the axis labels.
+  </small>
 </p>
 
 Competition and growth traits revealed opposing correlational patterns between the clades: $C_{w}$ was positively correlated with rm for *P. syringae* (model $F_{3,21} = 11.5$, adjusted $r^{2} = 0.57$; Table 1), but negatively with both rm and L for *P. fluorescens*. When analyzed in a multiple regression, the correlation with rm disappeared, revealing a strong negative relationship with $l$ as the sole driver of variation in $C_{w}$ for *P. fluorescens* (model $F_{3,21} = 15.3$, adjusted $r^{2} = 0.77$; Table 1). $C_{w}$ in *P. syringae*, on the other hand, was solely explained by $r_{m}$; Table 1).
@@ -136,8 +154,7 @@ Competition and growth traits revealed opposing correlational patterns between t
 <!-- FIGURE 3 -->
 <!-- ******** -->
 <p>
-  <center>
-    <img src="figures/figure3.png" width = "200"><br>
+  <center><img src="figures/figure3.png" width = "200"></center><br>
     <small>
     <strong>Fig. 3.</strong> Pairwise correlations (**a**) and principle component analysis (PCA) (**b**) of six traits reflect dissimilarities between clades, as well reveal the correlational structure among traits across Pseudomonas spp. **a**. Colors reflect magnitude of each Pearson’s $r$ estimate where the FDR corrected $p < 0.05$; comparisons with FDR-corrected $p<0.10$ retained color but are italicized. **b**. PCA 95% envelopes per clade depicted as solid or dashed ellipses. Dots are labeled with strain IDs. Individual trait vector loadings are in blue for resource use traits and orange for interference traits).
     </small>
@@ -154,12 +171,10 @@ Asymmetric competitiveness was the most frequent interaction outcome both for th
 <!-- FIGURE 4 -->
 <!-- ******** -->
 <p>
-  <center>
-    <img src="figures/figure4.png" width = "350"><br>
+<center><img src="figures/figure4.png" width = "350"></center><br>
     <small>
     <strong>Fig. 4.</strong>
     </small>
-  </center>
 </p>
 
 In binomial GLMs, the overall probability of an asymmetric outcome increased with genetic distance (Fig. S6b; Table S1). This finding is driven predominantly by the competitive superiority of *P. fluorescens* over *P. syringae*. When trait distances were included with genetic distance in interaction outcome GLMs, the effect of DG generally dropped out (Table S2). Within *P. fluorescens*, pairings between strains with larger differences in lag time more often resulted in asymmetric outcomes, while similarity in lag time predicted reciprocal invasibility (Table S2). *P. syringae* exhibited the same pattern of findings except for rm instead of *l*, although residual variation was still explained by $D_{G}$, perhaps correlated with un-measured factors involved in competitiveness (Table S2).
@@ -177,12 +192,10 @@ The number of trios in which a given strain played each role varied substantiall
 <!-- FIGURE 5 -->
 <!-- ******** -->
 <p>
-  <center>
-    <img src="figures/figure5.png" width = "600"><br>
-    <small>
+<center><img src="figures/figure5.png" width = "600"></center><br>
+  <small>
     <strong>Fig. 5. Prevalence of intransitive interactions in a Pseudomonas spp. interaction network.</strong> **a**. Types of interaction trios resulting in facilitation (left) or rock-paper-scissors (R–P–S) competitive asymmetries. $N$ = number of trios meeting the given criteria out of the total trios analyzed (see Methods). **b**. Frequency distributions of how often each strain played the facilitator ($A$), the knocked-out intermediate ($B$), or the facilitated ($C$). Several strains played multiple roles; strains in facilitative trios with as well as without toxic intermediates are indicated with black triangles to the left of the strain IDs. Panel (**b**) inset displays the distribution of the number of unique strains that played each combination of roles. 06B played all three. The probability of playing $A$, $B$, or $C$ roles in facilitative trios varied with (c) overall competitiveness, $C_{w}$, as well as (**d**) resistance, $C_{r}$. See Table 5 for GLM results.
     </small>
-  </center>
 </p>
 
 The propensity towards $B$ vs. $C$ roles was explained by underlying differences in competitive fitness: the most facilitated strains (high C fraction) were among the least competitive (low $C_{w}$) in the populations, indicated by a negative correlation ($r  = –0.76$ [$|0.86–0.58|$ 95% CI], $p<10^{–5}$; Fig. 3c, Table 3). $B$ strains were intermediate relative to the entire range of $C_{w}$ values. Facilitator $A$ strains had consistently higher $C_{w}$, owing to the generally higher competitiveness of *P. fluorescens* strains (Fig. 1a–b). Resistance ($C_{r}$) was strongly positively correlated with the probability of being facilitated (Pearson’s $r = 0.57$ [$0.32–0.75$ 95% CI], $p<10^{–4}$; Fig. 1d, Table 3), and $C_{w}$ and $C{r}$ jointly considered in binomial GLMs independently ($C_{w}$ and $C_{r}$ are uncorrelated for *P. syringae*; Fig. 2a) contributed to variation in $B$ and $C$ roles (Fig. 3c–d, Table 3).
