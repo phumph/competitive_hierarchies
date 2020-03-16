@@ -126,12 +126,10 @@ Of the 40 strains assayed, 13 (all *P. fluorescens*) produced halos surrounding 
 <!-- FIGURE 1 -->
 <!-- ******** -->
 <p>
-  <center>
-    <img src="figures/figure1.png" width = "600"><br>
+<center><img src="https://i.imgur.com/WJ4qxbP.png" width = "600"></center><br>
     <small>
     <strong>Fig. 1.</strong> Pairwise competitive interactions in a phyllosphere <i>Pseudomonas</i> spp. community.
     </small>
-  </center>
 </p>
 
 #### Life history correlates of competitiveness.
@@ -141,25 +139,23 @@ Offense ($C_{o}$) and defense ($C_{d}$) were strongly positively correlated over
 <!-- ******** -->
 <!-- FIGURE 2 -->
 <!-- ******** -->
-<p>
-  <center><img src="figures/figure2.png" width = "600"></center><br>
-  <small>
-      <strong>Fig. 2. Phylogenetic distribution of life history trait variation within a Pseudomonas spp. community.</strong>     <strong>a</strong>. Life history components are maximum growth rate ($r_{m}$), lag phase ($l$), maximum yield ($K$), derived from individual microcosm growth experiments; and components of offensive ($C_{o}$), defensive ($C_{d}$), overall ($C_{w}$) competitiveness, resistance to toxicity ($C_{r}$), and toxicity ($C_{t}$), measured on derived from a pairwise competitive interaction network (see Methods). Column $$z-score of each trait value indicated by color. <strong>b</strong>. Smoothed frequency distributions of trait values for each measured trait by clade (*P. fluorescens* and *P. syringae*). Mean ($\mu$) estimates per clade with $\pm 2\times$ standard errors depicted to the right of the curves. Note the $x$-axis value scale modifiers to the right of the axis labels.
-  </small>
-</p>
+
+  <center><img src="https://i.imgur.com/HtPIGmq.png" width = "600"></center><br>
+
+
+><strong>Fig. 2. Phylogenetic distribution of life history trait variation within a Pseudomonas spp. community.</strong>     <strong>a</strong>. Life history components are maximum growth rate ($r_{m}$), lag phase ($l$), maximum yield ($K$), derived from individual microcosm growth experiments; and components of offensive ($C_{o}$), defensive ($C_{d}$), overall ($C_{w}$) competitiveness, resistance to toxicity ($C_{r}$), and toxicity ($C_{t}$), measured on derived from a pairwise competitive interaction network (see Methods). Column $z$-score of each trait value indicated by color. <strong>b</strong>. Smoothed frequency distributions of trait values for each measured trait by clade (*P. fluorescens* and *P. syringae*). Mean ($\mu$) estimates per clade with $\pm 2\times$ standard errors depicted to the right of the curves. Note the $x$-axis value scale modifiers to the right of the axis labels.
 
 Competition and growth traits revealed opposing correlational patterns between the clades: $C_{w}$ was positively correlated with rm for *P. syringae* (model $F_{3,21} = 11.5$, adjusted $r^{2} = 0.57$; Table 1), but negatively with both rm and L for *P. fluorescens*. When analyzed in a multiple regression, the correlation with rm disappeared, revealing a strong negative relationship with $l$ as the sole driver of variation in $C_{w}$ for *P. fluorescens* (model $F_{3,21} = 15.3$, adjusted $r^{2} = 0.77$; Table 1). $C_{w}$ in *P. syringae*, on the other hand, was solely explained by $r_{m}$; Table 1).
 
 <!-- ******** -->
 <!-- FIGURE 3 -->
 <!-- ******** -->
-<p>
-  <center><img src="figures/figure3.png" width = "200"></center><br>
-    <small>
-    <strong>Fig. 3.</strong> Pairwise correlations (**a**) and principle component analysis (PCA) (**b**) of six traits reflect dissimilarities between clades, as well reveal the correlational structure among traits across Pseudomonas spp. **a**. Colors reflect magnitude of each Pearson’s $r$ estimate where the FDR corrected $p < 0.05$; comparisons with FDR-corrected $p<0.10$ retained color but are italicized. **b**. PCA 95% envelopes per clade depicted as solid or dashed ellipses. Dots are labeled with strain IDs. Individual trait vector loadings are in blue for resource use traits and orange for interference traits).
-    </small>
-  </center>
-</p>
+
+<center>
+<img src="https://i.imgur.com/9kFArG1.png" width = "325">
+</center><br>
+
+><strong>Fig. 3.Pairwise correlations (a) and principle component analysis (PCA) (b) of six traits reflect dissimilarities between clades, as well reveal the correlational structure among traits across Pseudomonas spp.</strong> <strong>a</strong>. Colors reflect magnitude of each Pearson’s $r$ estimate where the FDR corrected $p < 0.05$; comparisons with FDR-corrected $p<0.10$ retained color but are italicized. **b**. PCA 95% envelopes per clade depicted as solid or dashed ellipses. Dots are labeled with strain IDs. Individual trait vector loadings are in blue for resource use traits and orange for interference traits).
 
 Principal component analysis of $C_{w}$, $C_{r}$, and $C_{t}$ with the three growth traits revealed largely non-overlapping 95% confidence ellipses for the two clades (Fig. 2b). The first two Principal component axes together explained 72.5% of the variation in the data. The loading vectors of competitiveness and lag phase were in opposing directions, indicating a negative correlation, while those for competitiveness and inhibitory capacity are largely colinear, indicating a positive correlation (Fig. 2b). The loading for resistance, $C_{r}$, falls close to co-linear with lag phase duration, a relationship that was not apparent in the pair-wise correlation analysis depicted in Fig. 2a. Interestingly, strain 08B—tentatively categorized as *P. syringae* in this analysis but phylogenetically sister to the clade—falls beyond the 95% confidence ellipses for both named clades (Fig. 2b).
 
@@ -170,12 +166,12 @@ Asymmetric competitiveness was the most frequent interaction outcome both for th
 <!-- ******** -->
 <!-- FIGURE 4 -->
 <!-- ******** -->
-<p>
-<center><img src="figures/figure4.png" width = "350"></center><br>
-    <small>
-    <strong>Fig. 4.</strong>
-    </small>
-</p>
+
+<center>
+<img src="https://i.imgur.com/TL3Pzyq.png" width = "375"></center>
+<br>
+
+><strong>Fig. 4.</strong> This is figure 4 caption (not written yet).
 
 In binomial GLMs, the overall probability of an asymmetric outcome increased with genetic distance (Fig. S6b; Table S1). This finding is driven predominantly by the competitive superiority of *P. fluorescens* over *P. syringae*. When trait distances were included with genetic distance in interaction outcome GLMs, the effect of DG generally dropped out (Table S2). Within *P. fluorescens*, pairings between strains with larger differences in lag time more often resulted in asymmetric outcomes, while similarity in lag time predicted reciprocal invasibility (Table S2). *P. syringae* exhibited the same pattern of findings except for rm instead of *l*, although residual variation was still explained by $D_{G}$, perhaps correlated with un-measured factors involved in competitiveness (Table S2).
 
@@ -191,12 +187,12 @@ The number of trios in which a given strain played each role varied substantiall
 <!-- ******** -->
 <!-- FIGURE 5 -->
 <!-- ******** -->
-<p>
-<center><img src="figures/figure5.png" width = "600"></center><br>
-  <small>
-    <strong>Fig. 5. Prevalence of intransitive interactions in a Pseudomonas spp. interaction network.</strong> **a**. Types of interaction trios resulting in facilitation (left) or rock-paper-scissors (R–P–S) competitive asymmetries. $N$ = number of trios meeting the given criteria out of the total trios analyzed (see Methods). **b**. Frequency distributions of how often each strain played the facilitator ($A$), the knocked-out intermediate ($B$), or the facilitated ($C$). Several strains played multiple roles; strains in facilitative trios with as well as without toxic intermediates are indicated with black triangles to the left of the strain IDs. Panel (**b**) inset displays the distribution of the number of unique strains that played each combination of roles. 06B played all three. The probability of playing $A$, $B$, or $C$ roles in facilitative trios varied with (c) overall competitiveness, $C_{w}$, as well as (**d**) resistance, $C_{r}$. See Table 5 for GLM results.
-    </small>
-</p>
+
+<center>
+<img src="https://i.imgur.com/amx5jXn.png" width = "600"></center>
+<br>
+
+><strong>Fig. 5. Prevalence of intransitive interactions in a Pseudomonas spp. interaction network.</strong> **a**. Types of interaction trios resulting in facilitation (left) or rock-paper-scissors (R–P–S) competitive asymmetries. $N$ = number of trios meeting the given criteria out of the total trios analyzed (see Methods). **b**. Frequency distributions of how often each strain played the facilitator ($A$), the knocked-out intermediate ($B$), or the facilitated ($C$). Several strains played multiple roles; strains in facilitative trios with as well as without toxic intermediates are indicated with black triangles to the left of the strain IDs. Panel (**b**) inset displays the distribution of the number of unique strains that played each combination of roles. 06B played all three. The probability of playing $A$, $B$, or $C$ roles in facilitative trios varied with (**c**) overall competitiveness, $C_{w}$, as well as (**d**) resistance, $C_{r}$. See Table 5 for GLM results.
 
 The propensity towards $B$ vs. $C$ roles was explained by underlying differences in competitive fitness: the most facilitated strains (high C fraction) were among the least competitive (low $C_{w}$) in the populations, indicated by a negative correlation ($r  = –0.76$ [$|0.86–0.58|$ 95% CI], $p<10^{–5}$; Fig. 3c, Table 3). $B$ strains were intermediate relative to the entire range of $C_{w}$ values. Facilitator $A$ strains had consistently higher $C_{w}$, owing to the generally higher competitiveness of *P. fluorescens* strains (Fig. 1a–b). Resistance ($C_{r}$) was strongly positively correlated with the probability of being facilitated (Pearson’s $r = 0.57$ [$0.32–0.75$ 95% CI], $p<10^{–4}$; Fig. 1d, Table 3), and $C_{w}$ and $C{r}$ jointly considered in binomial GLMs independently ($C_{w}$ and $C_{r}$ are uncorrelated for *P. syringae*; Fig. 2a) contributed to variation in $B$ and $C$ roles (Fig. 3c–d, Table 3).
 
