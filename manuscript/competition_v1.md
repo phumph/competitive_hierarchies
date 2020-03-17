@@ -200,3 +200,41 @@ We also uncovered five trios whose mutual invasion asymmetries met the criteria 
 
 
 ### Discussion
+
+
+### References
+
+
+### Acknowledgements
+
+<hr>
+
+### Supplemental Information
+
+#### Supplemental Figures
+
+
+<center>
+<img src="https://i.imgur.com/nx1AZMl.png" width = "600"></center>
+<br>
+
+><strong>Fig. S1. Growth cycle profiles of all strains measured individually <em>in vitro</em></strong>. 
+
+<br>
+
+
+<center>
+<img src="https://i.imgur.com/Pba01IX.png" width = "500"></center>
+<br>
+
+><strong>Fig. S2. Growth cycle profiles of all strains measured individually <em>in vitro</em></strong>. 
+
+
+<br>
+
+<center>
+<img src="https://i.imgur.com/u3ywT7h.png" width = "500"></center>
+<br>
+
+><strong>Fig. S3. Growth cycle profiles of all strains measured individually <em>in vitro</em></strong>. 
+
