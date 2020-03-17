@@ -127,9 +127,8 @@ Of the 40 strains assayed, 13 (all *P. fluorescens*) produced halos surrounding 
 <!-- ******** -->
 <p>
 <center><img src="https://i.imgur.com/WJ4qxbP.png" width = "600"></center><br>
-    <small>
-    <strong>Fig. 1.</strong> Pairwise competitive interactions in a phyllosphere <i>Pseudomonas</i> spp. community.
-    </small>
+
+><strong>Fig. 1.</strong> <strong>Pairwise competitive interactions in a phyllosphere <i>Pseudomonas</i> spp. community.</strong> Rows reflect strains in the resident state, while columns reflect strains in the invader state. Dashed red lines through interaction matrix denote within–between clade divisions for ease of visualization. Phylogeny modified from Humphrey et al. (2014).
 </p>
 
 #### Life history correlates of competitiveness.
@@ -152,7 +151,7 @@ Competition and growth traits revealed opposing correlational patterns between t
 <!-- ******** -->
 
 <center>
-<img src="https://i.imgur.com/9kFArG1.png" width = "325">
+<img src="https://i.imgur.com/9kFArG1.png" width = "350">
 </center><br>
 
 ><strong>Fig. 3.Pairwise correlations (a) and principle component analysis (PCA) (b) of six traits reflect dissimilarities between clades, as well reveal the correlational structure among traits across Pseudomonas spp.</strong> <strong>a</strong>. Colors reflect magnitude of each Pearson’s $r$ estimate where the FDR corrected $p < 0.05$; comparisons with FDR-corrected $p<0.10$ retained color but are italicized. **b**. PCA 95% envelopes per clade depicted as solid or dashed ellipses. Dots are labeled with strain IDs. Individual trait vector loadings are in blue for resource use traits and orange for interference traits).
@@ -171,7 +170,7 @@ Asymmetric competitiveness was the most frequent interaction outcome both for th
 <img src="https://i.imgur.com/TL3Pzyq.png" width = "375"></center>
 <br>
 
-><strong>Fig. 4.</strong> This is figure 4 caption (not written yet).
+><strong>Fig. 4.</strong> <strong>The relative composition of interaction outcomes differs with phylogenetic scale of the comparison.</strong> **a**. Interaction types broken down into within- and between-clade comparisons (RI = reciprocal invasibility; RNI = reciprocal non-invasibility; Asymm. = asymmetric dominance). Total strain pairings = 772 between 40 strains, with the 20 self-interactions and 8 no-data interactions removed. **b**. The estimated probability of a given interaction systematically varies with phylogenetic distance ($D_{p}$) between strain pairs (see Table 2 for GLM results). Graphs depict GLM results where self-interactions were not included.
 
 In binomial GLMs, the overall probability of an asymmetric outcome increased with genetic distance (Fig. S6b; Table S1). This finding is driven predominantly by the competitive superiority of *P. fluorescens* over *P. syringae*. When trait distances were included with genetic distance in interaction outcome GLMs, the effect of DG generally dropped out (Table S2). Within *P. fluorescens*, pairings between strains with larger differences in lag time more often resulted in asymmetric outcomes, while similarity in lag time predicted reciprocal invasibility (Table S2). *P. syringae* exhibited the same pattern of findings except for rm instead of *l*, although residual variation was still explained by $D_{G}$, perhaps correlated with un-measured factors involved in competitiveness (Table S2).
 
@@ -202,6 +201,8 @@ We also uncovered five trios whose mutual invasion asymmetries met the criteria 
 ### Discussion
 
 
+
+
 ### References
 
 
@@ -218,7 +219,7 @@ We also uncovered five trios whose mutual invasion asymmetries met the criteria 
 <img src="https://i.imgur.com/nx1AZMl.png" width = "600"></center>
 <br>
 
-><strong>Fig. S1. Growth cycle profiles of all strains measured individually <em>in vitro</em></strong>. 
+><strong>Fig. S1. Growth cycle profiles of 40 *Pseudomonas* spp. strains measured individually in minimal media <em>in vitro</em></strong>. Overlain individual growth curves are shown grouped by nearest phylogenetic neighboring strains (see Fig. 1, main text). Strain 08B is sister to *P. syringae* clade. 4326 = laboratory strain *P. syringae* pv. maculicola str. ES4326.
 
 <br>
 
@@ -227,14 +228,14 @@ We also uncovered five trios whose mutual invasion asymmetries met the criteria 
 <img src="https://i.imgur.com/Pba01IX.png" width = "500"></center>
 <br>
 
-><strong>Fig. S2. Growth cycle profiles of all strains measured individually <em>in vitro</em></strong>. 
+><strong>Fig. S2.</strong> <strong>Life history trait correlations exhibited by *P. syringae* and *P. fluorescens* strains.</strong> **a-b**. Correlations between (**a**) canonical growth-related traits and between growth-related traits and (**b**) competitive metrics. **c**. Correlations between competitive metrics. Linear fits only displayed for lines with Pearson’s $r$ with FDR-corrected $p < 0.05$ (see Results, main text).
 
 
 <br>
 
 <center>
-<img src="https://i.imgur.com/u3ywT7h.png" width = "500"></center>
+<img src="https://i.imgur.com/u3ywT7h.png" width = "400"></center>
 <br>
 
-><strong>Fig. S3. Growth cycle profiles of all strains measured individually <em>in vitro</em></strong>. 
+><strong>Fig. S3.</strong> <strong>Morphological variation observed during pairwise inhibition assays reflects strain-specific induction of motility and inhibitiobn phenotypes in *P. fluorescens*.</strong> **a-c**. Photos of interaction plates against *P. syringae* resident strains against which *P. fluorescens* strain 43A adopted distinct megacolony morphologies (white arrows). Black arrows denote invading strains producing tox+ halos against the resident strains. **d-f**. close-ups of smooth morph (SM), wrinkly spreader-like (WS-like), and the smooth spreader (SS) morphs from above. **g**. Close-up of putative growth facilitation of non-focal strain via secretion of effectors from 43A, arising from either cell cycle modification by secreted regulators, or competitive release via killing of resident strain. H. Phylogenetic specificity of morphological induction and its relationship with toxicity for strain 43A. Phylogenetic tree from Fig. 1 (main text). Scale bars in **a–c** = 1 cm; **d–f** = 0.50 cm; **g** = 0.25 cm.
 
