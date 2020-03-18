@@ -78,16 +78,34 @@ We scored growth of each invader as $0$ for no visible growth of the invader abo
 Each strain was assayed under 40 different conditions both as resident strain and as invader, comprising an interaction network with 1600 entries (including self vs. self). One version of the interaction network represents the outcome of resource competition and details the extent of growth of each invader, while the other captures the presence or absence of inhibitory interactions indicated by zones of clearance in the resident population. For resource competitions, we calculate the invasiveness ($C_o$) and defense capacity (i.e. territoriality; $C_d$) of each strain. $C_o$ for each strain $i$ was calculated as
 
 $$
-C_{o,i} = \frac{1}{n_{\text{ij}}}\sum_{i \neq j}^{n}x_{ij}
+C_{o,i} = \frac{1}{n_{ij}}\sum_{i \neq j}^{n}x_{ij}
 $$
 
 where $x_{ij} \in \{ 0,0.5,1\}$ and $n_{ij}$ is the total number of scored interactions for each strain as the invader with all non-self resident strains. $C_o$ is thus the expected value of growth attained by each strain as the invader across the population of residents.
 
-$C_d$ was calculated similarly except the focal strain $j$ is in the resident state, $x_{ji} \in \{ 0,0.5,1\}$ is as before but has a subscript reversal, indicating the degree to which the resident prevented the growth of each invader $i$, and $n_{ji}$ is the number of interactions occurring between each focal resident and its non-self invaders. $C_d$ can thus be interpreted as the expected amount of growth each resident strain can prevent among the population of invaders assayed.
+$C_d$ quantifies the ability of each strain to resist invasion by other strains and is calculated as
 
-We then calculated an overall exploitative competition index, $C_w$, for each strain as $C_{o,i} - {(1 - C}_{d,i})$, where $-1 \leq C_{w} \leq 1$. These extremes represent absolute competitive inferiority ($-1$), where a strain failed to prevent any growth of any invader and similarly failed to invade any other strain, to absolute competitive dominance ($1$), where a strain fully invaded all residents and fully prevented growth of all invaders.
+$$
+C_{d,j} = \frac{1}{n_{ji}}\sum_{j \neq i}^{n}(1 - x_{ji})
+$$
 
-We also calculated $C_t$ and $C_r$ based on the interaction matrix for interference competition, where $C_{t}$ is the proportion of successful invasions (i.e. given growth of 0.5 or above) that also resulted in halo formation, indicative of inhibition of the resident. $C_r$ for a strain is the proportion of contests with all invading inhibitor strains (i.e., all strains with $C_t > 0$) that failed to result in halo formation, which we took as evidence of resistance. An overall interference competition index, $I_w$, was calculated for each strain as $I_{w,i} = C_{t,i} - {(1 - C}_{r,i})$ where $-1 \leq I_w \leq 1$, which is equal to the aggressiveness index (AI) of Vestigian et al. (2011).
+In this equation, strain $j$ is in the resident state, and $x_{ji} \in \{ 0,0.5,1\}$ as before but with a subscript reversal, indicating the degree to which the resident prevented the growth of each invader $i$. As above, $n_{ji}$ is the number of interactions occurring between each focal resident and its non-self invaders. $C_d$ can thus be interpreted as the expected amount of growth each resident strain can prevent among the population of invaders assayed.
+
+We then calculated an overall exploitative competition index, $C_w$, for each strain as 
+
+$$
+C_w = C_{o} - {(1 - C}_{d})
+$$
+
+where $-1 \leq C_{w} \leq 1$. These extremes represent absolute competitive inferiority ($-1$), where a strain failed to prevent any growth of any invader and similarly failed to invade any other strain, to absolute competitive dominance ($1$), where a strain fully invaded all residents and fully prevented growth of all invaders.
+
+We also calculated $C_t$ and $C_r$ based on the interaction matrix for interference competition. Here, $C_{t}$ is the proportion of successful invasions (i.e. given growth of 0.5 or above) that also resulted in halo formation (produced by invading strain), indicative of inhibition of the resident. $C_r$ for a strain is the proportion of contests with all invading inhibitor strains (i.e., all strains with $C_t > 0$) that failed to result in halo formation, which we took as evidence of resistance. Anlogous to $C_w$ above, an overall interference competition index, $I_w$, was calculated for each strain as 
+
+$$
+I_{w} = C_{t} - {(1 - C}_{r})
+$$
+
+where $-1 \leq I_w \leq 1$, which is equal to the aggressiveness index ($AI$) of Vestigian et al. (2011).
 
 #### Examining trait correlations
 
