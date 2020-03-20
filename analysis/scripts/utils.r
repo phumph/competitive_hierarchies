@@ -1,8 +1,6 @@
 
 
 # takes matrix same dimensions as cmat as n c.calc() above
-
-
 stacker <- function(z, row = TRUE) {
   if (row == TRUE) {
     zz <- t(z[1, ])
