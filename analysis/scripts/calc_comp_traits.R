@@ -15,11 +15,14 @@ source(file.path("scripts/utils.r"))
 run_args_parse <- function(debug_status) {
   if (debug_status == TRUE) {
     arguments <- list()
-    arguments$cfile <- "data/c_matrix.txt"
-    arguments$ifile <- "data/i_matrix.txt"
+    arguments$cfile   <- "data/c_matrix.txt"
+    arguments$ifile   <- "data/i_matrix.txt"
     arguments$outfile <- "data/comp_traits.csv"
   } else if (debug_status == FALSE) {
-    arguments <- commandArgs(trailingOnly = FALSE)
+    args <- commandArgs(trailingOnly = FALSE)
+    arguments$cfile   <- args[1]
+    arguments$ifile   <- args[2]
+    arguments$outfile <- args[3]
   }
   return(arguments)
 }

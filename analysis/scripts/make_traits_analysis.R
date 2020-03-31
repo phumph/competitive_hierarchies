@@ -1,8 +1,8 @@
 #!/usr/bin/env Rscript
 
-# ============== #
-# make_figure2.R #
-# ============== #
+# ====================== #
+# make_traits_analysis.R #
+# ====================== #
 
 # ----------- #
 # Description #
@@ -15,13 +15,13 @@
 # prior to output as final versions.
 # ------------------------------------------------------------------------ #
 
-library(dplyr)
-library(ggplot2)
-library(gplots)
-library(ggpubr)
-library(psych) # for corr.test()
-library(ggbiplot)
-library(ggrepel)
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(gplots)))
+suppressWarnings(suppressMessages(library(ggpubr)))
+suppressWarnings(suppressMessages(library(psych))) # for corr.test()
+suppressWarnings(suppressMessages(library(ggbiplot)))
+suppressWarnings(suppressMessages(library(ggrepel)))
 
 # ------------- #
 # function defs #
@@ -30,11 +30,19 @@ library(ggrepel)
 run_args_parse <- function(debug_status) {
   if (debug_status == TRUE) {
     arguments <- list()
-    arguments$comp_traits   <- "data/comp_traits.csv"
-    arguments$growth_traits <- "data/growth_traits.csv"
-    arguments$strain_data   <- "data/strain_metadata.csv"
+    arguments$comp_traits    <- "data/comp_traits.csv"
+    arguments$growth_traits  <- "data/growth_traits.csv"
+    arguments$strain_data    <- "data/strain_metadata.csv"
+    arguments$traits_outfile <- "data/all_traits.txt"
+    arguments$pca_outfile    <- "data/pca_traits.txt"
   } else if (debug_status == FALSE) {
-    arguments <- commandArgs(trailingOnly = FALSE)
+    args <- commandArgs(trailingOnly = FALSE)
+    arguments <- list()
+    arguments$comp_traits    <- args[1]
+    arguments$growth_traits  <- args[2]
+    arguments$strain_data    <- args[3]
+    arguments$traits_outfile <- args[4]
+    arguments$pca_outfile    <- args[5]
   }
   return(arguments)
 }
@@ -79,11 +87,13 @@ plot_heatmap <- function(traits_all, zero_to_na = FALSE) {
 
 plot_heatmap_clade <- function(traits_all, the_clade) {
 
-  traits_all %>%
+  suppressWarnings(
+    traits_all %>%
     dplyr::filter(clade == the_clade) %>%
     dplyr::select(-strain_id, -clade, -phylo_pos) %>%
     psych::corr.test(method = "pearson", adjust = "fdr") ->
     the_corrs
+  )
 
   palette_breaks <- seq(-1, 1, 0.125)
   color_palette  <- colorRampPalette(
@@ -105,7 +115,7 @@ plot_heatmap_clade <- function(traits_all, the_clade) {
     key = TRUE,
     keysize = 1.5,
     density.info = c("none"),
-    labCol = c(NA,colnames(the_corrs$r)[-1]),
+    labCol = c(NA, colnames(the_corrs$r)[-1]),
     labRow = c(row.names(the_corrs$r)[1:(length(row.names(the_corrs$r)) - 1)],
                NA),
     Rowv = FALSE,
@@ -163,6 +173,11 @@ do_pca <- function(traits_all) {
   pca_dat <- data.frame(pca_res$x,
                         clade = traits_all_complete$clade,
                         strain_id = traits_all_complete$strain_id)
+
+  write.table(pca_dat,
+              file = file.path(arguments$pca_outfile),
+              row.names = F, col.names = T, sep = "\t")
+
   ggbiplot::ggbiplot(pca_res,
     obs.scale = 1,
     var.scale = 1,
@@ -180,17 +195,20 @@ do_pca <- function(traits_all) {
           panel.border = element_rect(fill = NA),
           panel.grid = element_blank()) +
     scale_color_manual(values = c("gray", "black")) +
-    geom_text_repel(aes(label = pca_dat$strain_id), col = 'gray40') +
-    geom_hline(yintercept = 0, col = 'gray40', lty = 3) +
-    geom_vline(xintercept = 0, col = 'gray40', lty = 3) +
-    coord_cartesian(xlim = c(-5, 5), ylim = c(-5, 5)) ->
+    geom_text_repel(aes(label = pca_dat$strain_id), col = "gray40") +
+    geom_hline(yintercept = 0, col = "gray40", lty = 3) +
+    geom_vline(xintercept = 0, col = "gray40", lty = 3) +
+    scale_x_continuous(limits = c(-5, 5)) +
+    scale_y_continuous(limits = c(-5, 5)) ->
     pca_plot
 
     return(pca_plot)
 }
 
 main <- function(arguments) {
+  cat("\n*** make_figure2.R ***\n\n")
 
+  cat("Loading data...")
   comp <- read.table(arguments$comp_traits, T, ",")
   growth <- read.table(arguments$growth_traits, T, ",")
   meta_data <- read.table(arguments$strain_data, T, ",")
@@ -198,10 +216,12 @@ main <- function(arguments) {
   comp$strain_id <- sapply(comp$strain_id, function(x) gsub("X", "", x))
 
   # combine data.frames and prepare for plot
-  meta_data %>%
+  suppressWarnings(
+    meta_data %>%
     dplyr::left_join(growth, by = "strain_id") %>%
     dplyr::left_join(comp, by = "strain_id") ->
     traits_all
+  )
 
   traits_all %>%
     dplyr::select(strain_id, clade, phylo_pos,
@@ -210,6 +230,16 @@ main <- function(arguments) {
                   K = A_mm,
                   c_o, c_d, c_w, c_r, c_t, i_w) ->
                   traits_all
+
+  # save traits file as output for subsequent scripts
+  write.table(traits_all,
+              file = file.path(arguments$traits_outfile),
+              sep = "\t",
+              row.names = F,
+              col.names = T)
+
+  cat("Done!\n")
+  cat("Plotting heatmap...")
 
   # plot and save heatmap
   pdf(file = "figs/heatmap_plot.pdf", width = 3.25, height = 6)
@@ -221,6 +251,8 @@ main <- function(arguments) {
     plot_heatmap(traits_all)
   dev.off()
 
+  cat("Done!\n")
+  cat("Generating trait plots...")
   # plot individual trait distributions
   growth_plotlist <- list(
     pdn_1 = plot_trait_distn(dat = traits_all,
@@ -247,9 +279,11 @@ main <- function(arguments) {
     gps <- ggpubr::ggarrange(plotlist = growth_plotlist,
     nrow = length(growth_plotlist), align = "hv", common.legend = TRUE)
   )
+
   ggsave(gps, file = file.path("figs/trait_distributions.pdf"), device = "pdf",
          width = 3, height = 8)
-
+  cat("Done!\n")
+  cat("Generating pairwise trait correlations plot...")
   # now generate PCA and produce output for panel (c)
   pdf(file = "figs/corr_plot_Psyr.pdf", width = 6, height = 6)
     plot_heatmap_clade(traits_all, the_clade = "Psyr")
@@ -258,12 +292,14 @@ main <- function(arguments) {
   pdf(file = "figs/corr_plot_Pfluo.pdf", width = 6, height = 6)
     plot_heatmap_clade(traits_all, the_clade = "Pflu")
   dev.off()
-
+  cat("Done!\n")
+  cat("Performing principle components analysis...")
   # now for PCA
   pdf(file = "figs/pca_plot.pdf", width = 6, height = 6)
     do_pca(traits_all)
   dev.off()
-
+  cat("Done!\n\n")
+  cat("*** Script finished ***\n")
 }
 
 # ============ #
