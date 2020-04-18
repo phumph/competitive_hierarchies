@@ -1,5 +1,19 @@
 #!/usr/bin/env Rscript
 
+# ==================== #
+# make_growth_curves.R #
+# ==================== #
+
+# ----------- #
+# Description #
+# ----------- # ----------------------------------------------------------- #
+# Script takes input files of in vitro growth trajectories
+# and plots strain-level growth curves.
+#
+# Output element is .png with all strains' growth trajectories plotted.
+# ------------------------------------------------------------------------- #
+
+
 # ------------- #
 # function defs #
 # ------------- #
@@ -7,13 +21,15 @@
 run_args_parse <- function(debug_status) {
   if (debug_status == TRUE) {
     arguments <- list()
-    arguments$g1_file <- "data/MM_gcurvedata_Pflu.txt"
-    arguments$g2_file <- "data/MM_gcurvedata_Psyr.txt"
+    arguments$g1_file   <- "data/MM_gcurvedata_Pflu.txt"
+    arguments$g2_file   <- "data/MM_gcurvedata_Psyr.txt"
+    arguments$plot_file <- "figs/growth_curves.pdf"
   } else if (debug_status == FALSE) {
     args <- commandArgs(trailingOnly = FALSE)
     arguments <- list()
-    arguments$g1_file <- args[1]
-    arguments$g2_file <- args[2]
+    arguments$g1_file   <- args[1]
+    arguments$g2_file   <- args[2]
+    arguments$plot_file <- args[3]
   }
   return(arguments)
 }
@@ -21,7 +37,7 @@ run_args_parse <- function(debug_status) {
 make_plot <- function(g1, g2) {
 
   # row 1
-  par(mfrow = c(5, 3),mai=c(0.3, 0.4, 0.3, 0.3))
+  par(mfrow = c(5, 3), mai = c(0.3, 0.4, 0.3, 0.3))
   plot(g1[, 1], g1[, 15], type = "l", lty = 1,
        xlim = c(0, 3600),
        ylim = c(0, 0.6),
@@ -45,7 +61,7 @@ make_plot <- function(g1, g2) {
   legend("topleft",
          c(dimnames(g1)[[2]][12],
            dimnames(g1)[[2]][11]),
-         cex = 0.66, lty = c(1,2), bty = "n")
+         cex = 0.66, lty = c(1, 2), bty = "n")
 
   # row 3
   plot(g1[, 1], g1[, 10], type = "l", lty = 1,
@@ -229,7 +245,7 @@ main <- function(arguments) {
   g1 <- read.table(arguments$g1_file, header = T, sep = "\t")
   g2 <- read.table(arguments$g2_file, header = T, sep = "\t")
 
-  pdf(file = "figs/growth_curves.pdf", width = 8, height = 11)
+  pdf(file = arguments$plot_file, width = 8, height = 11)
     make_plot(g1, g2)
   dev.off()
 }
@@ -237,5 +253,6 @@ main <- function(arguments) {
 # ==== #
 # main #
 # ==== #
+
 arguments <- run_args_parse(debug_status = TRUE)
 main(aguments)

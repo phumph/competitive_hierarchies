@@ -1,12 +1,26 @@
 #!/usr/bin/env Rscript
 
+# ================== #
+# calc_comp_traits.R #
+# ================== #
+
+# ----------- #
+# Description #
+# ----------- # ----------------------------------------------------------- #
+# Script takes input files of competitive outcomes
+# and calcuates competitive trait values
+# for exploitative (C_o, C_d, C_w)
+# and interference (C_r, C_t, I_w) competition.
+#
+# Output element is .csv with all computed traits for all strains.
+# ------------------------------------------------------------------------- #
+
 # ------ #
 # header #
 # ------ #
 
-library(dplyr)
-library(tidyr)
-source(file.path("scripts/utils.r"))
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(tidyr)))
 
 # ------------- #
 # function defs #
@@ -53,8 +67,10 @@ i_calc <- function(imat) {
   # sum num. strains each is killed by;
   # subtract from number of cT>0 strains to get cR);
   # define submatrix with strains with cT>0 as cols
-  imat2 <- imat[, names(imat) %in% dplyr::filter(ires, c_t_raw > 0)[, "strain_id"]]
-  ires$n_t <- c(rep(1, (nrow(imat2) - ncol(imat2))), colSums(!is.na(imat2)) - 1)
+  imat2 <- imat[, names(imat) %in% dplyr::filter(ires,
+                                                 c_t_raw > 0)[, "strain_id"]]
+  ires$n_t <- c(rep(1, (nrow(imat2) - ncol(imat2))),
+                colSums(!is.na(imat2)) - 1)
   ires$n_r <- rowSums(!is.na(imat2))
   ires$n_r[ires$strain_id %in% ires$strain_id[ires$c_t_raw > 0]] <-
     ires$n_r[ires$strain_id %in% ires$strain_id[ires$c_t_raw > 0]] - 1
@@ -67,6 +83,7 @@ i_calc <- function(imat) {
   ires$c_t <- round(ires$c_t_raw / ires$n_t, 4)
   ires$i_w <- round((ires$c_t - 1) + ires$c_r, 4)
   ires$i_w <- round(ires$c_t - (1 - ires$c_r), 4)
+
   return(ires)
 }
 
@@ -90,15 +107,17 @@ main <- function(arguments) {
   imat_res <- i_calc(imat)
   res_full <- dplyr::full_join(cmat_res, imat_res, by = "strain_id")
 
-  return(res_full)
+  write.table(res_full,
+      file = file.path(arguments$outfile),
+      sep = ",",
+      col.names = T,
+      row.names = F,
+      quote = F)
 }
+
+# ==== #
+# main #
+# ==== #
 
 arguments <- run_args_parse(debug_status = TRUE)
 res <- main(arguments)
-
-write.table(res,
-  file = file.path(arguments$outfile),
-  sep = ",",
-  col.names = T,
-  row.names = F,
-  quote = F)

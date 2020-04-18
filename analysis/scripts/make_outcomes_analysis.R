@@ -133,13 +133,15 @@ plot_glm_res <- function(pairs_full) {
     theme_bw()
 
   gx2 <- ggplot(int_glm_s, aes(x = pdist, y = RI)) +
-    geom_jitter(position = position_jitter(height = .025), alpha=0.5) + scale_y_continuous(limits = c(-0.025, 1.025)) +
+    geom_jitter(position = position_jitter(height = .025), alpha=0.5) +
+    scale_y_continuous(limits = c(-0.025, 1.025)) +
     #geom_point() +
     stat_smooth( aes(y = RI),  method="glm", family="binomial", se=T) +
     theme_bw()
 
   gx3 <- ggplot(int_glm_s, aes(x = pdist, y = RNI)) +
-    geom_jitter(position = position_jitter(height = .025), alpha=0.5) + scale_y_continuous(limits = c(-0.025, 1.025)) +
+    geom_jitter(position = position_jitter(height = .025), alpha=0.5) +
+    scale_y_continuous(limits = c(-0.025, 1.025)) +
     #geom_point() +
     stat_smooth( aes(y = RNI), method="glm", family = "binomial", se=T) +
     theme_bw()

@@ -10,7 +10,7 @@
    <th style="text-align:right;"> p </th>
   </tr>
  </thead>
-<tbody>
+<tbody>Â
   <tr>
    <td style="text-align:left;"> RI </td>
    <td style="text-align:left;"> intercept </td>
