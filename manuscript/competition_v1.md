@@ -35,11 +35,11 @@ Competition may be the principle ecological force shaping microbial community st
 
 As diversity increases, the number of possible indirect interactions in the community scales faster than the number of direct interactions. Accordingly, a species may benefit from additional competitors if the net indirect effects dampen direct competition faced by other species [@Levine76a; @Lawlor79a; @Stone91a; @Miller96a; @Wooton94a]. Such indirect facilitation [@Levine99a] has not been well explored in microbiomes.
 
-Species-rich communities are more likely to harbor members with traits that have a large ecological impact [@Banerjee18a]. In microbial communities, strains that secrete diffusible antibiotics, resource substrates, or signaling molecules can alter the fitness of non-producers [@Lee10a; @Gutierrez19a]. By selecting for more specialized traits involved in resistance or metabolite uptake, these secretions can upend competitive hierarchies and trait distributions that would otherwise occur based on canonical competitive fitness traits. If microbial taxa with large indirect impacts are common or rare is unclear [@Banerjee18a]. Leaf-dwelilng (phyllosphere) bacteria secrete compounds altering growth and survival of nearby bacteria (Lindow and Brandl 2003; Quiñones et al. 2005; Dulla and Lindow 2009; Dulla et al. 2010; Ma et al. 2013) and can co-localize on the leaf surface and interior [Monier05a]. Thus, there is potential for direct and indirect interactions between competing bacteria to affect phyllosphere community assembly.
+Species-rich communities are more likely to harbor members with traits that have a large ecological impact [@Banerjee18a]. In microbial communities, strains that secrete diffusible antibiotics, resource substrates, or signaling molecules can alter the fitness of non-producers [@Lee10a; @Gutierrez19a]. By selecting for more specialized traits involved in resistance or metabolite uptake, these secretions can upend competitive hierarchies and trait distributions that would otherwise occur based on canonical competitive fitness traits. If microbial taxa with large indirect impacts are common or rare is unclear [@Banerjee18a]. Leaf-dwelling (phyllosphere) bacteria secrete compounds altering growth and survival of nearby bacteria [@Lindow03a; Quinones05a; Dulla09a; Dulla10a] and can co-localize on the leaf surface and interior [Monier05a]. Thus, there is potential for direct and indirect interactions between competing bacteria to affect community assembly and steady-state patterns of diversity in the phyllosphere.
 
-Competition need not be purely hierarchical and intransitive loops may arise in species-rich communities whereby numerical dominance cycles at local spatial scales, resulting in community stability [@Rojas-Echenique11a, @Kerr02a]. Modest intransitivity can buffer against extinction [@Laird06a; @Laird08a; @Rojas-Echenique11a; @Laird14a] and the degree of intransitivity can shape species diversity [@Reichenbach07a]. Although intransitivity occurs in microbial systems in the laboratory [@Kerr02a; @Kelsic15a], its occurrence in native microbiome communities is not well characterized [@Lankau11a; @Godoy17a]. 
+Finally, competition need not be purely hierarchical: intransitive loops may arise in species-rich communities whereby numerical dominance cycles at local spatial scales, resulting in community stability [@Rojas-Echenique11a; @Kerr02a]. Even modest intransitivity can buffer against extinction [@Laird06a; @Laird08a; @Rojas-Echenique11a; @Laird14a] and the degree of intransitivity can shape species diversity [@Reichenbach07a]. Although intransitivity occurs in microbial systems in the laboratory [@Kerr02a; @Kelsic15a], its occurrence in native microbiome communities is not well characterized [@Lankau11a; @Godoy17a]. 
 
-Here, we (1) characterized life history trait variances and co-variances among isolates of a wild endophytic microbiome meta-community, (2) examined how this related to competitive interaction networks, and (3) measured how intransitive competitive asymmetries among strains promoted co-existence. We used a natural community of endophytic *Pseudomonas* spp. endophytic bacteria from a native plant (bittercress; Brassicaceae: *Cardamine cordifolia* A. Gray), including a diversity of strains of *P. syringae* [@Morris08a] and *P. fluorescens*. 
+To address the various gaps highlighted above, here we (1) characterized life history trait variances and co-variances among isolates of a wild endophytic microbiome meta-community, (2) examined how this related to competitive interaction networks, and (3) measured how intransitive competitive asymmetries among strains promoted co-existence. We used a natural community of endophytic *Pseudomonas* spp. endophytic bacteria from a native plant (bittercress; Brassicaceae: *Cardamine cordifolia* A. Gray), including a diversity of strains of *P. syringae* and *P. fluorescens*. 
 
 ### Results
 
@@ -89,17 +89,25 @@ We also uncovered five trios whose mutual invasion asymmetries met the criteria 
 
 ### Discussion
 
-#### Overiew.
-We discovered major differences in both exploitative and interference competitiveness between the two major clades comprising the *Pseudomonas* spp. phyllosphere community of bittercress, as well as distinctions in how such competitiveness relates to underlying life history traits. Instead of trade-offs between life history traits, we uncovered distinct correlates of competitiveness that involved shorter lag phase duration for *P. fluorescens*, and higher maximum growth rates for *P. syringae*. Canonical trade-offs between rate and yield were not observed across either bacterial clade. Instead, we found a trade-off between lag phase and growth rate present only within *P. fluorescens*. Inhibition ability (interference competitive ability) did not trade-off with exploitative ability but was positively related to it. Such patterns suggest that the evolution of competitiveness may involve different components of life history in these bacterial lineages. 
+#### Overiew
+We discovered major differences in both exploitative and interference competitiveness between the two major clades comprising the *Pseudomonas* spp. phyllosphere community of bittercress, as well as distinctions in how such competitiveness relates to underlying life history traits. Instead of trade-offs between life history traits, we uncovered distinct correlates of competitiveness that involved shorter lag phase duration for *P. fluorescens*, and higher maximum growth rates for *P. syringae*. Canonical trade-offs between rate and yield were not observed across either bacterial clade. Instead, we found a trade-off between lag phase and growth rate present only within *P. fluorescens*. Inhibition ability (interference competitive ability) did not trade-off with exploitative ability but was positively related to it. Such patterns suggest that the evolution of competitiveness may involve distinct components of life history in these bacterial lineages. 
 
-Competitive dominance in within-clade competitions was largely explained by how dissimilar the life history traits were between the interacting pairs, and genetically more similar strains tended to display more similar life histories. 
+Competitive dominance in within-clade competitions was largely explained by how dissimilar the life history traits were between the interacting pairs, and genetically more similar strains tended to display more similar life histories (Fig. 1). 
 
-Examining the community context of these interactions revealed that a modest fraction of all three-way interactions resulted in the reversal of competitive outcomes that would otherwise lead to competitive exclusion of an inferior competitor. A small set of R–P–S interactions was discovered, which may lead to cyclical invasion dynamics. The intransitivity in our interaction network generally took the form of facilitation, whereby a toxic strain displaced a superior competitor thereby facilitating a resistant but weaker recipient. The community context of interference competition is important for predicting the exploitative capacity of resistant strains by buffering them from competitive exclusion, which alters the premium on exploitative capacity if a strain is also resistant. Such a dataset allows dissection of several dimensions of in vitro fitness exhibited by a natural community of phyllosphere *Pseudomonas* spp., and provides a platform for testing hypotheses about the mechanistic bases of competitive traits (e.g. toxin production and resistance). Together, this work helps build an understanding of how competitive traits might evolve in tandem with other life history traits in representatives from real communities that interact in nature.
+Examining the community context of these interactions revealed that a modest fraction of all three-way interactions resulted in the reversal of competitive outcomes that would otherwise lead to competitive exclusion of an inferior competitor. A small set of R–P–S interactions was discovered, which may lead to cyclical invasion dynamics. More interestingly, the predominant form of intransitivity in our interaction network took the form of facilitation, whereby a toxic strain displaces a superior competitor and thereby facilitates a resistant but weaker recipient. Thus, the community context of interference competition is important for predicting the outcome of competitive pairings whose outcome typically rests on exploitative capacity.
+
+Such a dataset allows dissection of several dimensions of in vitro fitness exhibited by a natural community of phyllosphere *Pseudomonas* spp., and provides a platform for testing hypotheses about the mechanistic bases of competitive traits (e.g. toxin production and resistance). Together, this work helps build an understanding of how competitive traits might evolve in tandem with other life history traits in representatives from real communities that interact in nature.
 
 #### Correlations between growth traits and competitiveness.
-Selection for increased exploitative competitive ability is expected to increase maximum growth rate, perhaps at the expense of growth efficiency, which can result in a tragedy of the commons whereby rapid but wasteful use of resources yields higher competitive ability (Pfeiffer et al. 2001; MacLean 2007). Consistent with this, overall exploitative competitive fitness (Cw) for *P. syringae* was positively correlated with maximum growth rate (rm) (Table 1). Notably, however, neither *P. syringae* nor *P. fluorescens* strains exhibited a r–K trade-off: growth rate was positively correlated with yield in both minimal and rich media for *P. syringae*, and was uncorrelated with yield for *P. fluorescens* (Fig. 2, S5). In contrast to *P. syringae*, exploitative competitiveness for *P. fluorescens* was most correlated with having a shorter lag phase duration (1/L). Shorter lag phase was negatively correlated with growth rate for *P. fluorescens*, but not for *P. syringae*. These findings indicate that exploitative ability for *P. syringae* and *P. fluorescens* are constrained by separate underlying life history characters. The unique correlational structure among these life history characters may influence the evolution of exploitative ability for each clade.
+Selection for increased exploitative competitive ability is expected to increase maximum growth rate, perhaps at the expense of growth efficiency, which can result in a tragedy of the commons whereby rapid but wasteful use of resources yields higher competitive ability (Pfeiffer et al. 2001; MacLean 2007). Consistent with this, overall exploitative competitive fitness ($C_{w}$) for *P. syringae* was positively correlated with maximum growth rate, $r$ (Table 1). Notably, however, neither *P. syringae* nor *P. fluorescens* strains exhibited a trade-off with maximum yield, $K$: growth rate was positively correlated with yield for *P. syringae*, and uncorrelated for *P. fluorescens* (Fig. S2).
 
-We were surprised to uncover that maximum growth rate was correlated with a longer lag phase in *P. fluorescens*, as this pattern contradicts the traditional dichotomy between generally “fast” vs. “slow” life histories. *Escherichia coli* lines adapting to a glucose-limited environment exhibited coordinated increases in growth rate and shorter lag time after 10,000 generations (Vasi et al. 1994; Lenski et al. 1998). **E. coli** selected to persist in lag phase during periods of antibiotic stress incurred no pleiotropic cost of reduced maximum growth rate despite up to a 10-fold increase in lag time (Fridman et al. 2015). One explanation for our lag–growth correlation is that competitive fitness for *P. fluorescens* in the spatial microcosms we used may have more to do with space than resource use. Strains that preempt as much space as possible early on may reap the rewards of their territorial monopoly even at the expense of a decreased maximal growth rate. One potential mechanism is the production of exudates that prevent physical expansion of competitor cells. This explanation rests on an intuitive physiological trade-off between exudate production and cell replication, but explains both the premium on short lag as well as its later costs. Thus, a straightforward hypothesis is that lag phase is causally affected by the amount of exudate production and exudate production trades off with maximum growth rate. Lag phase has received renewed attention as a distinct component of microbial life cycles (Rolfe et al. 2012), and characterizing the physiology of cells during this phase may reveal the nature of its linkage with maximum growth rate.
+In contrast to *P. syringae*, exploitative competitiveness for *P. fluorescens* was most correlated with having a shorter lag phase duration (1/L). Shorter lag phase was negatively correlated with growth rate for *P. fluorescens*, but not for *P. syringae*. These findings indicate that exploitative ability for *P. syringae* and *P. fluorescens* are constrained by separate underlying life history characters, as further evidenced by the distinct clade-level clustering of strains in a multivariate analysis (Fig. 1d). Further, the degree of trait dispersion was greater in *P. syringae*, despite similar levels of average genetic divergence among strains. The unique levels of trait variation and correlational structure among traits may indicate that the genetic avenues by which competitive ability evolves in each clade are highly distinct.
+
+We were surprised to uncover that maximum growth rate was correlated with a longer lag phase in *P. fluorescens*, as this pattern contradicts the traditional dichotomy between generally “fast” vs. “slow” life histories and contrasts with patterns observed in microbial evolution experiments [@Vasi94a]. 
+
+*Escherichia coli* lines adapting to a glucose-limited environment exhibited coordinated increases in growth rate and shorter lag time after 10,000 generations (Vasi et al. 1994; Lenski et al. 1998). *E. coli* selected to persist in lag phase during periods of antibiotic stress incurred no pleiotropic cost of reduced maximum growth rate despite up to a 10-fold increase in lag time (Fridman et al. 2015).
+
+One explanation for the positive $r-K$ correlation observed for *P. fluorescens* is that competitive fitness for these strains in the spatial microcosms may have more to do with space than resource use. Strains that preempt as much space as possible early on may reap the rewards of their territorial monopoly even at the expense of a decreased maximal growth rate. One potential mechanism is the production of exudates that prevent physical expansion of competitor cells. This explanation rests on an intuitive physiological trade-off between exudate production and cell replication, but explains both the premium on short lag as well as its later costs. Thus, a straightforward hypothesis is that lag phase is causally affected by the amount of exudate production and exudate production trades off with maximum growth rate. Lag phase has received renewed attention as a distinct component of microbial life cycles (Rolfe et al. 2012), and characterizing the physiology of cells during this phase may reveal the nature of its linkage with maximum growth rate.
 
 #### Priority effects. 
 *P. syringae* strains are less able to exert priority effects in the spatial context of our assays. However, if both strains were to compete in an unstructured environment where preemption of space was irrelevant, *P. syringae* strains with high growth rates might be expected to outcompete a variety of *P. fluorescens* strains with relatively lower growth rates (Fig 1). Thus, the negative correlation between lag phase and growth rate in *P. fluorescens* resembles a colonization–competition trade-off. Spatial priority effects arising from territoriality can provide a mechanism for maintenance of colonization–competition trade-offs that would otherwise lead to competitive exclusion (Edwards and Schreiber 2010). A colonization–competition trade-off underlies territoriality in *Vibrio* spp. based on the differential ability of clones to contest territory vs. disperse to new ephemeral habitats (Yawata et al. 2014). Either one of these mechanisms may contribute to the maintenance of diverse exploitation strategies in *P. fluorescens* across patchy and ephemeral leaf environments.
@@ -192,124 +200,6 @@ To test for genetic correlations in trait values, we ran Mantel tests between pa
 ### References
 
 <div id="refs"></div>
-
-Amarasekare, P. 2003. Competitive coexistence in spatially structured environments: a synthesis. Ecology Letters 6:1109–1122.
-
-Baltrus, D. A., M. T. Nishimura, A. Romanchuk, J. H. Chang, M. S. Mukhtar, K. Cherkis, J. Roach, et al. 2011. Dynamic Evolution of Pathogenicity Revealed by Sequencing and Comparative Genomics of 19 Pseudomonas syringae Isolates. (D. S. Guttman, ed.)PLoS pathogens 7:e1002132.
-
-Barrett, L. G., T. Bell, G. Dwyer, and J. Bergelson. 2011. Cheating, trade-offs and the evolution of aggressiveness in a natural pathogen population. Ecology Letters 14:1149–1157.
-
-Bergstrom, A., J. T. Simpson, F. Salinas, B. Barre, L. Parts, A. Zia, A. N. Nguyen Ba, et al. 2014. A high-definition view of functional genetic variation from natural yeast genomes. Molecular Biology and Evolution 31:872–888.
-
-Bronstein, J. L. 2009. The evolution of facilitation and mutualism. Journal of Ecology 97:1160–1170.
-
-Brooker, R. W., F. T. Maestre, R. M. Callaway, C. L. Lortie, L. A. Cavieres, G. Kunstler, P. Liancourt, et al. 2008. Facilitation in plant communities: the past, the present, and the future. Journal of Ecology 96:18–34.
-
-Cui, J., A. K. Bahrami, E. G. Pringle, G. Hernandez-Guzman, C. L. Bender, N. E. Pierce, and F. M. Ausubel. 2005. Pseudomonas syringae manipulates systemic plant defenses against pathogens and herbivores. Proceedings of the National Academy of Sciences of the United States of America 102:1791–1796.
-
-Cui, J., G. Jander, L. R. Racki, P. D. Kim, N. E. Pierce, and F. M. Ausubel. 2002. Signals involved in Arabidopsis resistance to Trichoplusia ni caterpillars induced by virulent and avirulent strains of the phytopathogen Pseudomonas syringae. Plant physiology 129:551–564.
-
-Czaran, T. L., R. F. Hoekstra, and L. Pagie. 2002. Chemical warfare between microbes promotes biodiversity. Proceedings of the National Academy of Sciences of the United States of America 99:786–790.
-
-Decoin, V., C. Barbey, D. Bergeau, X. Latour, M. G. J. Feuilloley, N. Orange, and A. Merieau. 2014. A Type VI Secretion System Is Involved in Pseudomonas fluorescens Bacterial Competition. (J. Murillo, ed.)PloS one 9:e89411.
-
-Dulla, G. F. J., and S. E. Lindow. 2009. Acyl-homoserine lactone-mediated cross talk among epiphytic bacteria modulates behavior of Pseudomonas syringae on leaves. The ISME journal 3:825–834.
-
-Dulla, G. F. J., K. V. Krasileva, and S. E. Lindow. 2010. Interference of quorum sensing in Pseudomonas syringae by bacterial epiphytes that limit iron availability. Environmental Microbiology 12:1762–1774.
-
-Edwards, K. F., and S. J. Schreiber. 2010. Preemption of space can lead to intransitive coexistence of competitors. Oikos 119:1201–1209.
-
-Eisenhauer, N., E. Materne, S. Scheu, and A. Jousset. 2013. Evolutionary history predicts the stability of cooperation in microbial communities. Nature communications 4:1–7.
-
-Eisenhauer, N., S. Scheu, and A. Jousset. 2012a. Bacterial Diversity Stabilizes Community Productivity. (S. Bertilsson, ed.)PloS one 7:e34517.
-
-Eisenhauer, N., W. Schulz, S. Scheu, and A. Jousset. 2012b. Niche dimensionality links biodiversity and invasibility of microbial communities. (M. Pfrender, ed.)Functional Ecology 27:282–288.
-
-Foster, K. R., and T. Bell. 2012. Competition, not cooperation, dominates interactions among culturable microbial species. Current biology : CB 22:1845–1850.
-
-Frank, S. A. 2010. The trade-off between rate and yield in the design of microbial metabolism. Journal of evolutionary biology 23:609–613.
-
-Frean, M., and E. R. Abraham. 2001. Rock-scissors-paper and the survival of the weakest. Proceedings of the Royal Society B: Biological Sciences 268:1323–1327.
-
-Fridman, O., A. Goldberg, I. Ronin, N. Shoresh, and N. Q. Balaban. 2015. Optimization of lag time underlies antibiotic tolerance in evolved bacterial populations. Nature 513:418–421.
-
-Garbeva, P., O. Tyc, M. N. P. Remus-Emsermann, A. van der Wal, M. Vos, M. Silby, and W. de Boer. 2011. No apparent costs for facultative antibiotic production by the soil bacterium Pseudomonas fluorescens Pf0-1. PloS one 6:e27266.
-
-Groen, S. C., N. K. Whiteman, A. K. Bahrami, A. M. Wilczek, J. Cui, J. A. RUSSELL, A. Cibrian-Jaramillo, et al. 2013. Pathogen-triggered ethylene signaling mediates systemic-induced susceptibility to herbivory in Arabidopsis. The Plant cell 25:4755–4766.
-
-Hol, W. H. G., T. M. Bezemer, and A. Biere. 2013. Getting the ecology into interactions between plants and the plant growth-promoting bacterium Pseudomonas fluorescens. Frontiers in plant science 4:81.
-
-Humphrey, P. T., T. T. Nguyen, M. M. Villalobos, and N. K. Whiteman. 2014. Diversity and abundance of phyllosphere bacteria are linked to insect herbivory. Molecular Ecology 23:1497–1515.
-
-Huynh, T. V., D. Dahlbeck, and B. J. Staskawicz. 1989. Bacterial blight of soybean: regulation of a pathogen gene determining host cultivar specificity. Science (New York, NY) 245:1374–1377.
-
-Jasmin, J.-N., and C. Zeyl. 2012. Life-history evolution and density-dependent growth in experimental populations of yeast. Evolution 66:3789–3802.
-
-Kerr, B., M. A. Riley, M. W. Feldman, and B. J. M. Bohannan. 2002. Local dispersal promotes biodiversity in a real-life game of rock-paper-scissors. Nature 418:171–174.
-
-Kinkel, L. L., and S. E. Lindow. 1993. Invasion and Exclusion among Coexisting Pseudomonas syringae Strains on Leaves. Applied and environmental microbiology 59:3447–3454.
-
-Kirkup, B. C., and M. A. Riley. 2004. Antibiotic-mediated antagonism leads to a bacterial game of rock-paper-scissors in vivo. Nature 428:412–414.
-
-Kryazhimskiy, S., D. P. Rice, and M. M. Desai. 2012. Population subdivision and adaptation in asexual populations of Saccharomyces cerevisiae. Evolution 66:1931–1941.
-
-Laird, R. A. 2014. Population interaction structure and the coexistence of bacterial strains playing “rock-paper-scissors.” Oikos 123:472–480.
-
-Laird, R. A., and B. S. Schamp. 2006. Competitive intransitivity promotes species coexistence. American Naturalist 168:182–193.
-
-Laird, R. A., and B. S. Schamp. 2008. Does local competition increase the coexistence of species in intransitive networks? Ecology 
-89:237–247.
-
-Lankau, R. A., and S. Y. Strauss. 2007. Mutual feedbacks maintain both genetic and species diversity in a plant community. Science (New York, NY) 317:1561–1563.
-
-Lenski, R. E., and M. A. Riley. 2002. Chemical warfare from an ecological perspective. Proceedings of the National Academy of Sciences of the United States of America 99:556–558.
-
-Lenski, R. E., J. A. Mongold, P. D. Sniegowski, M. Travisano, F. Vasi, P. J. Gerrish, and T. M. Schmidt. 1998. Evolution of competitive fitness in experimental populations of E. coli: what makes one genotype a better competitor than another? Antonie van 
-Leeuwenhoek 73:35–47.
-
-Lindow, S. E., and M. T. Brandl. 2003. Microbiology of the phyllosphere. Applied and environmental microbiology 69:1875–1883.
-
-Luckinbill, L. S. 1978. r and K selection in experimental populations of Escherichia coli. Science (New York, NY) 202:1201–1203.
-
-Luckinbill, L. S. 1979. Selection and the r/K continuum in experimental populations of protozoa. American Naturalist 427–437.
-
-Ma, A., D. Lv, X. Zhuang, and G. Zhuang. 2013. Quorum quenching in culturable phyllosphere bacteria from tobacco. International journal of molecular sciences 14:14607–14619.
-
-MacLean, R. C. 2007. The tragedy of the commons in microbial populations: insights from theoretical, comparative and experimental studies. Heredity 100:471–477.
-
-Majeed, H., O. Gillor, B. Kerr, and M. A. Riley. 2011. Competitive interactions in Escherichia coli populations: the role of bacteriocins. The ISME journal 5:71–81.
-
-McIntire, E. J. B., and A. Fajardo. 2013. Facilitation as a ubiquitous driver of biodiversity. The New phytologist 201:403–416.
-
-Mendes, R., M. Kruijt, I. de Bruijn, E. Dekkers, M. van der Voort, J. H. M. Schneider, Y. M. Piceno, et al. 2011. Deciphering the Rhizosphere Microbiome for Disease-Suppressive Bacteria. Science (New York, NY) 332:1097–1100.
-
-Mudgett, M. B., and B. J. Staskawicz. 1999. Characterization of the Pseudomonas syringae pv. tomato AvrRpt2 protein: demonstration of secretion and processing during bacterial pathogenesis. Molecular microbiology 32:927–941.
-
-Neumann, G. F., and G. Jetschke. 2010. Evolutionary classification of toxin mediated interactions in microorganisms. BioSystems 99:155–166.
-
-Novak, M., T. Pfeiffer, R. E. Lenski, U. Sauer, and S. Bonhoeffer. 2006. Experimental tests for an evolutionary trade-off between growth rate and yield in E. coli. The American naturalist 168:242–251.
-
-Ohgushi, T., O. Schmitz, and R. D. Holt. 2012. Trait-Mediated Indirect Interactions. Cambridge University Press.
-
-Oksanen, J., F. G. Blanchet, R. Kindt, P. Legendre, P. R. Minchin, R. B. OHara, G. L. Simpson, et al. 2012. vegan: Community Ecology Package.
-
-Ostrowski, E. A., D. E. Rozen, and R. E. Lenski. 2005. Pleiotropic effects of beneficial mutations in Escherichia coli. Evolution 59:2343–2352.
-
-Pfeiffer, T., S. Schuster, and S. Bonhoeffer. 2001. Cooperation and competition in the evolution of ATP-producing pathways. Science (New York, NY) 292:504–507.
-
-Quiñones, B., G. Dulla, and S. E. Lindow. 2005. Quorum sensing regulates exopolysaccharide production, motility, and virulence in Pseudomonas syringae. Molecular plant-microbe interactions : MPMI 18:682–693.
-
-Revelle, W. 2012. psych: Procedures for Personality and Psychological Research. Northwestern University, Evanston, Illinois, USA.
-
-Rolfe, M. D., C. J. Rice, S. Lucchini, C. Pin, A. Thompson, A. D. S. Cameron, M. Alston, et al. 2012. Lag Phase Is a Distinct Growth Phase That Prepares Bacteria for Exponential Growth and Involves Transient Metal Accumulation. Journal of bacteriology 194:686–701.
-
-Sinervo, B., and C. M. Lively. 1996. The rock-paper-scissors game and the evolution of alternative male strategies. Nature 380:240–243.
-
-Vasi, F., M. Travisano, and R. E. Lenski. 1994. Long-term experimental evolution in Escherichia coli. II. Changes in life-history traits during adaptation to a seasonal environment. American Naturalist 432–456.
-
-Warringer, J., E. Zörgö, F. A. Cubillos, A. Zia, A. Gjuvsland, J. T. Simpson, A. Forsmark, et al. 2011. Trait Variation in Yeast Is Defined by Population History. (L. Kruglyak, ed.)PLoS genetics 7:e1002111.
-
-Yawata, Y., O. X. Cordero, F. Menolascina, J. H. Hehemann, M. F. Polz, and R. Stocker. 2014. Competition-dispersal tradeoff ecologically differentiates recently speciated marine bacterioplankton populations. Proceedings of the National Academy of Sciences 111:5622–5627.
 
 
 ### Acknowledgements
