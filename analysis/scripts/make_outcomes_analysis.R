@@ -127,23 +127,23 @@ run_glms <- function(pairs_full) {
 
 plot_glm_res <- function(pairs_full) {
 
-  ggplot(pairs_full, aes(x = PC1_dist, y = ASYM)) +
+  gx1 <- ggplot(pairs_full, aes(x = PC1_dist, y = ASYM)) +
     geom_jitter(position = position_jitter(height = 0.02), alpha = 0.5) +
     stat_smooth(method = "glm", se = T) +
     theme_bw()
 
   gx2 <- ggplot(int_glm_s, aes(x = pdist, y = RI)) +
-    geom_jitter(position = position_jitter(height = .025), alpha=0.5) +
+    geom_jitter(position = position_jitter(height = .025), alpha = 0.5) +
     scale_y_continuous(limits = c(-0.025, 1.025)) +
     #geom_point() +
-    stat_smooth( aes(y = RI),  method="glm", family="binomial", se=T) +
+    stat_smooth( aes(y = RI),  method = "glm", family = "binomial", se = T) +
     theme_bw()
 
   gx3 <- ggplot(int_glm_s, aes(x = pdist, y = RNI)) +
-    geom_jitter(position = position_jitter(height = .025), alpha=0.5) +
+    geom_jitter(position = position_jitter(height = .025), alpha = 0.5) +
     scale_y_continuous(limits = c(-0.025, 1.025)) +
     #geom_point() +
-    stat_smooth( aes(y = RNI), method="glm", family = "binomial", se=T) +
+    stat_smooth( aes(y = RNI), method = "glm", family = "binomial", se = T) +
     theme_bw()
 
   ggpubr::ggarrange(plotlist = list(gx1, gx2, gx3), nrow = 3)
@@ -152,6 +152,7 @@ plot_glm_res <- function(pairs_full) {
 
 compare_mv_disp <- function(x,
                             dist_col,
+                            pdist_col = "pdist",
                             clade_col = "i_clade",
                             write_out = TRUE) {
 
@@ -160,21 +161,34 @@ compare_mv_disp <- function(x,
     dplyr::filter(WB == "W",
                   !!as.symbol(dist_col) > 0,
                   !!as.symbol(clade_col) == "Psyr") %>%
-    dplyr::select(!!as.symbol(dist_col)) ->
-    psyr_vec
+    dplyr::select(!!as.symbol(pdist_col),
+                  !!as.symbol(dist_col)) %>%
+    dplyr::mutate(clade = "Psyr")->
+    psyr_dat
 
   x %>%
     dplyr::filter(WB == "W",
                   !!as.symbol(dist_col) > 0,
                   !!as.symbol(clade_col) == "Pflu") %>%
-    dplyr::select(!!as.symbol(dist_col)) ->
-    pflu_vec
+    dplyr::select(!!as.symbol(pdist_col),
+                  !!as.symbol(dist_col)) %>%
+    dplyr::mutate(clade = "Pflu") ->
+    pflu_dat
+  lm_dat <- dplyr::bind_rows(psyr_dat, pflu_dat)
 
-  t.test(psyr_vec, pflu_vec, var.equal = FALSE) %>%
+  t.test(psyr_dat$PC1_PC2_PC3_dist, pflu_dat$PC1_PC2_PC3_dist, var.equal = FALSE) %>%
     broom::tidy() -> t_res
 
+  # now compute more complicated model accounting for pdist:
+  lm1 <- lm(PC1_PC2_PC3_dist ~ pdist + clade, data = lm_dat)
+  lm2 <- lm(PC1_PC2_PC3_dist ~ pdist * clade, data = lm_dat)
+  lms <- list(lm1 = lm1, lm2 = lm2)
+  lms[[row.names(AIC(lm1, lm2)[1, ])]] %>%
+    broom::tidy() -> lm_res
+
   if (write_out == TRUE) {
-    # export as markdown table
+
+    # export ttest res as markdown table
     kableExtra::kable(t_res) %>%
       kableExtra::kable_styling(
           bootstrap_options = c("striped", "hover", "condensed")
@@ -190,6 +204,21 @@ compare_mv_disp <- function(x,
     cat("\n<br>\n<center><img src='../figs/mv_trait_dists.png' width = 200></center>",
         file = file_conn, append = TRUE)
     close(file_conn)
+
+
+    # now export lm results:
+    # export ttest res as markdown table
+    kableExtra::kable(lm_res) %>%
+      kableExtra::kable_styling(
+          bootstrap_options = c("striped", "hover", "condensed")
+          ) ->
+      table_object2
+
+      file_conn <- file(file.path("tables/lm_trait-v-phylo-dist_res.md"), "w")
+      cat("#### Linear regression of trait distance versus phylogenetic distance by clade.\n",
+          file = file_conn)
+      cat(table_object2, file = file_conn, append = TRUE)
+      close(file_conn)
   }
 
   # generate plot
@@ -212,9 +241,6 @@ compare_mv_disp <- function(x,
       dpi = 300,
       width = 2.5,
       height = 4)
-
-    # return objects ?
-
 }
 
 run_mn_outcomes <- function(pairs_full, outcome_col, predictor_col) {
@@ -364,6 +390,17 @@ main <- function(arguments) {
   pca_res <- read.table(arguments$pca_file,
                         header = T, sep = "\t", stringsAsFactors = F)
 
+  # calculate pairwise genetic distance within clades:
+  pd1 <- pairs$pdist[pairs$WB == "W" & pairs$i_clade == "Psyr"]
+  pd2 <- pairs$pdist[pairs$WB == "W" & pairs$i_clade == "Pflu"]
+  df1 <- data.frame(
+             pd = c(pd1, pd2),
+             clade = c(rep("Psyr", length(pd1)),
+                       rep("Pfluo", length(pd2))))
+    df1 %>%
+      ggplot() +
+      geom_jitter(aes(x = clade, y = pd), width = 0.1)
+
   # add PCs to all_traits
   suppressWarnings(
     all_traits %>%
@@ -380,7 +417,6 @@ main <- function(arguments) {
                     "PC1", "PC2", "PC3")
 
   pairs_full <- calc_trait_dists(pairs, all_traits, focal_traits)
-
   pairs_multivar <- calc_trait_dists(pairs, all_traits,
                                      focal_traits = c("PC1", "PC2", "PC3"),
                                      as_vec = TRUE)
@@ -409,7 +445,7 @@ main <- function(arguments) {
       run_mn_outcomes(outcome_col = "outcome_mn", predictor_col = "pair_type")
 
   # outputs figures and tables from multinomial model
-  output_mn_results(mn_res)
+  output_mn_res(mn_res)
 }
 
 arguments <- run_args_parse(debug_status = TRUE)

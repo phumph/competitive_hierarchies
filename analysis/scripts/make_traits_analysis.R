@@ -8,7 +8,7 @@
 # Description #
 # ----------- # ----------------------------------------------------------- #
 # Script takes growth and competitive traits as input
-# and generates (a) heatmap, (b) individual trait trait_distributions, and
+# and generates (a) heatmap, (b) individual trait distributions, and
 # (c) PCA + trait correlation plot for Psyr and Pfluo strains.
 #
 # Plot elements are manually assembled and edited as vector graphics
@@ -208,7 +208,7 @@ do_pca <- function(traits_all) {
 }
 
 produce_summary_stats <- function(traits_all) {
-  
+
   traits_all %>%
     dplyr::mutate(r = r * 1000) %>%
     dplyr::select(-phylo_pos) %>%
@@ -229,31 +229,31 @@ produce_summary_stats <- function(traits_all) {
     tidyr::spread(key = "clade", value = "value") %>%
     dplyr::arrange(stat, desc(trait)) ->
     trait_table
-  
+
   return(trait_table)
 }
 
 
 write_summary_stats_table <- function(summary_table) {
-  
+
   rows_per_section <- nrow(summary_table) / 2
   the_footnote <- c("\\$r\\$ displayed as x 1000")
-  
+
   summary_table %>%
     dplyr::select(-stat) %>%
     kableExtra::kable() %>%
     kableExtra::kable_styling(
       bootstrap_options = c("striped", "hover", "condensed")
-    ) %>% 
+    ) %>%
     kableExtra::pack_rows("\\$\\mu (\\sigma)\\$",
                           1,
-                          rows_per_section) %>% 
+                          rows_per_section) %>%
     kableExtra::pack_rows("[min; max]",
                           rows_per_section + 1,
-                          rows_per_section * 2) %>% 
+                          rows_per_section * 2) %>%
     kableExtra::add_footnote(the_footnote, notation = "alphabet") ->
     table_object
-  
+
   file_conn <- file(file.path("tables/trait_summary_stats.md"), "w")
   cat("#### Summary statistics of life history and competitive trait distributions.\n",
       file = file_conn)
@@ -262,10 +262,10 @@ write_summary_stats_table <- function(summary_table) {
 }
 
 main <- function(arguments) {
-  
+
   cat("\n*** make_figure1.R ***\n\n")
   cat("Loading data...")
-  
+
   comp      <- read.table(arguments$comp_traits, T, ",")
   growth    <- read.table(arguments$growth_traits, T, ",")
   meta_data <- read.table(arguments$strain_data, T, ",")
@@ -294,11 +294,11 @@ main <- function(arguments) {
               sep = "\t",
               row.names = F,
               col.names = T)
-  
+
   # generate summary for table output
   summary_table <- produce_summary_stats(traits_all)
   write_summary_stats_table(summary_table)
-  
+
   cat("Done!\n")
   cat("Plotting heatmap...")
 
