@@ -32,11 +32,11 @@ suppressWarnings(suppressMessages(library(ggrepel)))
 run_args_parse <- function(debug_status) {
   if (debug_status == TRUE) {
     arguments <- list()
-    arguments$comp_traits    <- "data/comp_traits.csv"
-    arguments$growth_traits  <- "data/growth_traits.csv"
-    arguments$strain_data    <- "data/strain_metadata.csv"
-    arguments$traits_outfile <- "data/all_traits.txt"
-    arguments$pca_outfile    <- "data/pca_traits.txt"
+    arguments$comp_traits    <- "analysis/data/comp_traits.csv"
+    arguments$growth_traits  <- "analysis/data/growth_traits.csv"
+    arguments$strain_data    <- "analysis/data/strain_metadata.csv"
+    arguments$traits_outfile <- "analysis/data/all_traits.txt"
+    arguments$pca_outfile    <- "analysis/data/pca_traits.txt"
   } else if (debug_status == FALSE) {
     args <- commandArgs(trailingOnly = FALSE)
     arguments <- list()
