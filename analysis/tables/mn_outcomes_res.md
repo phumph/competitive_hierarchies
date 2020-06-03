@@ -50,19 +50,19 @@
 </tbody>
 <tfoot>
 <tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>a</sup> B = between-clade comparison</td>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>a</sup> RNI = Reciprocal non-invasion</td>
 </tr>
 <tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>b</sup> W = within-clade comparison</td>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>b</sup> RI = Reciprocal invasion</td>
 </tr>
 <tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>c</sup> RNI = Reciprocal non-invasion</td>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>c</sup> ASYM = Asymmetric dominance</td>
 </tr>
 <tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>d</sup> RI = Reciprocal invasion</td>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>d</sup> B = between-clade comparison</td>
 </tr>
 <tr>
-<td style = 'padding: 0; border:0;' colspan='100%'><sup>e</sup> ASYM = Asymmetric dominance</td>
+<td style = 'padding: 0; border:0;' colspan='100%'><sup>e</sup> W = within-clade comparison</td>
 </tr>
 </tfoot>
 </table>

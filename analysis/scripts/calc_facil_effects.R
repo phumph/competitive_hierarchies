@@ -37,7 +37,7 @@ run_args_parse <- function(debug_status) {
     arguments$ifile    <- "analysis/data/i_matrix.txt"
     arguments$tfile    <- "analysis/data/all_traits.txt"
     arguments$outfile  <- "analysis/data/comp_facil_effects.csv"
-    arguments$figs_dir <- "analysis/figs/"
+    arguments$figs_dir <- "analysis/figs"
   } else if (debug_status == FALSE) {
     args <- commandArgs(trailingOnly = FALSE)
     arguments$cfile    <- args[1]
@@ -109,35 +109,68 @@ calculate_rank_diffs <- function(df,
   }
 
   xnames <- grep("^X", names(df), value = T)
-  rank_res <- data.frame(strain_id = df$strain_id,
-                         base_rank = rank(jitter(df[, base_col])))
-  col_ranks <- list()
+
+  df %>%
+    dplyr::arrange(desc(!!as.symbol(base_col))) %>%
+    dplyr::mutate(base_rank = c(1:nrow(df))) %>%
+    dplyr::select(strain_id, base_rank) ->
+    rank_res
 
   for (icol in seq_along(xnames)) {
+    df_tmp <-
+      df %>%
+      dplyr::select(strain_id, !!as.symbol(base_col), !!as.symbol(xnames[icol]))
     if (deltas == TRUE) {
-      col_ranks[[icol]] <- rank(jitter(df[, base_col])) -
-        rank(jitter(df[, base_col] + df[, xnames[icol]]))
+      df_tmp %>%
+        dplyr::mutate(c_w_i = !!as.symbol(base_col) + jitter(!!as.symbol(xnames[icol]))) %>%
+        dplyr::arrange(desc(c_w_i)) %>%
+        dplyr::mutate(rank = c(1:nrow(df_tmp))) %>%
+        dplyr::select(strain_id, rank) ->
+        df_tmp
     } else {
-      col_ranks[[icol]] <- rank(jitter(df[, base_col])) -
-        rank(jitter(df[, xnames[icol]]))
+      df_tmp %>%
+        dplyr::mutate(c_w_i = jitter(!!as.symbol(xnames[icol]))) %>%
+        dplyr::arrange(desc(c_w_i)) %>%
+        dplyr::mutate(rank = c(1:nrow(df_tmp))) %>%
+        dplyr::select(strain_id, rank) ->
+        df_tmp
     }
+    #names(df_tmp)[2] <- xnames[icol]
+    suppressMessages(suppressWarnings(
+        rank_res %>%
+          dplyr::left_join(df_tmp, by = "strain_id") %>%
+          dplyr::mutate(rank_diff = base_rank - rank) %>%
+          dplyr::select(-rank) ->
+          rank_res
+    ))
+    names(rank_res)[names(rank_res) == "rank_diff"] <- xnames[icol]
   }
 
-  rank_df <- data.frame(do.call(cbind, col_ranks))
-  names(rank_df) <- xnames
-  tot_rank_impact <- sort(colSums(abs(rank_df)), decreasing = TRUE)
-  rank_df <- rank_df[, names(tot_rank_impact)]
-  rank_res <- cbind(rank_res, rank_df)
-  rank_res$final_rank <- rank(jitter(df[, base_col] + df[, avg_col]))
-  rank_res$final_rank_diff <- rank_res$final_rank - rank_res$base_rank
-  rank_res <- rank_res[order(rank_res$base_rank), ]
+  tot_rank_impact <- sort(colSums(abs(rank_res[, -c(1,2)])), decreasing = TRUE)
+  rank_res <- rank_res[, c("strain_id", "base_rank", names(tot_rank_impact))]
+
+  # add final_rank
+  df %>%
+    dplyr::select(strain_id,
+                  !!as.symbol(base_col),
+                  !!as.symbol(avg_col)) %>%
+    dplyr::mutate(final_c_w = !!as.symbol(base_col) + !!as.symbol(avg_col)) %>%
+    dplyr::arrange(desc(final_c_w)) %>%
+    dplyr::mutate(final_rank = c(1:nrow(df))) %>%
+    dplyr::select(-!!as.symbol(avg_col)) ->
+    df_tmp_2
+
+  rank_res %>%
+    dplyr::left_join(df_tmp_2, by = "strain_id") %>%
+    dplyr::mutate(final_rank_diff = base_rank - final_rank) ->
+    rank_res
 
   return(rank_res)
 }
 
 
 plot_facil_summaries <- function(res_full) {
-  
+
   plot1 <- ggplot(res_full, aes(x = c_w, y = avg_delta, fill = clade)) +
     geom_point(pch = 21, col = "black", size = 2) +
     # facet_wrap(~ clade) +
@@ -190,43 +223,69 @@ plot_facil_summaries <- function(res_full) {
 
 
 plot_rank_diffs <- function(df) {
-  
-  factor_order <- grep("^X", names(df), value = TRUE) %>% gsub("^X", "", .)
+
+  factor_order <- grep("^X", names(df), value = TRUE) %>%
+    gsub("^X", "", .)
+  stopifnot("final_rank_diff" %in% names(df))
+  names(df)[names(df) == "final_rank_diff"] <- "final"
+  factor_order <- c(factor_order, "final")
   strain_id_order <- df$strain_id
-  
+
   df %>%
     tidyr::gather(key = "i_strain", value = "rank_diff",
                   -strain_id,
                   -base_rank,
                   -final_rank,
-                  -final_rank_diff) ->
+                  -c_w,
+                  -final_c_w) ->
     df2
-  
+
   df2$i_strain <- sapply(df2$i_strain, function(x) gsub("^X", "", paste0(x)))
   df2$i_strain  <- factor(df2$i_strain, levels = factor_order)
   df2$strain_id <- factor(df2$strain_id, levels = rev(strain_id_order))
   
+  value_range <- c(-max(abs(range(df2$rank_diff))),max(abs(range(df2$rank_diff))))
+  palette_breaks <- seq(value_range[1], value_range[2], 1)
+  color_palette  <- colorRampPalette(
+    c("midnightblue", "white", "darkorange2"))(length(palette_breaks) - 1
+    )
+  
   df2 %>%
     ggplot(aes(x = i_strain, y = strain_id, fill = rank_diff)) +
-    geom_tile() +
+    geom_tile(col = "white", lwd = 0.33) +
     #scale_fill_gradientn(colors = RColorBrewer::brewer.pal(11,"BrBG")) +
-    scale_fill_gradientn(colors = pals::coolwarm()) +
+    #scale_fill_gradientn(colors = colorspace::diverging_hcl(palette = "blue-red", n = 7)) +
+    scale_fill_gradientn(colors = color_palette, limits = value_range, name = "") +
+    #scale_fill_gradientn(colors = pals::coolwarm()) +
     theme_bw() +
+    theme(panel.grid = element_blank()) +
     theme(axis.text.x = element_text(size = 7,
                                      angle = 90,
                                      hjust = 1, vjust = 0.5),
           axis.text.y = element_text(size = 7)) ->
     rank_plot_1
-  
+
   df %>%
-    ggplot(aes(x = base_rank, y = final_rank, col = final_rank_diff)) +
-    geom_point() +
+    ggplot(aes(x = -base_rank, y = -final_rank, fill = final)) +
+    geom_point(pch = 21, col = "black", size = 2.25) +
     geom_abline(intercept = 0, slope = 1, lty = 3) +
-    theme_bw() +
-    scale_color_gradientn(colors = pals::coolwarm()) ->
+    theme_minimal() +
+    theme(panel.border = element_rect(fill = NA),
+          axis.text = element_text(size = 7),
+          panel.grid = element_blank()) +
+    scale_fill_gradientn(colors = color_palette, limits = value_range, name = "") ->
     rank_plot_2
   
-  return(list(rank_plot_1, rank_plot_2))
+  ggpubr::ggarrange(plotlist = list(rank_plot_1, rank_plot_2),
+                    common.legend = T,
+                    ncol = 2, widths = c(0.66, 1),
+                    align = 'hv',
+                    legend = "top",
+                    labels = c("a", "b"),
+                    vjust = 0.75) ->
+    joint_plot
+  
+  return(joint_plot)
 }
 
 
@@ -261,11 +320,10 @@ main <- function(arguments) {
     facil_plots
 
   facil_plots %>%
-    ggsave(filename = paste0(arguments$figs_dir,
-                             "facil_plot_summaries.pdf"
-                             ),
-           width = 3,
-           height = 5,
+    ggsave(filename = file.path(arguments$figs_dir,
+                                "facil_plot_summaries.pdf"),
+           width = 2.5,
+           height = 4.5,
            #dpi = 300,
            device = "pdf"
          )
@@ -273,14 +331,29 @@ main <- function(arguments) {
   # now calculate and plot rank changes
   res_full_rank_psyr <- calculate_rank_diffs(res_full, clade = "Psyr")
   res_full_rank_pflu <- calculate_rank_diffs(res_full, clade = "Pflu")
-  
+
   res_full_rank_psyr %>%
     plot_rank_diffs() ->
     rank_plot_psyr
-  
+
   res_full_rank_pflu %>%
     plot_rank_diffs() ->
     rank_plot_pflu
+
+  # save plots:
+  rank_plot_psyr %>%
+    ggsave(filename = file.path(arguments$figs_dir,
+                                "facil_plot_Psyr_ranks.pdf"),
+           device = "pdf",
+           width = 6,
+           height = 4)
+  
+  rank_plot_pflu %>%
+    ggsave(filename = file.path(arguments$figs_dir,
+                                "facil_plot_Pflu_ranks.pdf"),
+           device = "pdf",
+           width = 6,
+           height = 4)
 }
 
 

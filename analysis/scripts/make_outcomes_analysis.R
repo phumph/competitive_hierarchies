@@ -30,9 +30,9 @@ suppressWarnings(suppressMessages(library(nnet)))
 run_args_parse <- function(debug_status) {
   if (debug_status == TRUE) {
     arguments <- list()
-    arguments$all_traits <- "data/all_traits.txt"
-    arguments$pairs_file <- "data/interaction_pairs.txt"
-    arguments$pca_file   <- "data/pca_traits.txt"
+    arguments$all_traits <- "analysis/data/all_traits.txt"
+    arguments$pairs_file <- "analysis/data/interaction_pairs.txt"
+    arguments$pca_file   <- "analysis/data/pca_traits.txt"
   } else if (debug_status == FALSE) {
     args <- commandArgs(trailingOnly = FALSE)
     arguments <- list()
@@ -43,17 +43,18 @@ run_args_parse <- function(debug_status) {
   return(arguments)
 }
 
+
 calc_trait_dists <- function(pairs, all_traits, focal_traits, as_vec = FALSE) {
+  
   # take pairs, join traits for i and j; calc dist_fun
-  # Euclidean distance
   dist_fun <- function(i, j) {
+    # Euclidean distance
     sqrt(sum((i - j)^2, na.rm = T))
   }
 
   ij <- dplyr::select(pairs, i, j)
 
-  do_dist_calc <- function(x, ij) {
-
+  do_dist_calc <- function(x, ij, ...) {
     suppressWarnings(
     ij %>%
       dplyr::left_join(all_traits[, c("strain_id", x)],
@@ -90,6 +91,7 @@ calc_trait_dists <- function(pairs, all_traits, focal_traits, as_vec = FALSE) {
   return(all_dists)
 }
 
+
 run_glms <- function(pairs_full) {
 
   # goal is to predict interaction type as function of genetic distance
@@ -125,6 +127,7 @@ run_glms <- function(pairs_full) {
       pflu_glm_coefs
 }
 
+
 plot_glm_res <- function(pairs_full) {
 
   gx1 <- ggplot(pairs_full, aes(x = PC1_dist, y = ASYM)) +
@@ -150,6 +153,7 @@ plot_glm_res <- function(pairs_full) {
 
 }
 
+
 compare_mv_disp <- function(x,
                             dist_col,
                             pdist_col = "pdist",
@@ -174,9 +178,12 @@ compare_mv_disp <- function(x,
                   !!as.symbol(dist_col)) %>%
     dplyr::mutate(clade = "Pflu") ->
     pflu_dat
+  
   lm_dat <- dplyr::bind_rows(psyr_dat, pflu_dat)
 
-  t.test(psyr_dat$PC1_PC2_PC3_dist, pflu_dat$PC1_PC2_PC3_dist, var.equal = FALSE) %>%
+  t.test(psyr_dat$PC1_PC2_PC3_dist,
+         pflu_dat$PC1_PC2_PC3_dist,
+         var.equal = FALSE) %>%
     broom::tidy() -> t_res
 
   # now compute more complicated model accounting for pdist:
@@ -195,7 +202,7 @@ compare_mv_disp <- function(x,
           ) ->
       table_object
 
-    file_conn <- file(file.path("tables/mv_dist_res.md"), "w")
+    file_conn <- file(file.path("analysis/tables/mv_dist_res.md"), "w")
     cat("#### Multivariate pairwise trait distances by clade.\n",
         file = file_conn)
     cat("Results form Welch's two-sample unequal variance *t*-test:\n",
@@ -205,16 +212,18 @@ compare_mv_disp <- function(x,
         file = file_conn, append = TRUE)
     close(file_conn)
 
-
-    # now export lm results:
-    # export ttest res as markdown table
+    # export lm results:
     kableExtra::kable(lm_res) %>%
       kableExtra::kable_styling(
           bootstrap_options = c("striped", "hover", "condensed")
           ) ->
       table_object2
 
-      file_conn <- file(file.path("tables/lm_trait-v-phylo-dist_res.md"), "w")
+      file_conn <- file(
+        file.path(
+          "analysis/tables/lm_trait-v-phylo-dist_res.md"),
+        "w")
+      
       cat("#### Linear regression of trait distance versus phylogenetic distance by clade.\n",
           file = file_conn)
       cat(table_object2, file = file_conn, append = TRUE)
@@ -236,12 +245,13 @@ compare_mv_disp <- function(x,
                                     round(t_res$p.value)), x = 1, y = 7) ->
     dist_plot
 
-    ggplot2::ggsave(dist_plot, file = "figs/mv_trait_dists.png",
+    ggplot2::ggsave(dist_plot, file = "analysis/figs/mv_trait_dists.png",
       device = "png",
       dpi = 300,
       width = 2.5,
       height = 4)
 }
+
 
 run_mn_outcomes <- function(pairs_full, outcome_col, predictor_col) {
 
@@ -307,6 +317,7 @@ run_mn_outcomes <- function(pairs_full, outcome_col, predictor_col) {
               model_coefs    = coef_table))
 }
 
+
 output_mn_res <- function(mn_res) {
 
   # barplot figure (Fig. 3a)
@@ -323,7 +334,7 @@ output_mn_res <- function(mn_res) {
     ylab("outcome frequency") ->
     barplot1
 
-  ggsave(barplot1, file = "figs/interaction_barplot.pdf",
+  ggsave(barplot1, file = "analysis/figs/interaction_barplot.pdf",
          device = "pdf",
          width = 3,
          height = 3
@@ -348,7 +359,7 @@ output_mn_res <- function(mn_res) {
     kableExtra::add_footnote(the_footnotes, notation = "alphabet") ->
     outcome_dist_table
 
-  file_conn <- file(file.path("tables/mn_outcomes_res.md"), "w")
+  file_conn <- file(file.path("analysis/tables/mn_outcomes_res.md"), "w")
   cat("#### Distribution of outcomes by pairing type.\n",
       file = file_conn)
   cat(outcome_dist_table, file = file_conn, append = TRUE)
@@ -366,7 +377,7 @@ output_mn_res <- function(mn_res) {
     kableExtra::add_footnote(the_footnotes_2, notation = "alphabet") ->
     model_coef_output
 
-  file_conn <- file(file.path("tables/mn_coef_res.md"), "w")
+  file_conn <- file(file.path("analysis/tables/mn_coef_res.md"), "w")
   cat("#### Multinomial model coefficients.\n",
       file = file_conn)
   cat(model_coef_output, file = file_conn, append = TRUE)
@@ -393,14 +404,12 @@ main <- function(arguments) {
   # calculate pairwise genetic distance within clades:
   pd1 <- pairs$pdist[pairs$WB == "W" & pairs$i_clade == "Psyr"]
   pd2 <- pairs$pdist[pairs$WB == "W" & pairs$i_clade == "Pflu"]
+  
   df1 <- data.frame(
              pd = c(pd1, pd2),
              clade = c(rep("Psyr", length(pd1)),
                        rep("Pfluo", length(pd2))))
-    df1 %>%
-      ggplot() +
-      geom_jitter(aes(x = clade, y = pd), width = 0.1)
-
+  
   # add PCs to all_traits
   suppressWarnings(
     all_traits %>%
@@ -416,7 +425,6 @@ main <- function(arguments) {
                     "c_r", "c_t", "i_w",
                     "PC1", "PC2", "PC3")
 
-  pairs_full <- calc_trait_dists(pairs, all_traits, focal_traits)
   pairs_multivar <- calc_trait_dists(pairs, all_traits,
                                      focal_traits = c("PC1", "PC2", "PC3"),
                                      as_vec = TRUE)
@@ -447,6 +455,10 @@ main <- function(arguments) {
   # outputs figures and tables from multinomial model
   output_mn_res(mn_res)
 }
+
+# ==== #
+# main #
+# ==== #
 
 arguments <- run_args_parse(debug_status = TRUE)
 main(arguments)
