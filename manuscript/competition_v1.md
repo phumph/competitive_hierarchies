@@ -1,56 +1,60 @@
-## Competitive hierarchies, antibiosis, and the distribution of bacterial life history traits in a microbiome
+---
+title: Competitive hierarchies, antibiosis, and the distribution of bacterial life history traits in a microbiome
+author:
+- name: Parris T Humphrey
+  affiliation: Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA. USA
+  email: phumphrey@g.harvard.edu
+- name: Trang T Nguyen
+  affiliation: Department of Plant Sciences, University of Arizona, Tucson, AZ. USA
+  email: ttnguyen@arizona.edu
+- name: Noah K Whiteman
+  affiliation: Integrative Biology, University of California, Berkeley, CA. USA
+  email: "whiteman@berkeley.edu"
+thanks: "Correspondence: NKW (\\texttt{whiteman@berkeley.edu}). \\newline Code and data available at \\texttt{https://github.com/phumph/competitive\\_hierarchies}."
+keywords: Pseudomonas, indirect interactions, phyllosphere, microbiome, phytopathogen
+csl: manuscript/ecology-letters.csl
+fontsize: 11pt
+spacing: single
+bibliography: manuscript/competition.bib
+header-left: "\\textbf{\\textit{Competition in the phyllosphere}}"
+header-center: "\\hspace{1cm}"
+header-right: "Humphrey *et al.* (2020)"
+footer-left: "v.2020-06-09"
+footer-right: "\\thepage"
+abstract: |
+  \noindent\textbf{Abstract}\hspace{1em} Microbiome manipulation requires an understanding of how species interact ecologically within communities. Can outcomes of ecological interactions be predicted from microbial life history traits? We addressed this question by studying interaction hierarchies in a community of 40 endophytic *Pseudomonas* spp. bacterial isolates from bittercress leaves (Brassicaceae: *Cardamine cordifolia* A. Gray). Pairwise competition experiments revealed competitive dominance of *P. fluorescens* over *P. syringae* strains within this microbiome-derived community. *P. fluorescens* strains often produced antibiotics to which few *P. syringae* strains were resistant. *P. syringae* strains with higher growth rates won more contests, while *P. fluorescens* strains with shorter lag times and lower growth rates won more contests. Many competitive outcomes among *P. syringae* strains were predicted to be reversed by *P. fluorescens* inhibitors because indirect benefits accrued to less competitive strains. *P. fluorescens* strains frequently changed competitive outcomes, suggesting a critical role of strains within this bacterial clade in structuring plant microbiome communities.
+---
 
-#### Parris T. Humphrey<sup>1,2,3</sup>, Trang N. Nguyen<sup>4</sup>, Noah K. Whiteman<sup>2*</sup>
-
-<sup>1</sup>Department of Organismic & Evolutionary Biology, Harvard University, Cambridge, MA, USA<br>
-<sup>2</sup>Department of Integrative Biology, University of California, Berkeley, CA, USA<br>
-<sup>3</sup>Department of Ecology and Evolutionary Biology, University of Arizona, Tucson, USA<br>
-<sup>4</sup>Department of Plant Sciences, University of Arizona, Tucson, AZ, USA
-
-**\*Correspondence and requests for materials** should be addressed to N.K.W. ([whiteman@berkeley.edu](whiteman@berkeley.edu))
-
-<hr>
-
-## Abstract
-
-Microbiome manipulation requires an understanding of how species interact ecologically within communities. Can outcomes of ecological interactions be predicted from microbial life history traits? We addressed this question by studying interaction hierarchies in a community of 40 endophytic *Pseudomonas* spp. bacterial isolates from bittercress leaves (Brassicaceae: *Cardamine cordifolia* A. Gray). Pairwise competition experiments revealed competitive dominance of *P. fluorescens* over *P. syringae* strains within this microbiome-derived community. *P. fluorescens* strains often produced antibiotics to which few *P. syringae* strains were resistant. *P. syringae* strains with higher growth rates won more contests, while *P. fluorescens* strains with shorter lag times and lower growth rates won more contests. Many competitive outcomes among *P. syringae* strains were predicted to be reversed by *P. fluorescens* inhibitors because indirect benefits accrued to less competitive strains. *P. fluorescens* strains frequently changed competitive outcomes, suggesting a critical role of strains within this bacterial clade in structuring plant microbiome communities.
-
-**Keywords:** interference competition; species interactions; *Pseudomonas*; co-existence; facilitation; microbiome
-
-**Author contributions:** PTH and NKW designed the study; PTH and TNN collected the data; PTH and NKW wrote the manuscript.
-
-<hr>
-
-## Introduction
+# Introduction
 
 The ecological forces shaping bacterial microbiome community structure are difficult to characterize, given the diversity and relatively uncultivable nature of these taxa, particularly in animals. Plants, in contrast, possess a highly cultivable microbiome and have potential to serve as models for understanding microbiome ecology and evolution generally. Moreover, plant growth-promoting bacterial (PGPB) formulations are being deployed in agriculture. Quantifying and predicting ecological outcomes among common species in these artificial communities is therefore also of practical value.
 
 Competition may be the principle ecological force shaping microbial community structure [@Foster12a; @Coyte19a], yet distinct forms of competition can operate within communities: competition for shared resources and interference with another species’ ability to do so [@Case74a]. In addition to structuring microbiome communities, competition of both types is also a source of natural selection [@Hibbing10a; @Cornforth13a; @Mitri13a]. Teasing apart how exploitative and interference competition interact in a community context remains a challenge more generally [@Amarasekare03a; @Coyte15a; @Delong13a].
 
-As diversity increases, the number of possible indirect interactions in the community scales faster than the number of direct interactions. Accordingly, a species may benefit from additional competitors if the net indirect effects dampen direct competition faced by other species [@Levine76a; @Lawlor79b; @Stone91a; @Miller96a; @Wootton94a]. Such indirect facilitation [@Levine99a] has not been well explored in microbiomes.
+As diversity increases, the number of possible indirect interactions in the community scales faster than the number of direct interactions. Accordingly, a species may benefit from additional competitors if the net indirect effects dampen direct competition faced by other species [@Levine76a; @Lawlor79b; @Stone91a; @Miller96a; @Wootton94a]. Such indirect facilitation has not been well explored in microbiomes.
 
-Species-rich communities are also more likely to harbor members with traits that have a large ecological impact [@Banerjee18a]. In microbial communities, strains that secrete diffusible antibiotics, resource substrates, or signaling molecules can alter the fitness of non-producers [@Lee10a; @Gutierrez19a]. By selecting for more specialized traits involved in resistance or metabolite uptake, these secretions can upend competitive hierarchies that would otherwise be mediated by canonical competitive fitness traits. It is unclear if microbial taxa with large indirect impacts are common in natural microbiomes [@Banerjee18a]. Leaf-dwelling (phyllosphere) bacteria secrete compounds altering growth and survival of nearby bacteria [@Lindow03a; Quinones05a; Dulla09a; Dulla10a] and can co-localize on the leaf surface and interior [Monier05a]. Thus, there is potential for direct and indirect interactions between competing bacteria to affect community assembly and steady-state patterns of diversity in plant microbiomes.
+Species-rich communities are also more likely to harbor members with traits that have a large ecological impact [@Banerjee18a]. In microbial communities, strains that secrete diffusible antibiotics, resource substrates, or signaling molecules can alter the fitness of non-producers [@Lee10a; @Gutierrez19a]. By selecting for more specialized traits involved in resistance or metabolite uptake, these secretions can upend competitive hierarchies that would otherwise be mediated by canonical competitive fitness traits. It is unclear if microbial taxa with large indirect impacts are common in natural microbiomes [@Banerjee18a]. Leaf-dwelling (phyllosphere) bacteria secrete compounds altering growth and survival of nearby bacteria [@Lindow03a; @Quinones05a; @Dulla09a; @Dulla10a] and can co-localize on the leaf surface and interior [@Monier05a]. Thus, there is potential for direct and indirect interactions between competing bacteria to affect community assembly and steady-state patterns of diversity in plant microbiomes.
 
-Finally, competition need not be purely hierarchical: intransitive loops may arise in species-rich communities whereby numerical dominance cycles at local spatial scales, resulting in community stability [@Rojas-Echenique11a; @Kerr02a]. Even modest intransitivity can buffer against extinction [@Laird06a; @Laird08a; @Rojas-Echenique11a; @Laird14a] and the degree of intransitivity can shape species diversity [@Reichenbach07a]. Although intransitivity occurs in microbial systems in the laboratory [@Kerr02a; @Kelsic15a], its occurrence in natural microbiome communities is not well understood [@Lankau11a; @Godoy17a].
+Finally, competition need not be purely hierarchical: intransitive loops may arise in species-rich communities whereby numerical dominance cycles at local spatial scales, resulting in community stability [@Rojas-Echenique11a; @Kerr02a]. Even modest intransitivity can buffer against extinction [@Laird06a; @Rojas-Echenique11a; @Laird14a] and the degree of intransitivity can shape species diversity [@Reichenbach07a]. Although intransitivity occurs in microbial systems in the laboratory [@Kerr02a; @Kelsic15a], its occurrence in natural microbiome communities is not well understood [@Lankau11a; @Godoy17a].
 
 To address the various gaps highlighted above, here we (1) characterized life history trait variances and co-variances among isolates of a wild, endophytic microbiome meta-community, (2) examined how this related to competitive interaction networks, and (3) measured how intransitive competitive asymmetries among strains might be expected to promote co-existence. We used a diverse natural community of endophytic *Pseudomonas* spp. bacteria derived from a native plant (bittercress; Brassicaceae: *Cardamine cordifolia* A. Gray), representing strains from the putatively phytopathogenic *P. syringae* clade and the presumed saprophyte *P. fluorescens* clade.
 
 
-## Methods
+# Methods
 
-### Overview
+## Overview
 
 We measured the ecological outcome of pairwise competitive interactions among strains in a set of 40 *Pseudomonas* spp. strains, wherein strains competed for shared resources in spatial microcosms. We quantified each strain’s ability to invade and defend against invasion and derived a composite measure of competitiveness that incorporated both invasive and defensive ability. We simultaneously measured each strain’s capacity to interfere with growth of surrounding competitors through inhibitory metabolites, as well as each strain's apparent ability to resist such inhibitors. Using independent measurements of maximum rate of increase, lag phase, and maximum yield *in vitro*, we then determined the underlying correlates of both exploitative and interference competitive abilities, as well as effect of phylogenetic distance on these correlations. Finally, using the distribution of pairwise outcomes measured in our competition assays, we inferred the number and direction of indirect interactions that would result in facilitation via inhibition of a superior competitor by a nearby producer strain.
 
-### Bacterial strains
+## Bacterial strains
 
-Of the 51 *Pseudomonas* spp. strains isolated from bittercress and described by Humphrey et al. [@Humphrey14a], we selected a set of 40 (26 *P. syringae*, 14 *P. fluorescens*) that represented the phylogenetic diversity present in this community. We included the laboratory strain *P. syringae* pv. maculicola str. ES4326 (hereafter Psm4326) in our strain set owing to its phylogenetic similarity to strains isolated from bittercress and its extensive characterization in the laboratory as a pathogen of *Arabidopsis thaliana* (Cui:2005dn, Cui:2002gp, Groen:2013bt, Groen:2015bv). All bacterial strains used had undergone only one prior growth cycle after freezing following initial isolation on King's B plates from surface-sterilized homogenates of bittercress leaf samples [@Humphrey14a]. For each strain, we estimated resource usage (i.e., growth) parameters (maximum growth rate $r$, lag phase $L$, maximum yield $K$) from *in vitro* growth cycles conducted in 96-well plates (see **Online Supplemental Materials [OSM]: Supplemental Methods** for details).
+Of the 51 *Pseudomonas* spp. strains isolated from bittercress and previously described [@Humphrey14a], we selected a set of 40 (26 *P. syringae*, 14 *P. fluorescens*) that represented the phylogenetic diversity present in this community. We included the laboratory strain *P. syringae* pv. maculicola str. ES4326 (hereafter Psm4326) in our strain set owing to its phylogenetic similarity to strains isolated from bittercress and its extensive characterization in the laboratory as a pathogen of *Arabidopsis thaliana* [@Cui05a; @Cui02a; @Groen13a]). All bacterial strains used had undergone only one prior growth cycle after freezing following initial isolation on King's B plates from surface-sterilized homogenates of bittercress leaf samples [@Humphrey14a]. For each strain, we estimated resource usage (i.e., growth) parameters (maximum growth rate $r$, lag phase $L$, maximum yield $K$) from *in vitro* growth cycles conducted in 96-well plates (see **Online Supplemental Materials [OSM]: Supplemental Methods** for details).
 
-### Pairwise competition assays
+## Pairwise competition assays
 
 We conducted pairwise high-density competition assays in spatial microcosms in which a "resident" strain inoculated onto the surface of each plate competed with each "invader" strain spotted on top (see **OSM: Supplemental Methods** for details). We visually scored growth of each invader as $0$ for no visible growth of the invader above a negative control spot containing MM alone, $0.5$ for a largely translucent 'megacolony', which reflected a definite presence of growth but which was relatively suppressed and confined to the megacolony margin, and $1$ for obvious and robust megacolony growth. We scored inhibition interactions as a binary outcome indicating the presence of a zone of clearance (halo) $\geq 1 \text{ mm}$ surrounding the extent of the invader megacolony.
 
-### Calculating indexes of competitiveness
+## Calculating indexes of competitiveness
 
 Each strain was assayed under 40 different conditions both as resident strain and invader, comprising an interaction network with 1,600 entries (including self vs. self). One version of the interaction network represents the outcome of resource competition and details the extent of growth of each invader, while the other captures the presence or absence of inhibitory interactions indicated by zones of clearance in the resident population. For resource competitions, we calculate the invasive capacity ($C_o$) and defense capacity (i.e. territoriality; $C_d$) of each strain. $C_o$ for each strain $i$ was calculated as
 
@@ -82,43 +86,33 @@ $$
 
 where $-1 \leq I_w \leq 1$, which is equal to the aggressiveness index ($AI$) of [@Vetsigian11a].
 
-
-### Analyzing the distribution of competitive outcomes
+## Analyzing the distribution of competitive outcomes
 
 We determined when outcomes of all pairwise interactions between strains $i$ and $j$ ($i \neq j$) took following forms: reciprocal invasibility (RI), where strains $i$ and $j$ each invade one another; reciprocal non-invasibility (RNI), where strains $i$ and $j$ cannot invade each other; and asymmetric (AS), where strain $i$ invades strain $j$ but $j$ cannot invade $i$. To compare outcome distributions, we estimated binomial linear models in with the canonical logit link function to fit the probability of RI, RNI, and AS as a function of clade (*P. syringae* versus *P. fluorescens*).
 
 In addition, we compared trait co-variances and overall levels of trait dispersion between *P. syringae* and *P. fluorescens*, correcting for phylogenetic distance between strains in each clade. To do so, we first we conducted principal components analysis (PCA) using the matrix of mean-centered and scaled competitive indexes and growth parameters for all strains (40 x 9 matrix) as input. We then calculated Euclidean distance between vectors of `[PC1, PC2, PC3]` for all pairs of strains within each *Pseudomonas* clade. Using these calculated pairwise multivariate trait distances as a response variable, we computed linear regression models with bacterial clade as well as phylogenetic distance ($D_{g}$) as predictors. We calculated $D_{g}$ as the pairwise uncorrected nucleotide distance between 2,690 bp of sequence comprised of four partial housekeeping gene sequences previously generated for each strain from Humphrey et al. (2014). Orthologous sequences from the genome of Psm4326 were derived from its published genome sequence ([@Baltrus11a]; RefSeq ID `NZ_AEAK00000000.1`).
 
 
-### Inferring indirect interactions from the pairwise network
+## Inferring indirect interactions from the pairwise network
 
 We next examined the structure of the pairwise competitive interaction network for signatures of intransitivity (i.e., non-hierarchical or context-dependent interactions). Using data from pairwise interaction outcomes, we assessed (1) whether three-strain competitions would result in intransitive loops (e.g., rock-paper-scissors outcomes) such that no species would be globally dominant; and (2) whether the presence of secretions from a nearby *P. fluorescens* strain would reverse the outcome of a pairwise interaction that would typically result in competitive dominance of a single strain (indirect facilitation). Facilitation can occur by strain `A` releasing strain `C` from inhibition from strain `B` (where `A` also has to be resistant to `B`'s inhibitors), or from resource competition from superior competitor strain `B`. This analysis is agnostic to mechanism but calculates the proportion of conditions under which facilitation of an otherwise weaker competitor is expected to arise. A total of 8,203 trios were evaluated for facilitation based on the 641 pairs of strains that met the competitive asymmetry criteria.
 
 For each strain, we calculated the net effect of antagonistic vs. facilitative indirect interactions across all possible trios and compared this to underlying fitness metrics derived from the pair-wise interaction network. We then compared how strongly the net effects from indirect facilitation are expected to change fitness ranks of strains in relation to their baseline values of overall competitiveness ($C_{w}$).
 
-<br>
 
-<!--Strong competitors lose more by being sensitive, because they would have already won most resource contests. In contrast, weaker competitors have much to gain by being resistant, but little to lose: the relative improvement in fitness increases dramatically as more contests are won owing to their increased resistance.-->
+# Results
 
-
-## Results
-
-
-### Competitive outcomes
+## Competitive outcomes
 
 <!-- ******** -->
 <!-- FIGURE 1 -->
 <!-- ******** -->
 
-<center><img src="https://i.imgur.com/WJ4qxbP.png" width = "600"></center><br>
-
-><strong>Fig. 1.</strong> <strong>Pairwise competitive interactions in a phyllosphere <i>Pseudomonas</i> spp. community.</strong> Rows reflect strains in the resident state, while columns reflect strains in the invader state. Dashed red lines through interaction matrix denote within–between clade divisions for ease of visualization. Phylogeny modified from Humphrey et al. (2014).
-
-<br>
+![**Pairwise competitive interactions in a phyllosphere *Pseudomonas* spp. community.** Rows reflect strains in the resident state, while columns reflect strains in the invader state. Dashed red lines through interaction matrix denote within–between clade divisions for ease of visualization. Phylogeny modified from Humphrey et al. (2014). \label{fig1}](manuscript/figures/figure1.png){ width=600px }
 
 Pairwise soft-agar invasion assays revealed that the competitive ability of *P. fluorescens* strains was consistently superior to *P. syringae* strains (Fig. 1): ~99% of strain pairings between the two clades resulted in asymmetric dominance of *P. fluorescens* over *P. syringae* (99% Asym.; Fig. S2; Tables S1, S2). Within *P. fluorescens*, the proportion of reciprocally non-invasible (RNI) pairings was significantly higher compared to within *P. syringae* pairings (Fig. S2; Tables S2, S3). The competitive dominance of *P. fluorescens* over *P. syringae* was evident across both exploitative and interference-based measures of competitiveness (Figs 1, 2; Table S1).
 
-### Interference competition
+## Interference competition
 
 Of the 40 strains assayed, 13 (all *P. fluorescens*) produced halos surrounding some subset of the resident strains they invaded (antibiosis), indicating the production of antibiotics (diffusible inhibitors/toxins) (Fig. 1). Mean inhibition index ($I_{w}$) among *P. fluorescens* strains was 0.15, although two strains inhibited only one other, and *P. fluorescens* strain `03A` failed to inhibit any strain (Fig. 1). *P. fluorescens* strains. Four *P. fluorescens* strains were susceptible to inhibition by two of the toxic strains (`43A`, `34A`; Fig. 1). Resistance to toxin producers in *P. syringae* was variable, although the mean value was high at $0.72$ (Fig. 2b; Table S1).
 
@@ -127,15 +121,11 @@ Of the 40 strains assayed, 13 (all *P. fluorescens*) produced halos surrounding 
 <!-- FIGURE 2 -->
 <!-- ******** -->
 
-<center><img src="https://i.imgur.com/2AE9bS2.png" width = "800"></center><br>
-
-><strong>Fig. 2. Phylogenetic distribution of life history trait variation within a *Pseudomonas* spp. community.</strong><strong>a</strong>. Life history components are maximum growth rate ($r_{m}$), lag phase ($l$), maximum yield ($K$), derived from individual microcosm growth experiments; and components of offensive ($C_{o}$), defensive ($C_{d}$), overall ($C_{w}$) competitiveness, resistance to toxicity ($C_{r}$), and toxicity ($C_{t}$), derived from a pairwise competitive interaction network (see Methods). Column $z$-score of each trait value indicated by color. <strong>b</strong>. Smoothed frequency distributions of trait values for each measured trait by clade (*P. fluorescens* and *P. syringae*). Mean ($\mu$) estimates per clade with $\pm 2\times$ standard errors depicted to the right of the curves. Note the $x$-axis value scale modifiers to the right of the axis labels. (**c**) Pairwise correlations and principle component analysis (PCA) (**d**) of six traits reflect dissimilarities between clades, as well reveal the correlational structure among traits across *Pseudomonas* spp. Correlations with text values reflect magnitude of each Pearson’s $r$ where the FDR corrected $p < 0.05$; comparisons with FDR-corrected $p<0.10$ are italicized. **d**. PCA 95% envelopes per clade depicted as solid or dashed ellipses. Dots are labeled with strain IDs. Individual trait vector loadings are in blue for resource use traits and orange for interference traits).
-
-<br>
+![**Phylogenetic distribution of life history trait variation within a *Pseudomonas* spp$.$ community. ****a**. Life history components are maximum growth rate ($r_{m}$), lag phase ($l$), maximum yield ($K$), derived from individual microcosm growth experiments; and components of offensive ($C_{o}$), defensive ($C_{d}$), overall ($C_{w}$) competitiveness, resistance to toxicity ($C_{r}$), and toxicity ($C_{t}$), derived from a pairwise competitive interaction network (see *Methods*). Column $z$-score of each trait value indicated by color. **b**. Smoothed frequency distributions of trait values for each measured trait by clade (*P. fluorescens* and *P. syringae*). Mean ($\mu$) estimates per clade with $\pm 2\times$ standard errors depicted to the right of the curves. Note the $x$-axis value scale modifiers to the right of the axis labels. (**c**) Pairwise correlations and principle component analysis (PCA) (**d**) of six traits reflect dissimilarities between clades, as well reveal the correlational structure among traits across *Pseudomonas* spp. Correlations with text values reflect magnitude of each Pearson’s $r$ where the FDR corrected $p < 0.05$; comparisons with FDR-corrected $p<0.10$ are italicized. **d**. PCA 95% envelopes per clade depicted as solid or dashed ellipses. Dots are labeled with strain IDs. Individual trait vector loadings are in blue for resource use traits and orange for interference traits). \label{fig2}](manuscript/figures/figure2.png){ width=600px }
 
 In at least one case, resistance among *P. syringae* strains showed a strong correlation with phylogenetic position: invading strain *P. fluorescens* str. `43A` adopted distinctly different phenotypes in pairings with *P. syringae* strains from different sub-clades (`perMANOVA` $F = 7.04$, 1000 permutations, $p = 0.002$; Fig. S3). Nine of the 25 `43A` megacolonies had a smooth morphology, 13 adopted a highly motile morphology we call the “smooth spreader”, and the three remaining adopted a wrinkly spreader-like morphology (Fig. S3a–c). Inhibitor production by `43A` was strongly associated with the smooth morph ($\chi^{2} = 19.2$, $p < 0.001$; Fig. S3e); `43A` only inhibited one strain as the smooth spreader morph, and then only after it had stopped expanding across the plate (personal observation). None of the three wrinkly spreader-like morphs produced toxins that inhibited a resident strain.
 
-### Life history correlates of competitiveness
+## Life history correlates of competitiveness
 
 The correlations between competition and growth traits showed opposite patterns for strains within *P. syringae* versus *P. fluorescens*: overall exploitative competitiveness ($C_{w}$) was negatively correlated with both $r$ and $L$ for *P. fluorescens* (Pearson's $\rho = -0.78, -0.75$, respectively; Fig. 2c). That is, *P. fluorescens* strains with shorter lag (smaller $L$), and thus smaller $r$, were more competitive in our assay. This apparent trade-off between maximum *in vitro* growth rate $r$ and growth initiation ($1/L$) was not observed across *P. syrinage* strains. Instead, $C_{w}$ in *P. syringae* was positively correlated with only $r$ ($\rho = 0.78$; Fig. 2c). Strains from neither clade showed a canonical trade-off between $r$ and *in vitro* saturation density ($K$). On the contrary, *P. syringae* strains showed a positive correlation between $K$ and growth rate as well as defensive capacity $C_{d}$, while for *P. fluorescens* $K$ was positively correlated with levels of resistance ($C_{r}$). Overall, offense ($C_{o}$) and defense ($C_{d}$) were strongly positively correlated overall with linear slopes near 1 for both clades (Fig. 2c; Fig. S5), and all three measures of exploitative competition were positively related to interference measures for *P. fluorescens* (Fig. 2c).
 
@@ -144,21 +134,15 @@ Principal component analysis (PCA) of all nine traits revealed largely non-overl
 Overall, strains within the *P. syringae* clade showed greater intra-clade pairwise trait differences across PCs 1-3 than strains within *P. fluorescens* (Welch's unequal variants $t$ test, $t = 8.7$, $p < 10^{-6}$; Fig. S7). While multivariate trait distance increased on average with phylogenetic distance ($D_{g}$ term $\beta = 0.1$, $p<10^{-10}$; Table S4), *P. syringae* strains showed a higher average trait distance even after accounting for $D_{g}$ in a multiple regression model (`Psyr` term $\beta = 0.9$, $p < 10^{-8}$; Table S4).
 
 
-### Competitive interaction network and intransitivity
+## Competitive interaction network and intransitivity
 
 Five trios met the criteria for a rock–paper–scissor game out of the 9,604 possible trios of interactions evaluated (Fig. 3a). Nine unique strains were implicated in these trios. Each trio was comprised of distantly related *P. syringae* strains (mean $D_{G}$ between strains in R–P–S trios $= 0.118$ [$0.115–0.122$ 95% CI]). A further 632 (7.7%) met the criteria whereby the inferior competitor was facilitated by the inhibition of the superior competitor by a third party to which the facilitated strain was resistant (Fig. 3a). These two results indicate that this empirical competitive network is generally hierarchical, such that the outcome of three-strain competitions or indirect interactions result in the same winners as in the pairwise competitions.
-
 
 <!-- ******** -->
 <!-- FIGURE 3 -->
 <!-- ******** -->
 
-<center>
-<img src="https://i.imgur.com/41OWI3w.png" width = "650"></center>
-<br>
-
-><strong>Fig. 3. Prevalence of intransitive interactions in a *Pseudomonas* spp. interaction network.</strong> **a**. Types of interaction trios resulting in facilitation (left) or rock-paper-scissors (R–P–S) competitive asymmetries. $N$ = number of trios meeting the given criteria out of the total trios analyzed (see Methods). **b**. Frequency distributions of how often each strain played the facilitator ($A$), the knocked-out intermediate ($B$), or the facilitated ($C$). Several strains played multiple roles; strains in facilitative trios with as well as without toxic intermediates are indicated with black triangles to the left of the strain IDs. Panel (**b**) inset displays the distribution of the number of unique strains that played each combination of roles. 06B played all three. The probability of playing $A$, $B$, or $C$ roles in facilitative trios varied with (**c**) overall competitiveness, $C_{w}$, as well as (**d**) resistance. **e.** $\Delta C_{w}$ plotted against base-line $C_{w}$ shows initially weaker *P. syringae* strains benefit the most from indirect interactions (Pearson's $\rho = -0.67$), while *P. fluorescens* fitness remains relatively unaffected by indirect interactions ($\rho = 0.74$). **f.** Net competitive fitness  ($C_{w}' = C_{w} + \Delta C_{w}$) after considering indirect effects weakens competitive hierarchies among *P. syringae* ($\rho = 0.50$) but has little effect on *P. fluorescens* competitive fitness ($\rho = 0.98$).
-
+![**Prevalence of intransitive interactions in a *Pseudomonas* spp. interaction network.** **a**. Types of interaction trios resulting in facilitation (left) or rock-paper-scissors (R–P–S) competitive asymmetries. $N$ = number of trios meeting the given criteria out of the total trios analyzed (see Methods). **b**. Frequency distributions of how often each strain played the facilitator ($A$), the knocked-out intermediate ($B$), or the facilitated ($C$). Several strains played multiple roles; strains in facilitative trios with as well as without toxic intermediates are indicated with black triangles to the left of the strain IDs. Panel (**b**) inset displays the distribution of the number of unique strains that played each combination of roles. 06B played all three. The probability of playing $A$, $B$, or $C$ roles in facilitative trios varied with (**c**) overall competitiveness, $C_{w}$, as well as (**d**) resistance. **e.** $\Delta C_{w}$ plotted against base-line $C_{w}$ shows initially weaker *P. syringae* strains benefit the most from indirect interactions (Pearson's $\rho = -0.67$), while *P. fluorescens* fitness remains relatively unaffected by indirect interactions ($\rho = 0.74$). **f.** Net competitive fitness  ($C_{w}' = C_{w} + \Delta C_{w}$) after considering indirect effects weakens competitive hierarchies among *P. syringae* ($\rho = 0.50$) but has little effect on *P. fluorescens* competitive fitness ($\rho = 0.98$). \label{fig3}](manuscript/figures/figure3.png){ width=600px }
 
 Despite the overall tendency to reinforce pairwise interactions, indirect facilitation from inhibitor-producing strains implicated nearly all (39) of the 40 studied strains in one or more of the three possible trio roles: the facilitator, the knocked-out competitor, or the facilitated strain (`A`, `B`, and `C`, respectively; Fig. 3a). Overall, 26 strains were facilitated (`C`), and 21 of these also served as the knocked-out competitor (`B`) in a subset of the trios (Fig 3b, inset). Twelve of the 13 inhibitor-producing strains (all *P. fluorescens*) were implicated as facilitators (`A` strains) (Fig 3b, inset).
 
@@ -169,15 +153,15 @@ Only rarely were *P. fluorescens* strains anything other than the facilitator st
 Averaged across all inhibitor-producing strains, the net effects of indirect interactions reshuffled the fitness ranks of *P. syringae* strains to a degree that weakens the original pairwise competitive hierarchy (rank correlation $\rho$ between $C_{w}$ and $C_{w}' = 0.50$; Fig. 3e; Fig. S8), such that the former advantage of several top *P. syringae* competitors gets redistributed across a larger number of relatively weaker competitors.
 
 
-## Discussion
+# Discussion
 
-### Overview
+## Overview
 
 We discovered that bacterial life history traits can predict outcomes of ecological interactions between strains. Using a subset of endophytic bacteria isolated from a native sub-alpine plant (*C. cordifolia*), we found major differences in both exploitative and interference competitiveness between the two principle *Pseudomonas* spp. clades in this phyllosphere community. Trait co-variance structure revealed the biological differences between these two major clades of native plant-associated *Pseudomonas* spp. bacteria. Such patterns suggest that the evolution of competitiveness may involve distinct components of life history in these bacterial lineages. When placed into an ecological context, the trait distributions we revealed across this bacterial assemblage are predicted to generate strong context dependence in competitive outcomes in the form of facilitation, whereby a inhibitor strain displaces a strong competitor and thereby facilitates a resistant but weaker recipient. Thus, the community context of interference competition is important for predicting the outcome of competitive pairings which typically depend primarily on exploitative capacity.
 
 Such a dataset allows dissection of several dimensions of *in vitro* fitness exhibited by a natural community of phyllosphere *Pseudomonas* spp. and provides a platform for testing hypotheses about the mechanistic bases of competitive traits (e.g. toxin production and resistance) and how their potential effects on ecological diversity and microbiome community structure. We also showed that *P. fluorescens*, presumed to be soil dweller, can be both common and important in structuring the outcome of ecological interactions within the context of the leaf microbiome of a native plant. Together, this work helps build an understanding of how competitive traits might evolve in tandem with other life history traits in representatives from real communities that interact in nature.
 
-### Correlations between growth traits and competitiveness
+## Correlations between growth traits and competitiveness
 
 Neither *P. syringae* nor *P. fluorescens* strains exhibited canonical growth rate trade-offs with maximum yield, $K$, which can result in a tragedy of the commons whereby rapid but wasteful use of resources yields higher competitive ability [@Pfeiffer01a; @MacLean08a]. Rather, a more pronounced signal was that maximum growth rate was correlated with a longer lag phase in *P. fluorescens*. This pattern contradicts the traditional dichotomy between generally “fast” vs. “slow” life histories and contrasts with patterns observed in microbial evolution experiments. For example, *Escherichia coli* lines adapting to a glucose-limited environment exhibited coordinated increases in growth rate and shorter lag time after 10,000 generations [@Vasi94a; @Lenski98a]. Additionally, *E. coli* selected to persist in lag phase during periods of antibiotic stress incurred no pleiotropic cost of reduced maximum growth rate despite up to a 10-fold increase in lag time [@Fridman14a]. Our study adds support for the idea that lag phase deserves attention as an important feature of microbial life cycles, and characterizing the physiology of cells during this phase may reveal the nature of its linkage with maximum growth rate and competitive fitness.
 
@@ -188,7 +172,7 @@ The production of exudate ($C_{t}$) or exudate resistance ($C_{r}$) did not trad
 Our study is limited in that we relied on visible manifestation of growth inhibition. Interference mechanisms range from direct injection of bacterial effectors via Type VI Secretion Systems [@Decoin14a; @Decoin15a], the production of subversive growth-regulating secreted N-acylhomoserine lactones (AHLs) or enzymes that quench these signals typically involved in quorum sensing [@Dulla09a; @Dulla10a], or the production of secreted toxins (e.g. bacteriocins or phage-derived proteins). Further work is needed to describe the range of interference mechanisms that may operate within plant microbiomes and to characterize the ecological effects of newly described modes of interference capable of being deployed by *P. syringae* [@Kandel20a; @Hockett15a] that this study was not capable of detecting.
 
 
-### Ecological implications
+## Ecological implications
 
 If strains from *P. syringae* and *P. fluorescens* were to compete in an unstructured environment, where preemption of space was irrelevant, *P. syringae* strains with high growth rates might be expected to out compete a variety of *P. fluorescens* strains with relatively lower growth rates (Fig 2). But within the structured and ephemeral context of the leaf environment, *P. fluorescens* may act as a territorial species whose potential effect in the phyllosphere may be to exclude colonization by other strains including *P. syringae*. This is consistent with the identity of *P. fluorescens* as a plant mutualist, although the evidence of this comes exclusively, to our knowledge, from studies of its indirect effects via plant defensive signaling or direct toxicity to pathogenic fungi following its colonizing of plant roots [@Mendes11a; @Hol13a]. In addition to such indirect effects, the superior competitiveness of *P. fluorescens* over *P. syringae* suggests that direct interactions may affect phyllosphere bacterial community assembly and plant disease risk from phytopathogenic isolates of *P. syringae*. Irrespective of the underlying mechanisms of interference and resistance, the frequency of these traits in a community may have large indirect effects that generate context-dependent competitive asymmetries among diverse genotypes.
 
@@ -196,19 +180,16 @@ The ecological context in which traits are expressed impacts functional diversit
 
 We show that the gains from facilitation are predominantly accrued by weaker resource competitors (Fig. 3c-f; Fig. S8). Only in a small subset of the facilitation trios could the facilitated strain invade the producer. When the facilitated strain does not pose a competitive threat to the facilitator—as is the case most of the time here—the gains from facilitation may be short-lived. However, the overall effect of this degree of facilitation may be to prolong periods between exclusion/extinction events, elevating the diversity that is observable at any given point within the system [@Laird06a]. The additional form of intransitivity found in our study is a pair of extended trios that have R–P–S invasion asymmetries, which are predicted to lead to frequency-dependent or cyclical invasion dynamics [@Laird14a]. This prediction is awaiting an empirical test, and this system presents an excellent opportunity for doing so.
 
-### Conclusions
+## Conclusions
 
 We found that competitive abilities of strains within a natural community of phyllosphere microbiome of *Pseudomonas* spp. varied between the two major clades present in leaves, *P. fluorescens* and *P. syringae*. Competitive fitness in our assays hinged on different traits in these two clades, and the higher degree of inter-strain trait dispersion in *P. syringae* may indicate that the focal traits measured here undergo more rapid evolution given the same degree of phylogenetic divergence (Fig. 2d; Fig. S7). We found no apparent life history trade-offs between growth rate and yield. Although speculative, the *P. fluorescens* clade may contain early colonizing strains that contest territory to a greater extent, which may serve to directly buffer against leaf colonization from potentially phytopathogenic *P. syringae*. In contrast, a high degree of inhibitor resistance among *P. syringae* may prevent local exclusion when spatial structure releases them from direct exploitative competition with *P. fluorescens*. Finally, the combination of exploitative and interference competition due to inhibitor-mediated facilitation may stabilize co-existence of strains that otherwise competitively exclude one another. Our study sheds light on the types of ecological interactions between bacterial lineages within microbiomes that should be quantified during development of microbial formations for clinical and crop enhancing purposes.
 
+## Acknowledgements
 
-### References
-
-<div id="refs"></div>
-
-
-### Acknowledgements
 P.T.H. and N.K.W. gratefully acknowledge funding from the National Science Foundation (Grant Nos. DEB-1309493 to P.T.H. and DEB-1256758 to N.K.W.), the National Institute of General Medical Sciences of the National Institutes of Health (Grant No. R35GM119816 to N.K.W.), and Rocky Mountain Biological Laboratory. We are indebted to H. Briggs, K. Cromwell, A. Koning, L. Anderson, K. Niezgoda, D. Picklum and N. Alexandre for advice help with field logistics, to T. K. O’Connor for bioinformatics advice and to H. Pyon and A. Abidov for laboratory assistance.
 
+## Competing interests
 
-### Competing interests
 The authors declare no competing interests.
+
+# References

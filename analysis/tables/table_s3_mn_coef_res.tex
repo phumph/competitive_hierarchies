@@ -1,0 +1,21 @@
+\begin{table}[!ht]
+
+\caption{\label{tab:}Multinomial model coefficients}
+\centering
+%\fontsize{12}{12}\selectfont
+\begin{tabular}[t]{llrrrr}
+\toprule
+outcome & term & coefficient$^{a}$ & std.err & $z$ & $p-value$\\
+\midrule
+RI$^{b}$ & intercept & 0.01 & 0.71 & -7.30 & $<10^{-5}$\\
+RI & \textit{P. fluorescens} & 39.22 & 0.76 & 4.82 & $<10^{-5}$\\
+RI & \textit{P. syringae} & 13.63 & 0.75 & 3.50 & 0.0005\\
+RNI$^{c}$ & intercept & 0.01 & 0.71 & -7.30 & $<10^{-5}$\\
+RNI & \textit{P. fluorescens} & 7.36 & 0.92 & 2.16 & 0.031\\
+RNI & \textit{P. syringae} & 30.67 & 0.73 & 4.71 & $<10^{-5}$\\
+\bottomrule
+\multicolumn{6}{l}{\textsuperscript{b} RI = Reciprocal invasion}\\
+\multicolumn{6}{l}{\textsuperscript{a} RNI = Reciprocal non-invasion}\\
+\multicolumn{6}{l}{\textsuperscript{c} coefficients = odds}\\
+\end{tabular}
+\end{table}

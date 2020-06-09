@@ -135,7 +135,7 @@ calculate_rank_diffs <- function(df,
         dplyr::select(strain_id, rank) ->
         df_tmp
     }
-    #names(df_tmp)[2] <- xnames[icol]
+
     suppressMessages(suppressWarnings(
         rank_res %>%
           dplyr::left_join(df_tmp, by = "strain_id") %>%
@@ -173,7 +173,6 @@ plot_facil_summaries <- function(res_full) {
 
   plot1 <- ggplot(res_full, aes(x = c_w, y = avg_delta, fill = clade)) +
     geom_point(pch = 21, col = "black", size = 2) +
-    # facet_wrap(~ clade) +
     theme_minimal() +
     theme(
       legend.position = "none",
@@ -243,20 +242,17 @@ plot_rank_diffs <- function(df) {
   df2$i_strain <- sapply(df2$i_strain, function(x) gsub("^X", "", paste0(x)))
   df2$i_strain  <- factor(df2$i_strain, levels = factor_order)
   df2$strain_id <- factor(df2$strain_id, levels = rev(strain_id_order))
-  
+
   value_range <- c(-max(abs(range(df2$rank_diff))),max(abs(range(df2$rank_diff))))
   palette_breaks <- seq(value_range[1], value_range[2], 1)
   color_palette  <- colorRampPalette(
     c("midnightblue", "white", "darkorange2"))(length(palette_breaks) - 1
     )
-  
+
   df2 %>%
     ggplot(aes(x = i_strain, y = strain_id, fill = rank_diff)) +
     geom_tile(col = "white", lwd = 0.33) +
-    #scale_fill_gradientn(colors = RColorBrewer::brewer.pal(11,"BrBG")) +
-    #scale_fill_gradientn(colors = colorspace::diverging_hcl(palette = "blue-red", n = 7)) +
     scale_fill_gradientn(colors = color_palette, limits = value_range, name = "") +
-    #scale_fill_gradientn(colors = pals::coolwarm()) +
     theme_bw() +
     theme(panel.grid = element_blank()) +
     theme(axis.text.x = element_text(size = 7,
@@ -275,7 +271,7 @@ plot_rank_diffs <- function(df) {
           panel.grid = element_blank()) +
     scale_fill_gradientn(colors = color_palette, limits = value_range, name = "") ->
     rank_plot_2
-  
+
   ggpubr::ggarrange(plotlist = list(rank_plot_1, rank_plot_2),
                     common.legend = T,
                     ncol = 2, widths = c(0.66, 1),
@@ -284,7 +280,7 @@ plot_rank_diffs <- function(df) {
                     labels = c("a", "b"),
                     vjust = 0.75) ->
     joint_plot
-  
+
   return(joint_plot)
 }
 
@@ -347,7 +343,7 @@ main <- function(arguments) {
            device = "pdf",
            width = 6,
            height = 4)
-  
+
   rank_plot_pflu %>%
     ggsave(filename = file.path(arguments$figs_dir,
                                 "facil_plot_Pflu_ranks.pdf"),

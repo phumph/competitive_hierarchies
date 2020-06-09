@@ -1,0 +1,101 @@
+%%%% Compiled tables file %%%%
+\begin{table}[!ht]
+
+\caption{\label{tab:}Summary statistics of life history and competitive trait distributions.}
+\centering
+\fontsize{10}{10}\selectfont
+\begin{tabular}[t]{lll}
+\toprule
+trait & \textit{P. fluorescens} & \textit{P. syringae}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{$\mu (\sigma)$}}\\
+\hspace{1em}$r$ & 0.57 (0.15) & 0.34 (0.22)\\
+\hspace{1em}$L$ & 672.13 (216.43) & 1549.86 (656.52)\\
+\hspace{1em}$K$ & 0.49 (0.06) & 0.42 (0.18)\\
+\hspace{1em}$i_w$ & 0.15 (0.19) & -0.28 (0.22)\\
+\hspace{1em}$c_w$ & 0.65 (0.2) & -0.35 (0.3)\\
+\hspace{1em}$c_t$ & 0.18 (0.16) & 0 (0)\\
+\hspace{1em}$c_r$ & 0.97 (0.05) & 0.72 (0.22)\\
+\hspace{1em}$c_o$ & 0.82 (0.1) & 0.26 (0.13)\\
+\hspace{1em}$c_d$ & 0.83 (0.11) & 0.39 (0.2)\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{\texttt{[min; max]}}}\\
+\hspace{1em}$r$ & [0.41; 0.91] & [0.03; 1.09]\\
+\hspace{1em}$L$ & [446.1; 1126.92] & [470.52; 2716.58]\\
+\hspace{1em}$K$ & [0.36; 0.57] & [0.03; 0.71]\\
+\hspace{1em}$i_w$ & [-0.11; 0.56] & [-0.77; 0]\\
+\hspace{1em}$c_w$ & [0.3; 0.88] & [-0.85; 0.31]\\
+\hspace{1em}$c_t$ & [0; 0.56] & [0; 0]\\
+\hspace{1em}$c_r$ & [0.83; 1] & [0.23; 1]\\
+\hspace{1em}$c_o$ & [0.64; 0.94] & [0.04; 0.67]\\
+\hspace{1em}$c_d$ & [0.65; 1] & [0.03; 0.64]\\
+\bottomrule
+\multicolumn{3}{l}{\textsuperscript{a} $r$ displayed as $\times 1000$}\\
+\end{tabular}
+\end{table}
+\newpage
+\begin{table}[!ht]
+
+\caption{\label{tab:S2}Distribution of outcomes by pairing type.}
+\centering
+\fontsize{12}{12}\selectfont
+\begin{tabular}[t]{lrrr}
+\toprule
+predictor & ASYM & RI & RNI\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{4}{l}{\textbf{Counts}}\\
+\hspace{1em}Between & 353 & 2 & 2\\
+\hspace{1em}Within (\textit{P. fluorescens}) & 72 & 16 & 3\\
+\hspace{1em}Within (\textit{P. syringae}) & 259 & 20 & 45\\
+\addlinespace[0.3em]
+\multicolumn{4}{l}{\textbf{Frequencies}}\\
+\hspace{1em}Between & 0.989 & 0.006 & 0.006\\
+\hspace{1em}Within (\textit{P. fluorescens}) & 0.791 & 0.176 & 0.033\\
+\hspace{1em}Within (\textit{P. syringae}) & 0.799 & 0.062 & 0.139\\
+\bottomrule
+\multicolumn{4}{l}{\textsuperscript{a} RNI = Reciprocal non-invasion}\\
+\multicolumn{4}{l}{\textsuperscript{b} RI = Reciprocal invasion}\\
+\multicolumn{4}{l}{\textsuperscript{c} ASYM = Asymmetric dominance}\\
+\end{tabular}
+\end{table}
+\newpage
+\begin{table}[!ht]
+
+\caption{\label{tab:}Multinomial model coefficients}
+\centering
+%\fontsize{12}{12}\selectfont
+\begin{tabular}[t]{llrrrr}
+\toprule
+outcome & term & coefficient$^{a}$ & std.err & $z$ & $p-value$\\
+\midrule
+RI$^{b}$ & intercept & 0.01 & 0.71 & -7.30 & $<10^{-5}$\\
+RI & \textit{P. fluorescens} & 39.22 & 0.76 & 4.82 & $<10^{-5}$\\
+RI & \textit{P. syringae} & 13.63 & 0.75 & 3.50 & 0.0005\\
+RNI$^{c}$ & intercept & 0.01 & 0.71 & -7.30 & $<10^{-5}$\\
+RNI & \textit{P. fluorescens} & 7.36 & 0.92 & 2.16 & 0.031\\
+RNI & \textit{P. syringae} & 30.67 & 0.73 & 4.71 & $<10^{-5}$\\
+\bottomrule
+\multicolumn{6}{l}{\textsuperscript{b} RI = Reciprocal invasion}\\
+\multicolumn{6}{l}{\textsuperscript{a} RNI = Reciprocal non-invasion}\\
+\multicolumn{6}{l}{\textsuperscript{c} coefficients = odds}\\
+\end{tabular}
+\end{table}
+\newpage
+\begin{table}[!ht]
+
+\caption{\label{tab:}Linear regression of trait distance versus phylogenetic distance by clade.}
+\centering
+%\fontsize{12}{12}\selectfont
+\begin{tabular}[t]{lrrrr}
+\toprule
+term & estimate & std.error & statistic & p.value\\
+\midrule
+intercept & 1.03 & 0.17 & 6.22 & $<10^{-5}$\\
+$D_{g}$ & 0.09 & 0.01 & 6.46 & $<10^{-5}$\\
+clade (\textit{P. syringae}) & 0.88 & 0.15 & 5.76 & $<10^{-5}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+\newpage

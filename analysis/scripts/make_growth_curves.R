@@ -113,7 +113,7 @@ make_plot <- function(g1, g2) {
          c(dimnames(g1)[[2]][8]),
          cex = 0.66, lty = c(1), bty = "n")
 
-  # Now for P.syringae plots
+  # Now for P. syringae plots
   # first plot: 10A,  21B,  20A,  17A
   plot(g2[, 1], g2[, 9], type = "l", lty = 1,
        xlim = c(0, 3600),
