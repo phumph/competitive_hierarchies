@@ -23,6 +23,9 @@ suppressWarnings(suppressMessages(library(gplots)))
 suppressWarnings(suppressMessages(library(ggpubr)))
 suppressWarnings(suppressMessages(library(psych))) # for corr.test()
 suppressWarnings(suppressMessages(library(ggbiplot)))
+## To instal ggbiplot:
+# library(devtools)
+# install_github("vqv/ggbiplot")
 suppressWarnings(suppressMessages(library(ggrepel)))
 
 # ------------- #
@@ -241,9 +244,13 @@ write_summary_stats_table <- function(summary_table) {
 
   summary_table %>%
     dplyr::select(-stat) %>%
-    kableExtra::kable() %>%
+    kableExtra::kable("latex",
+                      booktabs = TRUE,
+                      caption = "Summary statistics of life history and competitive trait distributions.") %>%
     kableExtra::kable_styling(
-      bootstrap_options = c("striped", "hover", "condensed")
+      position = "center",
+      font_size = 8,
+      bootstrap_options = c("striped", "condensed")
     ) %>%
     kableExtra::pack_rows("\\$\\mu (\\sigma)\\$",
                           1,
@@ -254,10 +261,8 @@ write_summary_stats_table <- function(summary_table) {
     kableExtra::add_footnote(the_footnote, notation = "alphabet") ->
     table_object
 
-  file_conn <- file(file.path("tables/trait_summary_stats.md"), "w")
-  cat("#### Summary statistics of life history and competitive trait distributions.\n",
-      file = file_conn)
-  cat(table_object, file = file_conn, append = TRUE)
+  file_conn <- file(file.path("analysis/tables/trait_summary_stats.tex"), "w")
+  cat(table_object, file = file_conn)
   close(file_conn)
 }
 
@@ -303,12 +308,12 @@ main <- function(arguments) {
   cat("Plotting heatmap...")
 
   # plot and save heatmap
-  pdf(file = "figs/heatmap_plot.pdf", width = 3.25, height = 6)
+  pdf(file = "analysis/figs/heatmap_plot.pdf", width = 3.25, height = 6)
     plot_heatmap(traits_all)
   dev.off()
 
   # plot and save heatmap again to capture legend
-  pdf(file = "figs/heatmap_plot_legend.pdf", width = 8, height = 6)
+  pdf(file = "analysis/figs/heatmap_plot_legend.pdf", width = 8, height = 6)
     plot_heatmap(traits_all)
   dev.off()
 
@@ -341,22 +346,22 @@ main <- function(arguments) {
     nrow = length(growth_plotlist), align = "hv", common.legend = TRUE)
   )
 
-  ggsave(gps, file = file.path("figs/trait_distributions.pdf"), device = "pdf",
+  ggsave(gps, file = file.path("analysis/figs/trait_distributions.pdf"), device = "pdf",
          width = 3, height = 8)
   cat("Done!\n")
   cat("Generating pairwise trait correlations plot...")
   # now generate PCA and produce output for panel (c)
-  pdf(file = "figs/corr_plot_Psyr.pdf", width = 6, height = 6)
+  pdf(file = "analysis/figs/corr_plot_Psyr.pdf", width = 6, height = 6)
     plot_heatmap_clade(traits_all, the_clade = "Psyr")
   dev.off()
 
-  pdf(file = "figs/corr_plot_Pfluo.pdf", width = 6, height = 6)
+  pdf(file = "analysis/figs/corr_plot_Pfluo.pdf", width = 6, height = 6)
     plot_heatmap_clade(traits_all, the_clade = "Pflu")
   dev.off()
   cat("Done!\n")
   cat("Performing principle components analysis...")
   # now for PCA
-  pdf(file = "figs/pca_plot.pdf", width = 6, height = 6)
+  pdf(file = "analysis/figs/pca_plot.pdf", width = 6, height = 6)
     do_pca(traits_all)
   dev.off()
   cat("Done!\n\n")
