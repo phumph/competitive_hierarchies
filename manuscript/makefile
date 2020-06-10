@@ -84,7 +84,7 @@ manuscript_file=competition_v1.md
 si_file=si.md
 bib_file=competition.bib
 
-all: competition_ms.md competition_ms.tex competition_ms.pdf
+all: competition_ms.md competition_ms.pdf
 
 competition_ms.md: ${manuscript_file} ${bib_file}
 		pandoc "${manuscript_file}" -o competition_ms.md \
@@ -103,7 +103,8 @@ competition_ms.tex: competition_ms.md
 		  -f html \
 			-t latex \
 			--pdf-engine=xelatex \
-			--include-in-header=format.sty
+			--include-in-header=format.sty \
+			--template=tmplate.tex
 
 competition_ms.pdf: competition_ms.tex
-	xelatex competition_ms.tex competition_ms.pdf
+	pdflatex competition_ms.tex competition_ms.pdf --template tmplate.tex
