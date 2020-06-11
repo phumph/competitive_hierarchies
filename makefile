@@ -8,14 +8,13 @@ preprint:
 	pandoc manuscript/meta_preprint.yaml \
 		manuscript/${manuscript_base}.md \
 		-o manuscript/${manuscript_base}.pdf \
-		-s \
 		--template=manuscript/svm-latex-ms.tex \
 		--filter pandoc-citeproc
 
 si:
 	pandoc manuscript/meta_si.yaml manuscript/${si_base}.md -o manuscript/${si_base}.pdf \
 	-s \
-	--template=manuscript/svm-latex-ms.tex \
+	--template="manuscript/svm-latex-ms.tex" \
 	--filter pandoc-citeproc
 
 paper:
@@ -23,7 +22,7 @@ paper:
 		manuscript/${manuscript_base}.md \
 		-o manuscript/${manuscript_base}_ms.pdf \
 		-s \
-		--template=manuscript/svm-latex-ms.tex \
+		--template="manuscript/svm-latex-ms.tex" \
 		--filter pandoc-citeproc
 
 tables: manuscript/tables.tex

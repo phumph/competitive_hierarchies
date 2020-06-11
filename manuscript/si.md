@@ -4,7 +4,7 @@ author:
 - name: Parris T Humphrey
   affiliation: Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA. USA
   email: phumphrey@g.harvard.edu
-- name: Trang T Nguyen
+- name: Trang TN Satterlee
   affiliation: Department of Plant Sciences, University of Arizona, Tucson, AZ. USA
   email: ttnguyen@arizona.edu
 - name: Noah K Whiteman
