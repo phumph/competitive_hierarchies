@@ -184,7 +184,7 @@ We found that competitive abilities of strains within a natural assemblage of pl
 
 ## Acknowledgements
 
-P.T.H. and N.K.W. gratefully acknowledge funding from the National Science Foundation (Grant Nos. DEB-1309493 to P.T.H. and DEB-1256758 to N.K.W.), the National Institute of General Medical Sciences of the National Institutes of Health (Grant No. R35GM119816 to N.K.W.), and Rocky Mountain Biological Laboratory. We are indebted to H. Briggs, K. Cromwell, A. Koning, L. Anderson, K. Niezgoda, D. Picklum and N. Alexandre for advice help with field logistics, to T. K. O’Connor for bioinformatics advice and to H. Pyon and A. Abidov for laboratory assistance.
+P.T.H. and N.K.W. gratefully acknowledge funding from the National Science Foundation (Grant Nos. DEB-1309493 to P.T.H. and DEB-1256758 to N.K.W.), and the National Institute of General Medical Sciences of the National Institutes of Health (Grant No. R35GM119816 to N.K.W.).
 
 ## Competing interests
 
