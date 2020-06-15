@@ -2,14 +2,11 @@
 title: Competitive hierarchies, antibiosis, and the distribution of bacterial life history traits in a microbiome
 author:
 - name: Parris T Humphrey
-  affiliation: Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA. USA
-  email: phumphrey@g.harvard.edu
-- name: Trang TN Satterlee
-  affiliation: Department of Plant Sciences, University of Arizona, Tucson, AZ. USA
-  email: ttnguyen@arizona.edu
+  affiliation: Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA. USA \newline Department of Ecology and Evolutionary Biology, University of Arizona, Tucson, AZ, USA
+- name: Trang T Satterlee
+  affiliation: Department of Ecology and Evolutionary Biology, University of Arizona, Tucson, AZ, USA
 - name: Noah K Whiteman
-  affiliation: Integrative Biology, University of California, Berkeley, CA. USA
-  email: "whiteman@berkeley.edu"
+  affiliation: Department of Integrative Biology, University of California, Berkeley, CA. USA \newline Department of Ecology and Evolutionary Biology, University of Arizona, Tucson, AZ, USA
 thanks: "Correspondence: NKW (\\texttt{whiteman@berkeley.edu}). \\newline Code and data available at \\texttt{https://github.com/phumph/competitive\\_hierarchies}."
 keywords: Pseudomonas, indirect interactions, phyllosphere, microbiome, phytopathogen
 csl: manuscript/ecology-letters.csl
@@ -19,7 +16,7 @@ bibliography: manuscript/competition.bib
 header-left: "\\textbf{\\textit{Competition in the phyllosphere}}"
 header-center: "\\hspace{1cm}"
 header-right: "Humphrey *et al.* (2020)"
-footer-left: "v.2020-06-09"
+footer-left: "v.2020-06-15"
 footer-right: "\\thepage"
 abstract: |
   \noindent\textbf{Abstract}\hspace{1em} Microbiome manipulation requires an understanding of how species interact within communities. Can outcomes of ecological interactions be predicted from microbial life history traits, the identity of the species, or both? We addressed these questions by studying the competitive interaction network in a community of 40 endophytic *Pseudomonas* spp. bacterial isolates from a native plant. Pairwise competition experiments revealed competitive dominance of *P. fluorescens* over *P. syringae* strains within this microbiome-derived community. *P. syringae* strains with higher growth rates won more contests, while *P. fluorescens* strains with shorter lag times and lower growth rates won more contests. Adding to their competitive dominance, *P. fluorescens* strains often produced antibiotics to which few *P. syringae* strains were resistant. Many competitive outcomes among *P. syringae* strains were predicted to be reversed by *P. fluorescens* inhibitors because indirect benefits accrued to less competitive strains. *P. fluorescens* strains frequently changed competitive outcomes, suggesting a critical role of strains within this bacterial clade in structuring plant microbiome communities. Microbial traits also may provide a handle for directing the outcome of colonization processes within microbiomes.

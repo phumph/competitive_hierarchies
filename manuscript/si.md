@@ -2,13 +2,13 @@
 title: Online Supplementary Information
 author:
 - name: Parris T Humphrey
-  affiliation: Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA. USA
+  affiliation: Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA. USA \newline Department of Ecology and Evolutionary Biology, University of Arizona, Tucson, AZ, USA
   email: phumphrey@g.harvard.edu
-- name: Trang TN Satterlee
-  affiliation: Department of Plant Sciences, University of Arizona, Tucson, AZ. USA
+- name: Trang T Satterlee
+  affiliation: Department of Ecology and Evolutionary Biology, University of Arizona, Tucson, AZ, USA
   email: ttnguyen@arizona.edu
 - name: Noah K Whiteman
-  affiliation: Integrative Biology, University of California, Berkeley, CA. USA
+  affiliation: Department of Integrative Biology, University of California, Berkeley, CA. USA \newline Department of Ecology and Evolutionary Biology, University of Arizona, Tucson, AZ, USA
   email: whiteman@berkeley.edu
 thanks: "Code and data available at \\texttt{https://github.com/phumph/competitive\\_hierarchies}."
 keywords: Pseudomonas, indirect interactions, phyllosphere, microbiome, phytopathogen
@@ -17,7 +17,7 @@ bibliography: manuscript/competition.bib
 header-left: "\\textbf{\\textit{Competition in the phyllosphere}}"
 header-center: "\\hspace{1cm}"
 header-right: "\\textbf{Online Supplementary Information}"
-footer-center: "v.2020-06-09"
+footer-center: "v.2020-06-15"
 footer-left: "Humphrey *et al.* (2020)"
 footer-right: "\\thepage"
 ---
