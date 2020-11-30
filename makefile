@@ -1,8 +1,9 @@
 
 manuscript_base=competition_v1
 si_base=si
+submission="manuscript/competition_ismej.pdf"
 
-all: paper preprint si tables
+all: paper preprint si tables figures
 
 preprint:
 	pandoc manuscript/meta_preprint.yaml \
@@ -27,6 +28,16 @@ paper:
 
 tables: manuscript/tables.tex
 	bin/compile_tables analysis/tables manuscript/tables.tex
+
+figures:
+	pandoc manuscript/meta_figures.yaml \
+		manuscript/figures.md \
+		-o manuscript/figures.pdf \
+		--template=manuscript/svm-latex-ms.tex \
+		--filter pandoc-citeproc
+
+submission:
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$(submission) manuscript/${manuscript_base}_ms.pdf manuscript/figures.pdf
 
 clean:
 	rm ${manuscript_base}.pdf ${manuscript_base}_ms.pdf ${si_base}.pdf ${si_base}_ms.pdf
