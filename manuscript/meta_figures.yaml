@@ -20,5 +20,4 @@ header-includes: |
   \usepackage{amsmath}
   \usepackage{lineno}
   \newcommand\qed{\hfill\rule{1em}{1em}}
-  \linenumbers
 ---

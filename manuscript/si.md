@@ -14,11 +14,11 @@ thanks: "Code and data available at \\texttt{https://github.com/phumph/competiti
 keywords: Pseudomonas, indirect interactions, phyllosphere, microbiome, phytopathogen
 csl: manuscript/ecology-letters.csl
 bibliography: manuscript/competition.bib
+
 header-left: "\\textbf{\\textit{Competition in the phyllosphere}}"
 header-center: "\\hspace{1cm}"
-header-right: "\\textbf{Online Supplementary Information}"
-footer-center: "v.2020-06-15"
-footer-left: "Humphrey *et al.* (2020)"
+header-right: "Humphrey *et al.* (2020) \\textbf{OSM}"
+footer-left: "v.2020-09-27"
 footer-right: "\\thepage"
 ---
 

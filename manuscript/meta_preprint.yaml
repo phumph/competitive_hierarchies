@@ -1,6 +1,6 @@
 ---
 fontsize: 11pt
-spacing: single
+spacing: "single"
 indent: true
 header-includes: |
   \usepackage{booktabs}

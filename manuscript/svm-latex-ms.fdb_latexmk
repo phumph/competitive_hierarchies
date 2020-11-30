@@ -1,0 +1,17 @@
+# Fdb version 3
+["pdflatex"] 1601217072 "svm-latex-ms.tex" "svm-latex-ms.pdf" "svm-latex-ms" 1601217072
+  "$fontfamily$.sty" 0 -1 0 ""
+  "/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty" 1583617216 6501 4011d89d9621e0b0901138815ba5ff29 ""
+  "/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/ifvtex.sty" 1572645307 1057 525c2192b5febbd8c1f662c9468335bb ""
+  "/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls" 1580683321 20023 e427dd9e17e239bf926ef3aab67fe35e ""
+  "/usr/local/texlive/2020/texmf-dist/tex/latex/base/size10.clo" 1580683321 8446 9874cccac5fee462272c582807dbbf56 ""
+  "/usr/local/texlive/2020/texmf-dist/tex/latex/geometry/geometry.sty" 1578002852 41601 9cf6c5257b1bc7af01a58859749dd37a ""
+  "/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty" 1580683321 2590 e3b24ff953e5b58d924f163d25380312 ""
+  "/usr/local/texlive/2020/texmf-dist/web2c/texmf.cnf" 1583102494 39451 60d7debd9ef8ece44cbe965493576c2d ""
+  "/usr/local/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1586288259 2432462 fd0fa20e9a3cb5f8169fd0ba1c955158 ""
+  "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
+  "svm-latex-ms.aux" 1601216965 8 a94a2480d3289e625eea47cd1b285758 ""
+  "svm-latex-ms.tex" 1601217072 7753 971947c2cc6a04a341753138281396d5 ""
+  (generated)
+  "svm-latex-ms.log"
+  "svm-latex-ms.pdf"
