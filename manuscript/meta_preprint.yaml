@@ -16,7 +16,11 @@ header-includes: |
   \usepackage{threeparttablex}
   \usepackage[normalem]{ulem}
   \usepackage{makecell}
+  \usepackage{relsize,etoolbox}
   \usepackage{tcolorbox}
+  \definecolor{block-gray}{gray}{0.95}
   \usepackage{amsmath}
   \newcommand\qed{\hfill\rule{1em}{1em}}
+  \newtcolorbox{blockquote}{colback=block-gray,grow to right by=-8mm,grow to left by=-8mm,boxrule=0pt,boxsep=0pt}
+  \AtBeginEnvironment{blockquote}{\small}
 ---

@@ -42,4 +42,5 @@ submission:
 clean:
 	rm ${manuscript_base}.pdf ${manuscript_base}_ms.pdf ${si_base}.pdf ${si_base}_ms.pdf
 
-.PHONY: all clean paper preprint tables
+.PHONY: all clean paper preprint tables submission figures si
+
