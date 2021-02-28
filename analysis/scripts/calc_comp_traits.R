@@ -8,7 +8,7 @@
 # Description #
 # ----------- # ----------------------------------------------------------- #
 # Script takes input files of competitive outcomes
-# and calcuates competitive trait values
+# and calculates competitive trait values
 # for exploitative (C_o, C_d, C_w)
 # and interference (C_r, C_t, I_w) competition.
 #
