@@ -1,4 +1,4 @@
-#!/usr/bin/env Rscript
+#! /usr/bin/env Rscript
 
 # =================== #
 # fit_growth_traits.R #
@@ -12,21 +12,24 @@
 # Max yield is taken as the maximum OD (minus background),
 # rather than the end-point OD.
 
-# Output is .csv with all growth traits fit for each strain.
+# Output is .csv with all growth traits fit for each strain
+# as well as individual .png figures for each strain's fitted growth traits.
 # ------------------------------------------------------------------------- #
 
 # ------ #
 # header #
 # ------ #
 
-library(dplyr)
-library(ggplot2)
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(readr)))
+source("analysis/scripts/comp_utils.R")
 
 base_dir <- "analysis/figs/growth_curves"
 
 # ------------- #
 # function defs #
 # ------------- #
+
 
 fit_spline <- function(time, y, label, lambda_fit = 1e-5, tsplit = 2000) {
 
@@ -105,23 +108,6 @@ fit_spline <- function(time, y, label, lambda_fit = 1e-5, tsplit = 2000) {
 }
 
 
-run_args_parse <- function(debug_status) {
-    if (debug_status == TRUE) {
-        arguments <- list()
-        arguments$infile_pf <- "analysis/data/MM_gcurvedata_Pflu.txt"
-        arguments$infile_ps <- "analysis/data/MM_gcurvedata_Psyr.txt"
-        arguments$outfile <- "analysis/data/growth_traits_fitted.csv"
-        arguments$tsplits <- "analysis/data/tsplits.csv"
-    } else if (debug_status == FALSE) {
-        args <- commandArgs(trailingOnly = FALSE)
-        arguments$infile_pf <- args[1]
-        arguments$infile_ps <- args[2]
-        arguments$outfile <- args[3]
-        arguments$tsplits <- args[4]
-    }
-    return(arguments)
-}
-
 df_to_long <- function(df, t_col = "min") {
     strain_cols <-  names(df)[!grepl(t_col, names(df))]
     df %>%
@@ -135,17 +121,24 @@ df_to_long <- function(df, t_col = "min") {
 
 main <- function(arguments) {
     # load growth trajectories
-    pf_traj <- readr::read_delim(
+    pf_traj <- readr::read_csv(
         arguments$infile_pf,
-        delim = "\t"
+        col_names = TRUE,
+        col_types = readr::cols(),
+        locale = readr::locale(encoding = "ASCII")
     )
-    ps_traj <- readr::read_delim(
+    ps_traj <- readr::read_csv(
         arguments$infile_ps,
-        delim = "\t"
+        col_names = TRUE,
+        col_types = readr::cols(),
+        locale = readr::locale(encoding = "ASCII")
     )
 
     # load time splits file
-    tsplits <- readr::read_csv(arguments$tsplits)
+    tsplits <- readr::read_csv(
+        arguments$tsplits,
+        col_types = readr::cols()
+    )
 
     # transform format for estimation
     pf_traj %>%
@@ -189,7 +182,6 @@ main <- function(arguments) {
         dplyr::rename(lambda = lag) ->
         curve_fits_out
 
-    # write out
     curve_fits_out %>%
         readr::write_csv(file = arguments$outfile)
 }
@@ -198,6 +190,26 @@ main <- function(arguments) {
 # main #
 # ==== #
 
-debug_status <- TRUE
-arguments <- run_args_parse(debug_status)
+"fit_growth_traits.R
+
+Usage:
+    fit_growth_traits.R [--help]
+    fit_growth_traits.R <infile_pf> <infile_ps> <tsplits> <outfile>
+
+Arguments:
+    infile_pf        Input Pfluo growth curve data (csv)
+    infile_ps        Input Pfluo growth curve data (csv)
+    tsplits          Input time splits for split curve fitting
+    outfile          Output filename (full path)
+" -> doc
+
+args <- list()
+args$infile_pf <- "analysis/data/growthcurve_data_Pflu.txt"
+args$infile_ps <- "analysis/data/growthcurve_data_Psyr.txt"
+args$outfile <- "analysis/data/growth_traits_fitted.csv"
+args$tsplits <- "analysis/data/tsplits.csv"
+
+debug_status <- FALSE
+arguments <- run_args_parse(args, debug_status, doc)
+
 main(arguments)

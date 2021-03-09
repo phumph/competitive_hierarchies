@@ -3,6 +3,11 @@ PackratVersion: 0.5.0
 RVersion: 4.0.4
 Repos: CRAN=https://cloud.r-project.org/
 
+Package: BH
+Source: CRAN
+Version: 1.75.0-0
+Hash: 8426697ec75df1ac7b9bc664741f383a
+
 Package: R6
 Source: CRAN
 Version: 2.5.0
@@ -35,10 +40,20 @@ Version: 2.3.1
 Hash: bd498ff53cd3e1a0fa501bcbcb785bf0
 Requires: assertthat, glue
 
+Package: clipr
+Source: CRAN
+Version: 0.7.1
+Hash: 50bca21c0c36d24984b051077cb15cf3
+
 Package: colorspace
 Source: CRAN
 Version: 2.0-0
 Hash: 70357b46371ef626b2fc3968df10b94a
+
+Package: cpp11
+Source: CRAN
+Version: 0.2.6
+Hash: 95f5bc84c456bb0a66bcad5ac725368c
 
 Package: crayon
 Source: CRAN
@@ -110,6 +125,12 @@ Package: gtable
 Source: CRAN
 Version: 0.3.0
 Hash: a9e7b0666eb933a0cb36779240b4462e
+
+Package: hms
+Source: CRAN
+Version: 1.0.0
+Hash: 045f4f0c5af5611f42b19cfd492dd78d
+Requires: ellipsis, lifecycle, pkgconfig, rlang, vctrs
 
 Package: isoband
 Source: CRAN
@@ -199,6 +220,13 @@ Source: CRAN
 Version: 0.3.4
 Hash: fb4c0edca61826ca0b5b33c828a7b276
 Requires: magrittr, rlang
+
+Package: readr
+Source: CRAN
+Version: 1.4.0
+Hash: 18b5823ea915dcb371ed38407391aff3
+Requires: BH, R6, cli, clipr, cpp11, crayon, hms, lifecycle, rlang,
+    tibble
 
 Package: rematch2
 Source: CRAN

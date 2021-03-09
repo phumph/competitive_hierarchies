@@ -3,6 +3,16 @@
 # comp_utils.R #
 # ============ #
 
+run_args_parse <- function(arguments = NULL, debug_status = FALSE, ...) {
+  if (debug_status == TRUE) {
+    stopifnot(!is.null(arguments) & is.list(arguments))
+  } else if (debug_status == FALSE) {
+    arguments <- docopt::docopt(doc)
+  }
+  return(arguments)
+}
+
+
 read_cmat <- function(infile) {
   stopifnot(file.exists(infile))
   cmat <- read.table(file = file.path(infile),
