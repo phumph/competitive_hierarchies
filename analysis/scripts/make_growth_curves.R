@@ -10,31 +10,24 @@
 # Script takes input files of in vitro growth trajectories
 # and plots strain-level growth curves.
 #
-# Output element is .png with all strains' growth trajectories plotted.
+# Output element is .pdf with all strains' growth trajectories plotted.
 # ------------------------------------------------------------------------- #
 
+# ------ #
+# header #
+# ------ #
+
+suppressMessages(suppressWarnings(library(readr)))
+source("analysis/scripts/comp_utils.R")
 
 # ------------- #
 # function defs #
 # ------------- #
 
-run_args_parse <- function(debug_status) {
-  if (debug_status == TRUE) {
-    arguments <- list()
-    arguments$g1_file   <- "data/MM_gcurvedata_Pflu.txt"
-    arguments$g2_file   <- "data/MM_gcurvedata_Psyr.txt"
-    arguments$plot_file <- "figs/growth_curves.pdf"
-  } else if (debug_status == FALSE) {
-    args <- commandArgs(trailingOnly = FALSE)
-    arguments <- list()
-    arguments$g1_file   <- args[1]
-    arguments$g2_file   <- args[2]
-    arguments$plot_file <- args[3]
-  }
-  return(arguments)
-}
-
 make_plot <- function(g1, g2) {
+
+  g1 <- as.matrix(g1)
+  g2 <- as.matrix(g2)
 
   # row 1
   par(mfrow = c(5, 3), mai = c(0.3, 0.4, 0.3, 0.3))
@@ -240,12 +233,13 @@ make_plot <- function(g1, g2) {
 # main def #
 # -------- #
 
+
 main <- function(arguments) {
 
-  g1 <- read.table(arguments$g1_file, header = T, sep = "\t")
-  g2 <- read.table(arguments$g2_file, header = T, sep = "\t")
+  g1 <- readr::read_csv(arguments$infile_pf, col_types = readr::cols())
+  g2 <- readr::read_csv(arguments$infile_ps, col_types = readr::cols())
 
-  pdf(file = arguments$plot_file, width = 8, height = 11)
+  pdf(file = arguments$outfile, width = 8, height = 11)
     make_plot(g1, g2)
   dev.off()
 }
@@ -254,5 +248,24 @@ main <- function(arguments) {
 # main #
 # ==== #
 
-arguments <- run_args_parse(debug_status = TRUE)
-main(aguments)
+"make_growth_curves.R
+
+Usage:
+    make_growth_curves.R [--help]
+    make_growth_curves.R <infile_pf> <infile_ps> <outfile>
+
+Arguments:
+    infile_pf        Input Pfluo growth curve data (csv)
+    infile_ps        Input Pfluo growth curve data (csv)
+    outfile          Full path to output figure (pdf)
+" -> doc
+
+args <- list()
+args$infile_pf <- "analysis/data/growthcurve_data_Pflu.txt"
+args$infile_ps <- "analysis/data/growthcurve_data_Psyr.txt"
+args$outfile <- "analysis/figs/growth_curves.pdf"
+
+debug_status <- FALSE
+arguments <- run_args_parse(args, debug_status, doc)
+
+main(arguments)

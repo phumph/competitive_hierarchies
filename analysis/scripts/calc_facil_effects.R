@@ -30,26 +30,6 @@ source("analysis/scripts/comp_utils.R")
 # function defs #
 # ------------- #
 
-run_args_parse <- function(debug_status) {
-  if (debug_status == TRUE) {
-    arguments <- list()
-    arguments$cfile    <- "analysis/data/c_matrix.txt"
-    arguments$ifile    <- "analysis/data/i_matrix.txt"
-    arguments$tfile    <- "analysis/data/all_traits.txt"
-    arguments$outfile  <- "analysis/data/comp_facil_effects.csv"
-    arguments$figs_dir <- "analysis/figs"
-  } else if (debug_status == FALSE) {
-    args <- commandArgs(trailingOnly = FALSE)
-    arguments$cfile    <- args[1]
-    arguments$ifile    <- args[2]
-    arguments$tfile    <- args[3]
-    arguments$outfile  <- args[4]
-    arguments$figs_dir <- args[5]
-  }
-  return(arguments)
-}
-
-
 calc_cw_deltas <- function(cmat, imat, focal_res_cols = c("strain_id", "c_w")) {
 
   toxin_cols <- colSums(imat, na.rm = TRUE)
@@ -357,6 +337,50 @@ main <- function(arguments) {
 # main #
 # ==== #
 
-debug_status <- TRUE
-arguments <- run_args_parse(debug_status)
+
+"calc_facil_effects.R
+
+Usage:
+    calc_facil_effects.R [--help]
+    calc_facil_effects.R <cfile> <ifile> <traits_infile> <outfile> <figs_dir>
+
+Arguments:
+    cfile            Competitive outcomes matrix (txt)
+    ifile            Inhibition outcomes matrix (txt)
+    traits_infile    Traits file for compiled traits (csv)
+    outfile          Full outfile path for compiled competitive traits data (csv)
+" -> doc
+
+args <- list()
+args$cfile <- "analysis/data/c_matrix.txt"
+args$ifile <- "analysis/data/i_matrix.txt"
+args$traits_infile <- "analysis/data/all_traits.txt"
+args$outfile <- "analysis/data/comp_facil_effects.csv"
+args$figs_dir <- "analysis/figs"
+
+debug_status <- FALSE
+arguments <- run_args_parse(args, debug_status, doc)
+
 main(arguments)
+
+
+##
+
+run_args_parse <- function(debug_status) {
+  if (debug_status == TRUE) {
+    arguments <- list()
+    arguments$cfile    <- "analysis/data/c_matrix.txt"
+    arguments$ifile    <- "analysis/data/i_matrix.txt"
+    arguments$tfile    <- "analysis/data/all_traits.txt"
+    arguments$outfile  <- "analysis/data/comp_facil_effects.csv"
+    arguments$figs_dir <- "analysis/figs"
+  } else if (debug_status == FALSE) {
+    args <- commandArgs(trailingOnly = FALSE)
+    arguments$cfile    <- args[1]
+    arguments$ifile    <- args[2]
+    arguments$tfile    <- args[3]
+    arguments$outfile  <- args[4]
+    arguments$figs_dir <- args[5]
+  }
+  return(arguments)
+}

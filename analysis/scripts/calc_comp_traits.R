@@ -27,22 +27,6 @@ source("analysis/scripts/comp_utils.R")
 # function defs #
 # ------------- #
 
-run_args_parse <- function(debug_status) {
-  if (debug_status == TRUE) {
-    arguments <- list()
-    arguments$cfile   <- "analysis/data/c_matrix.txt"
-    arguments$ifile   <- "analysis/data/i_matrix.txt"
-    arguments$outfile <- "analysis/data/comp_traits.csv"
-  } else if (debug_status == FALSE) {
-    args <- commandArgs(trailingOnly = FALSE)
-    arguments$cfile   <- args[1]
-    arguments$ifile   <- args[2]
-    arguments$outfile <- args[3]
-  }
-  return(arguments)
-}
-
-
 main <- function(arguments) {
 
   # load comp matrix
@@ -70,5 +54,24 @@ main <- function(arguments) {
 # main #
 # ==== #
 
-arguments <- run_args_parse(debug_status = TRUE)
-res <- main(arguments)
+"calc_comp_traits.R
+
+Usage:
+    calc_comp_traits.R [--help]
+    calc_comp_traits.R <cfile> <ifile> <outfile>
+
+Arguments:
+    cfile        Competitive outcomes matrix (txt)
+    ifile        Inhibition outcomes matrix (txt)
+    outfile      Full outfile path for compiled competitive traits data (csv)
+" -> doc
+
+args <- list()
+args$cfile   <- "analysis/data/c_matrix.txt"
+args$ifile   <- "analysis/data/i_matrix.txt"
+args$outfile <- "analysis/data/comp_traits.csv"
+
+debug_status <- FALSE
+arguments <- run_args_parse(args, debug_status, doc)
+
+main(arguments)

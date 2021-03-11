@@ -14,6 +14,16 @@
 #
 # Plot elements generated as output were manually assembled
 # and edited as vector graphics prior to inclusion in manuscript.
+#
+# Figures produced as output:
+# 1. analysis/figs/mv_trait_dists.png
+# 2. analysis/figs/interaction_barplot.pdf
+# 
+# Tables produced as output:
+# 1. analysis/tables/mv_dist_res.tex
+# 2. analysis/tables/lm_trait-v-phylo-dist_res.tex
+# 3. analysis/tables/mn_outcomes_res.tex
+# 4. analysis/tables/mn_coef_res.tex
 # ------------------------------------------------------------------------ #
 
 suppressWarnings(suppressMessages(library(dplyr)))
@@ -21,26 +31,12 @@ suppressWarnings(suppressMessages(library(tidyr)))
 suppressWarnings(suppressMessages(library(ggplot2)))
 suppressWarnings(suppressMessages(library(ggpubr)))
 suppressWarnings(suppressMessages(library(nnet)))
+source("analysis/scripts/comp_utils.R")
+
 
 # ------------- #
 # function defs #
 # ------------- #
-
-run_args_parse <- function(debug_status) {
-  if (debug_status == TRUE) {
-    arguments <- list()
-    arguments$all_traits <- "analysis/data/all_traits.txt"
-    arguments$pairs_file <- "analysis/data/interaction_pairs.txt"
-    arguments$pca_file   <- "analysis/data/pca_traits.txt"
-  } else if (debug_status == FALSE) {
-    args <- commandArgs(trailingOnly = FALSE)
-    arguments <- list()
-    arguments$all_traits <- args[1]
-    arguments$pairs_file <- args[2]
-    arguments$pca_file   <- args[3]
-  }
-  return(arguments)
-}
 
 
 calc_trait_dists <-
@@ -50,9 +46,9 @@ calc_trait_dists <-
       # Euclidean distance
       sqrt(sum((i - j) ^ 2, na.rm = T))
     }
-
+    
     ij <- dplyr::select(pairs, i, j)
-
+    
     do_dist_calc <- function(x, ij, ...) {
       suppressWarnings(
         ij %>%
@@ -62,18 +58,18 @@ calc_trait_dists <-
                            by = c("j" = "strain_id")) ->
           ij
       )
-
+      
       ij$dist <- dist_fun(i = ij[, grep(".x", names(ij))],
                           j = ij[, grep(".y", names(ij))])
       ij %>%
         dplyr::select(dist) ->
         the_dist
-
+      
       names(the_dist) <- paste0(paste0(x, collapse = "_"), "_dist")
-
+      
       return(the_dist)
     }
-
+    
     if (as_vec == FALSE) {
       dist_res  <- lapply(focal_traits, function(x)
         do_dist_calc(x, ij))
@@ -98,7 +94,7 @@ run_glms <- function(pairs_full) {
               data = pairs_full,
               family = "binomial")
   broom::tidy(glm1)
-
+  
   pairs_full %>%
     dplyr::filter(WB == "W", i_clade == "Psyr") %>%
     glm(ASYM ~ pdist + PC1_dist + PC2_dist + PC3_dist,
@@ -106,7 +102,7 @@ run_glms <- function(pairs_full) {
         data = .) %>%
     broom::tidy() ->
     psyr_glm_coefs
-
+  
   pairs_full %>%
     dplyr::filter(WB == "W", i_clade == "Pflu") %>%
     glm(ASYM ~ pdist + PC1_dist + PC2_dist + PC3_dist,
@@ -114,12 +110,12 @@ run_glms <- function(pairs_full) {
         data = .) %>%
     broom::tidy() ->
     pflu_glm_coefs
-
+  
   pairs_full %>%
     glm(ASYM ~ i_clade:j_clade, family = "binomial", data = .) %>%
     broom::tidy() ->
     pflu_glm_coefs
-
+  
   pairs_full %>%
     dplyr::filter(WB == "W", i_clade == "Psyr") %>%
     glm(ASYM ~ pdist + r_dist + K_dist + L_dist,
@@ -135,7 +131,7 @@ plot_glm_res <- function(pairs_full) {
     geom_jitter(position = position_jitter(height = 0.02), alpha = 0.5) +
     stat_smooth(method = "glm", se = T) +
     theme_bw()
-
+  
   gx2 <- ggplot(int_glm_s, aes(x = pdist, y = RI)) +
     geom_jitter(position = position_jitter(height = .025), alpha = 0.5) +
     scale_y_continuous(limits = c(-0.025, 1.025)) +
@@ -145,7 +141,7 @@ plot_glm_res <- function(pairs_full) {
                 family = "binomial",
                 se = T) +
     theme_bw()
-
+  
   gx3 <- ggplot(int_glm_s, aes(x = pdist, y = RNI)) +
     geom_jitter(position = position_jitter(height = .025), alpha = 0.5) +
     scale_y_continuous(limits = c(-0.025, 1.025)) +
@@ -155,9 +151,9 @@ plot_glm_res <- function(pairs_full) {
                 family = "binomial",
                 se = T) +
     theme_bw()
-
+  
   ggpubr::ggarrange(plotlist = list(gx1, gx2, gx3), nrow = 3)
-
+  
 }
 
 
@@ -175,7 +171,7 @@ compare_mv_disp <- function(x,
                   !!as.symbol(dist_col)) %>%
     dplyr::mutate(clade = "Psyr") ->
     psyr_dat
-
+  
   x %>%
     dplyr::filter(WB == "W",
                   !!as.symbol(dist_col) > 0,
@@ -184,21 +180,21 @@ compare_mv_disp <- function(x,
                   !!as.symbol(dist_col)) %>%
     dplyr::mutate(clade = "Pflu") ->
     pflu_dat
-
+  
   lm_dat <- dplyr::bind_rows(psyr_dat, pflu_dat)
-
+  
   t.test(psyr_dat$PC1_PC2_PC3_dist,
          pflu_dat$PC1_PC2_PC3_dist,
          var.equal = FALSE) %>%
     broom::tidy() -> t_res
-
+  
   # now compute more complicated model accounting for pdist:
   lm1 <- lm(PC1_PC2_PC3_dist ~ pdist + clade, data = lm_dat)
   lm2 <- lm(PC1_PC2_PC3_dist ~ pdist * clade, data = lm_dat)
   lms <- list(lm1 = lm1, lm2 = lm2)
   lms[[row.names(AIC(lm1, lm2)[1,])]] %>%
     broom::tidy() -> lm_res
-
+  
   if (write_out == TRUE) {
     # export ttest res as latex table
     kableExtra::kable(t_res, "latex",
@@ -210,12 +206,12 @@ compare_mv_disp <- function(x,
         bootstrap_options = c("striped", "condensed")
       ) ->
       table_object
-
+    
     file_conn <-
       file(file.path("analysis/tables/mv_dist_res.tex"), "w")
     cat(table_object, file = file_conn)
     close(file_conn)
-
+    
     # export lm results:
     kableExtra::kable(lm_res, "latex",
                       booktabs = TRUE,
@@ -226,13 +222,13 @@ compare_mv_disp <- function(x,
         bootstrap_options = c("striped", "condensed")
       ) ->
       table_object2
-
+    
     file_conn <- file(file.path("analysis/tables/lm_trait-v-phylo-dist_res.tex"),
                       "w")
     cat(table_object2, file = file_conn)
     close(file_conn)
   }
-
+  
   # generate plot
   x %>%
     dplyr::filter(WB == "W", !!as.symbol(dist_col) > 0) %>%
@@ -257,7 +253,7 @@ compare_mv_disp <- function(x,
       y = 7
     ) ->
     dist_plot
-
+  
   ggplot2::ggsave(
     dist_plot,
     file = "analysis/figs/mv_trait_dists.png",
@@ -278,18 +274,18 @@ run_mn_outcomes <-
         predictor_col = !!as.symbol(predictor_col),
         outcome_col = !!as.symbol(outcome_col)
       )
-
+    
     count_table <-
       input_dat %>%
       dplyr::group_by(predictor_col,
                       outcome_col) %>%
       dplyr::summarise(outcome_count = n())
-
+    
     # produce spread table object for output
     count_spread <-
       count_table %>%
       tidyr::spread(key = outcome_col, value = "outcome_count")
-
+    
     freqs_spread <-
       count_spread %>%
       dplyr::mutate(
@@ -299,26 +295,26 @@ run_mn_outcomes <-
         RNI = round(RNI / tot, 3)
       ) %>%
       dplyr::select(-tot)
-
+    
     # now run multinomial model
     # first set reference factor level:
     input_dat$outcome_col <- input_dat$outcome_col
-
+    
     # run multinomial model
     mn <-
       nnet::multinom(outcome_col ~ predictor_col, data = input_dat)
-
+    
     # generate fitted probabilities
     df_fitted <-
       data.frame(predictor_col = input_dat$predictor_col,
                  round(fitted(mn), 3)) %>%
       dplyr::arrange(predictor_col) %>%
       unique()
-
+    
     # generate p-values from 2-tailed z-test for all coefficients
     z <- summary(mn)$coefficients / summary(mn)$standard.errors
     p <- (1 - pnorm(abs(z), 0, 1)) * 2
-
+    
     # write output for supplemental table
     coef_table <- broom::tidy(mn)
     names(coef_table) <-
@@ -335,7 +331,7 @@ run_mn_outcomes <-
         z = round(z, 3),
         p = round(p, 4)
       )
-
+    
     # return observed counts, proportions, fitted, and coefs
     return(
       list(
@@ -370,15 +366,15 @@ output_mn_res <- function(mn_res) {
     xlab("interaction type") +
     ylab("outcome frequency") ->
     barplot1
-
-  ggsave(
+  
+  ggplot2::ggsave(
     barplot1,
     file = "analysis/figs/interaction_barplot.pdf",
     device = "pdf",
     width = 3,
     height = 3
   )
-
+  
   # tables (S1, S2)
   the_footnotes <- c(
     "RNI = Reciprocal non-invasion",
@@ -404,13 +400,13 @@ output_mn_res <- function(mn_res) {
     kableExtra::pack_rows("Frequencies", 4, 6) %>%
     kableExtra::add_footnote(the_footnotes, notation = "alphabet") ->
     outcome_dist_table
-
+  
   file_conn <-
     file(file.path("analysis/tables/mn_outcomes_res.tex"), "w")
-
+  
   cat(outcome_dist_table, file = file_conn)
   close(file_conn)
-
+  
   # now output coefficients table
   the_footnotes_2 <- c("RNI = Reciprocal non-invasion",
                        "RI = Reciprocal invasion",
@@ -426,7 +422,7 @@ output_mn_res <- function(mn_res) {
     ) %>%
     kableExtra::add_footnote(the_footnotes_2, notation = "alphabet") ->
     model_coef_output
-
+  
   file_conn <-
     file(file.path("analysis/tables/mn_coef_res.tex"), "w")
   cat(model_coef_output, file = file_conn)
@@ -438,43 +434,29 @@ output_mn_res <- function(mn_res) {
 # -------- #
 
 main <- function(arguments) {
-  # load traits file
-  all_traits <- read.table(
-    arguments$all_traits,
-    header = T,
-    sep = "\t",
-    stringsAsFactors = F
-  )
-
-  # load pairs file
-  pairs <- read.table(
-    arguments$pairs_file,
-    header = T,
-    sep = "\t",
-    stringsAsFactors = F
-  )
-  # load pca results
-  pca_res <- read.table(
-    arguments$pca_file,
-    header = T,
-    sep = "\t",
-    stringsAsFactors = F
-  )
-
+  
+  all_traits <- readr::read_csv(arguments$traits_infile, col_types = readr::cols())
+  pairs <- readr::read_csv(arguments$pairs_infile, col_types = readr::cols())
+  pca_res <- readr::read_csv(arguments$pca_infile, col_types = readr::cols())
+  
   # calculate pairwise genetic distance within clades:
   pd1 <- pairs$pdist[pairs$WB == "W" & pairs$i_clade == "Psyr"]
   pd2 <- pairs$pdist[pairs$WB == "W" & pairs$i_clade == "Pflu"]
-
+  
   df1 <- data.frame(pd = c(pd1, pd2),
                     clade = c(rep("Psyr", length(pd1)),
                               rep("Pfluo", length(pd2))))
-
+  
   # add PCs to all_traits
-  suppressWarnings(all_traits %>%
-                     dplyr::left_join(dplyr::select(pca_res, strain_id, PC1, PC2, PC3),
-                                      by = "strain_id") ->
-                     all_traits)
-
+  suppressWarnings(
+    all_traits %>%
+      dplyr::left_join(
+        dplyr::select(pca_res, strain_id, PC1, PC2, PC3),
+        by = "strain_id"
+      ) ->
+      all_traits
+  )
+  
   # calculate distances
   focal_traits <- c("r",
                     "L",
@@ -488,45 +470,65 @@ main <- function(arguments) {
                     "PC1",
                     "PC2",
                     "PC3")
-
+  
   pairs_multivar <- calc_trait_dists(
     pairs,
     all_traits,
     focal_traits = c("PC1", "PC2", "PC3"),
     as_vec = TRUE
   )
-
+  
   # generate multivariate dispersion comparison
   pairs_multivar %>%
     compare_mv_disp(dist_col = grep("_dist", names(pairs_multivar), value = T))
-
+  
   # model interaction outcome distribution within versus between clades
   dist_col <- grep("_dist", names(pairs_multivar), value = T)
-
+  
   pairs %>%
     dplyr::left_join(dplyr::select(pairs_multivar, i, j, !!as.symbol(dist_col)),
                      by = c("i", "j")) ->
     pairs_full
-
+  
   pairs_full$outcome_mn <- pairs_full$outcome
   pairs_full$outcome_mn[!pairs_full$outcome_mn %in% c("RI", "RNI")] <-
     "ASYM"
   pairs_full$pair_type <-
     paste0(pairs_full$WB, "_", pairs_full$i_clade)
   pairs_full$pair_type[grep("B", pairs_full$pair_type)] <- "B"
-
+  
   # generate multinomial model on outcome proportion as function of pair type
   mn_res <-
     pairs_full %>%
     run_mn_outcomes(outcome_col = "outcome_mn", predictor_col = "pair_type")
-
+  
   # outputs figures and tables from multinomial model
   output_mn_res(mn_res)
 }
+
 
 # ==== #
 # main #
 # ==== #
 
-arguments <- run_args_parse(debug_status = TRUE)
+"make_outcomes_analysis.R
+
+Usage:
+    make_outcomes_analysis.R [--help]
+    make_outcomes_analysis.R <traits_infile> <pairs_infile> <pca_infile>
+
+Arguments:
+    traits_infile     Competitive outcomes matrix (txt)
+    pairs_infile      Inhibition outcomes matrix (txt)
+    pca_infile        Traits file for compiled traits (csv)
+" -> doc
+
+args <- list()
+args$traits_infile <- "analysis/data/all_traits.txt"
+args$pairs_infile <- "analysis/data/interaction_pairs.txt"
+args$pca_infile <- "analysis/data/pca_traits.txt"
+
+debug_status <- FALSE
+arguments <- run_args_parse(args, debug_status, doc)
+
 main(arguments)
