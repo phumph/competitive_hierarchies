@@ -56,22 +56,20 @@ calc_cw_deltas <- function(cmat, imat, focal_res_cols = c("strain_id", "c_w")) {
   ncols <- ncol(res_full[, !names(res_full) %in% focal_res_cols])
   res_full$net_delta <- rowSums(deltas)
   res_full$avg_delta <- res_full$net_delta / ncols
-
+  
   return(res_full)
 }
 
 
 add_clade_info <- function(res_full, infile) {
-  tfile <- read.table(file.path(arguments$tfile),
-    sep = "\t",
-    header = T,
-    stringsAsFactors = FALSE
-  )
+  tfile <- readr::read_csv(infile, col_types = readr::cols())
   cols_to_join <- c("strain_id", "clade", "c_r")
   res_full$strain_id <- paste0(
     sapply(res_full$strain_id, function(x) gsub("X", "", x))
   )
-  res_full <- merge(res_full, tfile[, cols_to_join], by = "strain_id")
+  res_full %>%
+    dplyr::left_join(tfile[, cols_to_join], by = "strain_id") ->
+    res_full
   return(res_full)
 }
 
@@ -89,7 +87,7 @@ calculate_rank_diffs <- function(df,
   }
 
   xnames <- grep("^X", names(df), value = T)
-
+  
   df %>%
     dplyr::arrange(desc(!!as.symbol(base_col))) %>%
     dplyr::mutate(base_rank = c(1:nrow(df))) %>%
@@ -117,19 +115,18 @@ calculate_rank_diffs <- function(df,
     }
 
     suppressMessages(suppressWarnings(
-        rank_res %>%
-          dplyr::left_join(df_tmp, by = "strain_id") %>%
-          dplyr::mutate(rank_diff = base_rank - rank) %>%
-          dplyr::select(-rank) ->
-          rank_res
+      rank_res %>%
+        dplyr::left_join(df_tmp, by = "strain_id") %>%
+        dplyr::mutate(rank_diff = base_rank - rank) %>%
+        dplyr::select(-rank) ->
+        rank_res
     ))
     names(rank_res)[names(rank_res) == "rank_diff"] <- xnames[icol]
   }
 
   tot_rank_impact <- sort(colSums(abs(rank_res[, -c(1,2)])), decreasing = TRUE)
   rank_res <- rank_res[, c("strain_id", "base_rank", names(tot_rank_impact))]
-
-  # add final_rank
+  
   df %>%
     dplyr::select(strain_id,
                   !!as.symbol(base_col),
@@ -139,12 +136,12 @@ calculate_rank_diffs <- function(df,
     dplyr::mutate(final_rank = c(1:nrow(df))) %>%
     dplyr::select(-!!as.symbol(avg_col)) ->
     df_tmp_2
-
+  
   rank_res %>%
     dplyr::left_join(df_tmp_2, by = "strain_id") %>%
     dplyr::mutate(final_rank_diff = base_rank - final_rank) ->
     rank_res
-
+  
   return(rank_res)
 }
 
@@ -190,7 +187,7 @@ plot_facil_summaries <- function(res_full) {
     scale_fill_manual(values = c("white", "black")) +
     scale_x_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
     scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5))
-
+  
   return(
     ggpubr::ggarrange(
       plotlist = list(plot1, plot2),
@@ -202,14 +199,14 @@ plot_facil_summaries <- function(res_full) {
 
 
 plot_rank_diffs <- function(df) {
-
+  
   factor_order <- grep("^X", names(df), value = TRUE) %>%
     gsub("^X", "", .)
   stopifnot("final_rank_diff" %in% names(df))
   names(df)[names(df) == "final_rank_diff"] <- "final"
   factor_order <- c(factor_order, "final")
   strain_id_order <- df$strain_id
-
+  
   df %>%
     tidyr::gather(key = "i_strain", value = "rank_diff",
                   -strain_id,
@@ -218,17 +215,17 @@ plot_rank_diffs <- function(df) {
                   -c_w,
                   -final_c_w) ->
     df2
-
+  
   df2$i_strain <- sapply(df2$i_strain, function(x) gsub("^X", "", paste0(x)))
   df2$i_strain  <- factor(df2$i_strain, levels = factor_order)
   df2$strain_id <- factor(df2$strain_id, levels = rev(strain_id_order))
-
+  
   value_range <- c(-max(abs(range(df2$rank_diff))),max(abs(range(df2$rank_diff))))
   palette_breaks <- seq(value_range[1], value_range[2], 1)
   color_palette  <- colorRampPalette(
     c("midnightblue", "white", "darkorange2"))(length(palette_breaks) - 1
     )
-
+  
   df2 %>%
     ggplot(aes(x = i_strain, y = strain_id, fill = rank_diff)) +
     geom_tile(col = "white", lwd = 0.33) +
@@ -240,7 +237,7 @@ plot_rank_diffs <- function(df) {
                                      hjust = 1, vjust = 0.5),
           axis.text.y = element_text(size = 7)) ->
     rank_plot_1
-
+  
   df %>%
     ggplot(aes(x = -base_rank, y = -final_rank, fill = final)) +
     geom_point(pch = 21, col = "black", size = 2.25) +
@@ -251,7 +248,7 @@ plot_rank_diffs <- function(df) {
           panel.grid = element_blank()) +
     scale_fill_gradientn(colors = color_palette, limits = value_range, name = "") ->
     rank_plot_2
-
+  
   ggpubr::ggarrange(plotlist = list(rank_plot_1, rank_plot_2),
                     common.legend = T,
                     ncol = 2, widths = c(0.66, 1),
@@ -260,14 +257,14 @@ plot_rank_diffs <- function(df) {
                     labels = c("a", "b"),
                     vjust = 0.75) ->
     joint_plot
-
+  
   return(joint_plot)
 }
 
 
-# ======== #
-# main def #
-# ======== #
+# ===== #
+# main  #
+# ===== #
 
 main <- function(arguments) {
 
@@ -288,7 +285,7 @@ main <- function(arguments) {
   res_full <- calc_cw_deltas(cmat, imat)
 
   # add clade information
-  res_full <- add_clade_info(res_full, arguments$tfile)
+  res_full <- add_clade_info(res_full, arguments$traits_infile)
 
   # plot avg delta by clade
   res_full %>%
@@ -296,13 +293,15 @@ main <- function(arguments) {
     facil_plots
 
   facil_plots %>%
-    ggsave(filename = file.path(arguments$figs_dir,
-                                "facil_plot_summaries.pdf"),
-           width = 2.5,
-           height = 4.5,
-           #dpi = 300,
-           device = "pdf"
-         )
+    ggsave(filename = file.path(
+      arguments$figs_dir,
+      "facil_plot_summaries.pdf"
+    ),
+    width = 2.5,
+    height = 4.5,
+    #dpi = 300,
+    device = "pdf"
+    )
 
   # now calculate and plot rank changes
   res_full_rank_psyr <- calculate_rank_diffs(res_full, clade = "Psyr")
@@ -330,13 +329,14 @@ main <- function(arguments) {
            device = "pdf",
            width = 6,
            height = 4)
-}
 
+  # output facil effects summary csv
+  readr::write_csv(res_full, arguments$outfile)
+}
 
 # ==== #
 # main #
 # ==== #
-
 
 "calc_facil_effects.R
 
@@ -355,32 +355,10 @@ args <- list()
 args$cfile <- "analysis/data/c_matrix.txt"
 args$ifile <- "analysis/data/i_matrix.txt"
 args$traits_infile <- "analysis/data/all_traits.txt"
-args$outfile <- "analysis/data/comp_facil_effects.csv"
+args$outfile <- "analysis/data/facil_effects_summary.csv"
 args$figs_dir <- "analysis/figs"
 
 debug_status <- FALSE
 arguments <- run_args_parse(args, debug_status, doc)
 
 main(arguments)
-
-
-##
-
-run_args_parse <- function(debug_status) {
-  if (debug_status == TRUE) {
-    arguments <- list()
-    arguments$cfile    <- "analysis/data/c_matrix.txt"
-    arguments$ifile    <- "analysis/data/i_matrix.txt"
-    arguments$tfile    <- "analysis/data/all_traits.txt"
-    arguments$outfile  <- "analysis/data/comp_facil_effects.csv"
-    arguments$figs_dir <- "analysis/figs"
-  } else if (debug_status == FALSE) {
-    args <- commandArgs(trailingOnly = FALSE)
-    arguments$cfile    <- args[1]
-    arguments$ifile    <- args[2]
-    arguments$tfile    <- args[3]
-    arguments$outfile  <- args[4]
-    arguments$figs_dir <- args[5]
-  }
-  return(arguments)
-}

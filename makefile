@@ -31,7 +31,7 @@ tables: manuscript/tables.tex
 clean:
 	rm ${manuscript_base}.pdf ${manuscript_base}_ms.pdf ${si_base}.pdf ${si_base}_ms.pdf
 
-.PHONY: all clean paper preprint tables
+.PHONY: all preprint si paper tables clean
 
 
 # ANALYSIS SCRIPTS
@@ -41,13 +41,11 @@ DAT=analysis/data
 FIG=analysis/figs
 TAB=analysis/tables
 
-.PHONY: growth-curves comp-traits pca pairwise traits interactions analysis
+.PHONY: growth-curves comp-traits pca pairwise traits interactions analysis facilitations analysis
 
-analysis: traits interactions
-
+analysis: traits interactions facilitations
 
 traits: growth-traits comp-traits pca pairwise
-
 
 growth-traits: $(DAT)/growth_traits_fitted.csv $(FIG)/growth_curves.pdf
 
@@ -64,27 +62,27 @@ $(FIG)/growth_curves.pdf: $(SRC)/make_growth_curves.R $(DAT)/growthcurve_data_Pf
 		$(DAT)/growthcurve_data_Psyr.txt \
 		$@
 
-
 comp-traits: $(DAT)/comp_traits.csv
 
 $(DAT)/comp_traits.csv: $(SRC)/calc_comp_traits.R $(DAT)/c_matrix.txt $(DAT)/i_matrix.txt
 	Rscript --vanilla $^ $@
-
 
 pca: $(DAT)/all_traits.txt $(DAT)/pca_traits.txt $(TAB)/trait_summary_stats.tex
 
 $(DAT)/all_traits.txt $(DAT)/pca_traits.txt $(TAB)/trait_summary_stats.tex: $(SRC)/make_traits_analysis.R $(DAT)/comp_traits.csv $(DAT)/growth_traits_fitted.csv $(DAT)/strain_metadata.csv
 	Rscript --vanilla $^ $(DAT)/all_traits.txt $(DAT)/pca_traits.txt $(TAB)/trait_summary_stats.tex
 
-
 pairwise: $(FIG)/pairwise_traits_biplots_comp.pdf $(FIG)/pairwise_traits_biplots_growth.pdf $(FIG)/pairwise_traits_biplots_growth_comp.pdf
 
 $(FIG)/pairwise_traits_biplots_comp.pdf $(FIG)/pairwise_traits_biplots_growth.pdf $(FIG)/pairwise_traits_biplots_growth_comp.pdf: $(SRC)/make_pairwise_trait_plots.R $(DAT)/all_traits.txt
 	Rscript --vanilla $^ $(FIG)/pairwise_traits_biplots
-
 
 interactions: $(FIG)/mv_trait_dists.png $(FIG)/interaction_barplot.pdf $(TAB)/mv_dist_res.tex $(TAB)/lm_trait-v-phylo-dist_res.tex $(TAB)/mn_outcomes_res.tex $(TAB)/mn_coef_res.tex
 
 $(FIG)/mv_trait_dists.png $(FIG)/interaction_barplot.pdf $(TAB)/mv_dist_res.tex $(TAB)/lm_trait-v-phylo-dist_res.tex $(TAB)/mn_outcomes_res.tex $(TAB)/mn_coef_res.tex: $(SRC)/make_outcomes_analysis.R $(DAT)/all_traits.txt $(DAT)/interaction_pairs.txt $(DAT)/pca_traits.txt
 	Rscript --vanilla $^
 
+facilitations: $(FIG)/facil_plot_summaries.pdf $(FIG)/facil_plot_Psyr_ranks.pdf $(FIG)/facil_plot_Pflu_ranks.pdf $(DAT)/facil_effects_summary.csv
+
+$(FIG)/facil_plot_summaries.pdf $(FIG)/facil_plot_Psyr_ranks.pdf $(FIG)/facil_plot_Pflu_ranks.pdf $(DAT)/facil_effects_summary.csv: $(SRC)/calc_facil_effects.R $(DAT)/c_matrix.txt $(DAT)/i_matrix.txt $(DAT)/all_traits.txt
+	Rscript --vanilla $^ $(DAT)/facil_effects_summary.csv $(FIG)
