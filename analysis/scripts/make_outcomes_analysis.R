@@ -171,7 +171,7 @@ compare_mv_disp <- function(x,
                   !!as.symbol(dist_col)) %>%
     dplyr::mutate(clade = "Psyr") ->
     psyr_dat
-  
+
   x %>%
     dplyr::filter(WB == "W",
                   !!as.symbol(dist_col) > 0,
@@ -180,21 +180,21 @@ compare_mv_disp <- function(x,
                   !!as.symbol(dist_col)) %>%
     dplyr::mutate(clade = "Pflu") ->
     pflu_dat
-  
+
   lm_dat <- dplyr::bind_rows(psyr_dat, pflu_dat)
-  
+
   t.test(psyr_dat$PC1_PC2_PC3_dist,
          pflu_dat$PC1_PC2_PC3_dist,
          var.equal = FALSE) %>%
     broom::tidy() -> t_res
-  
+
   # now compute more complicated model accounting for pdist:
   lm1 <- lm(PC1_PC2_PC3_dist ~ pdist + clade, data = lm_dat)
   lm2 <- lm(PC1_PC2_PC3_dist ~ pdist * clade, data = lm_dat)
   lms <- list(lm1 = lm1, lm2 = lm2)
   lms[[row.names(AIC(lm1, lm2)[1,])]] %>%
     broom::tidy() -> lm_res
-  
+
   if (write_out == TRUE) {
     # export ttest res as latex table
     kableExtra::kable(t_res, "latex",
@@ -206,12 +206,12 @@ compare_mv_disp <- function(x,
         bootstrap_options = c("striped", "condensed")
       ) ->
       table_object
-    
+
     file_conn <-
       file(file.path("analysis/tables/mv_dist_res.tex"), "w")
     cat(table_object, file = file_conn)
     close(file_conn)
-    
+
     # export lm results:
     kableExtra::kable(lm_res, "latex",
                       booktabs = TRUE,
@@ -222,21 +222,21 @@ compare_mv_disp <- function(x,
         bootstrap_options = c("striped", "condensed")
       ) ->
       table_object2
-    
+
     file_conn <- file(file.path("analysis/tables/lm_trait-v-phylo-dist_res.tex"),
                       "w")
     cat(table_object2, file = file_conn)
     close(file_conn)
   }
-  
+
   # generate plot
   x %>%
     dplyr::filter(WB == "W", !!as.symbol(dist_col) > 0) %>%
     ggplot(aes_string(x = clade_col, y = dist_col)) +
-    geom_jitter(width = 0.1, col = "gray40") +
+    geom_jitter(width = 0.1, col = "white", alpha = 0.5, pch = 21, fill = "gray40") +
     geom_boxplot(alpha = 0.5,
                  col = "gray40",
-                 width = 0.25) +
+                 width = 0.5) +
     theme_minimal() +
     theme(panel.border = element_rect(fill = NA),
           panel.grid = element_blank()) +
@@ -250,17 +250,18 @@ compare_mv_disp <- function(x,
         round(t_res$p.value)
       ),
       x = 1,
-      y = 7
-    ) ->
+      y = 6
+    ) +
+    ylab("pairwise trait dist. (PC1-3)") ->
     dist_plot
-  
+
   ggplot2::ggsave(
     dist_plot,
     file = "analysis/figs/mv_trait_dists.png",
     device = "png",
     dpi = 300,
-    width = 2.5,
-    height = 4
+    width = 1.75,
+    height = 3
   )
 }
 
@@ -366,7 +367,7 @@ output_mn_res <- function(mn_res) {
     xlab("interaction type") +
     ylab("outcome frequency") ->
     barplot1
-  
+
   ggplot2::ggsave(
     barplot1,
     file = "analysis/figs/interaction_barplot.pdf",
@@ -374,7 +375,7 @@ output_mn_res <- function(mn_res) {
     width = 3,
     height = 3
   )
-  
+
   # tables (S1, S2)
   the_footnotes <- c(
     "RNI = Reciprocal non-invasion",
@@ -400,13 +401,13 @@ output_mn_res <- function(mn_res) {
     kableExtra::pack_rows("Frequencies", 4, 6) %>%
     kableExtra::add_footnote(the_footnotes, notation = "alphabet") ->
     outcome_dist_table
-  
+
   file_conn <-
     file(file.path("analysis/tables/mn_outcomes_res.tex"), "w")
-  
+
   cat(outcome_dist_table, file = file_conn)
   close(file_conn)
-  
+
   # now output coefficients table
   the_footnotes_2 <- c("RNI = Reciprocal non-invasion",
                        "RI = Reciprocal invasion",
@@ -422,7 +423,7 @@ output_mn_res <- function(mn_res) {
     ) %>%
     kableExtra::add_footnote(the_footnotes_2, notation = "alphabet") ->
     model_coef_output
-  
+
   file_conn <-
     file(file.path("analysis/tables/mn_coef_res.tex"), "w")
   cat(model_coef_output, file = file_conn)
@@ -434,19 +435,19 @@ output_mn_res <- function(mn_res) {
 # -------- #
 
 main <- function(arguments) {
-  
+
   all_traits <- readr::read_csv(arguments$traits_infile, col_types = readr::cols())
   pairs <- readr::read_csv(arguments$pairs_infile, col_types = readr::cols())
   pca_res <- readr::read_csv(arguments$pca_infile, col_types = readr::cols())
-  
+
   # calculate pairwise genetic distance within clades:
   pd1 <- pairs$pdist[pairs$WB == "W" & pairs$i_clade == "Psyr"]
   pd2 <- pairs$pdist[pairs$WB == "W" & pairs$i_clade == "Pflu"]
-  
+
   df1 <- data.frame(pd = c(pd1, pd2),
                     clade = c(rep("Psyr", length(pd1)),
                               rep("Pfluo", length(pd2))))
-  
+
   # add PCs to all_traits
   suppressWarnings(
     all_traits %>%
@@ -456,7 +457,7 @@ main <- function(arguments) {
       ) ->
       all_traits
   )
-  
+
   # calculate distances
   focal_traits <- c("r",
                     "L",
@@ -470,38 +471,38 @@ main <- function(arguments) {
                     "PC1",
                     "PC2",
                     "PC3")
-  
+
   pairs_multivar <- calc_trait_dists(
     pairs,
     all_traits,
     focal_traits = c("PC1", "PC2", "PC3"),
     as_vec = TRUE
   )
-  
+
   # generate multivariate dispersion comparison
   pairs_multivar %>%
     compare_mv_disp(dist_col = grep("_dist", names(pairs_multivar), value = T))
-  
+
   # model interaction outcome distribution within versus between clades
   dist_col <- grep("_dist", names(pairs_multivar), value = T)
-  
+
   pairs %>%
     dplyr::left_join(dplyr::select(pairs_multivar, i, j, !!as.symbol(dist_col)),
                      by = c("i", "j")) ->
     pairs_full
-  
+
   pairs_full$outcome_mn <- pairs_full$outcome
   pairs_full$outcome_mn[!pairs_full$outcome_mn %in% c("RI", "RNI")] <-
     "ASYM"
   pairs_full$pair_type <-
     paste0(pairs_full$WB, "_", pairs_full$i_clade)
   pairs_full$pair_type[grep("B", pairs_full$pair_type)] <- "B"
-  
+
   # generate multinomial model on outcome proportion as function of pair type
   mn_res <-
     pairs_full %>%
     run_mn_outcomes(outcome_col = "outcome_mn", predictor_col = "pair_type")
-  
+
   # outputs figures and tables from multinomial model
   output_mn_res(mn_res)
 }
