@@ -46,9 +46,9 @@ calc_trait_dists <-
       # Euclidean distance
       sqrt(sum((i - j) ^ 2, na.rm = T))
     }
-    
+
     ij <- dplyr::select(pairs, i, j)
-    
+
     do_dist_calc <- function(x, ij, ...) {
       suppressWarnings(
         ij %>%
@@ -58,18 +58,18 @@ calc_trait_dists <-
                            by = c("j" = "strain_id")) ->
           ij
       )
-      
+
       ij$dist <- dist_fun(i = ij[, grep(".x", names(ij))],
                           j = ij[, grep(".y", names(ij))])
       ij %>%
         dplyr::select(dist) ->
         the_dist
-      
+
       names(the_dist) <- paste0(paste0(x, collapse = "_"), "_dist")
-      
+
       return(the_dist)
     }
-    
+
     if (as_vec == FALSE) {
       dist_res  <- lapply(focal_traits, function(x)
         do_dist_calc(x, ij))
@@ -94,7 +94,7 @@ run_glms <- function(pairs_full) {
               data = pairs_full,
               family = "binomial")
   broom::tidy(glm1)
-  
+
   pairs_full %>%
     dplyr::filter(WB == "W", i_clade == "Psyr") %>%
     glm(ASYM ~ pdist + PC1_dist + PC2_dist + PC3_dist,
@@ -102,7 +102,7 @@ run_glms <- function(pairs_full) {
         data = .) %>%
     broom::tidy() ->
     psyr_glm_coefs
-  
+
   pairs_full %>%
     dplyr::filter(WB == "W", i_clade == "Pflu") %>%
     glm(ASYM ~ pdist + PC1_dist + PC2_dist + PC3_dist,
@@ -110,12 +110,12 @@ run_glms <- function(pairs_full) {
         data = .) %>%
     broom::tidy() ->
     pflu_glm_coefs
-  
+
   pairs_full %>%
     glm(ASYM ~ i_clade:j_clade, family = "binomial", data = .) %>%
     broom::tidy() ->
     pflu_glm_coefs
-  
+
   pairs_full %>%
     dplyr::filter(WB == "W", i_clade == "Psyr") %>%
     glm(ASYM ~ pdist + r_dist + K_dist + L_dist,
@@ -131,7 +131,6 @@ plot_glm_res <- function(pairs_full) {
     geom_jitter(position = position_jitter(height = 0.02), alpha = 0.5) +
     stat_smooth(method = "glm", se = T) +
     theme_bw()
-  
   gx2 <- ggplot(int_glm_s, aes(x = pdist, y = RI)) +
     geom_jitter(position = position_jitter(height = .025), alpha = 0.5) +
     scale_y_continuous(limits = c(-0.025, 1.025)) +
@@ -141,7 +140,6 @@ plot_glm_res <- function(pairs_full) {
                 family = "binomial",
                 se = T) +
     theme_bw()
-  
   gx3 <- ggplot(int_glm_s, aes(x = pdist, y = RNI)) +
     geom_jitter(position = position_jitter(height = .025), alpha = 0.5) +
     scale_y_continuous(limits = c(-0.025, 1.025)) +
@@ -151,9 +149,7 @@ plot_glm_res <- function(pairs_full) {
                 family = "binomial",
                 se = T) +
     theme_bw()
-  
   ggpubr::ggarrange(plotlist = list(gx1, gx2, gx3), nrow = 3)
-  
 }
 
 
@@ -275,18 +271,15 @@ run_mn_outcomes <-
         predictor_col = !!as.symbol(predictor_col),
         outcome_col = !!as.symbol(outcome_col)
       )
-    
     count_table <-
       input_dat %>%
       dplyr::group_by(predictor_col,
                       outcome_col) %>%
       dplyr::summarise(outcome_count = n())
-    
     # produce spread table object for output
     count_spread <-
       count_table %>%
       tidyr::spread(key = outcome_col, value = "outcome_count")
-    
     freqs_spread <-
       count_spread %>%
       dplyr::mutate(
@@ -296,26 +289,23 @@ run_mn_outcomes <-
         RNI = round(RNI / tot, 3)
       ) %>%
       dplyr::select(-tot)
-    
     # now run multinomial model
     # first set reference factor level:
     input_dat$outcome_col <- input_dat$outcome_col
-    
     # run multinomial model
     mn <-
       nnet::multinom(outcome_col ~ predictor_col, data = input_dat)
-    
     # generate fitted probabilities
     df_fitted <-
       data.frame(predictor_col = input_dat$predictor_col,
                  round(fitted(mn), 3)) %>%
       dplyr::arrange(predictor_col) %>%
       unique()
-    
+
     # generate p-values from 2-tailed z-test for all coefficients
     z <- summary(mn)$coefficients / summary(mn)$standard.errors
     p <- (1 - pnorm(abs(z), 0, 1)) * 2
-    
+
     # write output for supplemental table
     coef_table <- broom::tidy(mn)
     names(coef_table) <-
@@ -332,7 +322,7 @@ run_mn_outcomes <-
         z = round(z, 3),
         p = round(p, 4)
       )
-    
+
     # return observed counts, proportions, fitted, and coefs
     return(
       list(

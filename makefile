@@ -49,6 +49,14 @@ traits: growth-traits comp-traits pca pairwise
 
 growth-traits: $(DAT)/growth_traits_fitted.csv $(FIG)/growth_curves.pdf
 
+# files that are NOT GENERATED:
+# $(DAT)/growthcurve_data_Pflu.txt
+# $(DAT)/growthcurve_data_Psyr.txt 
+# $(DAT)/tsplits.csv
+# $(DAT)/c_matrix.txt 
+# $(DAT)/i_matrix.txt
+# $(DAT)/strain_metadata.csv
+
 $(DAT)/growth_traits_fitted.csv: $(SRC)/fit_growth_traits.R $(DAT)/growthcurve_data_Pflu.txt $(DAT)/growthcurve_data_Psyr.txt $(DAT)/tsplits.csv
 	Rscript --vanilla $< \
 		$(DAT)/growthcurve_data_Pflu.txt \
@@ -78,6 +86,10 @@ $(FIG)/pairwise_traits_biplots_comp.pdf $(FIG)/pairwise_traits_biplots_growth.pd
 	Rscript --vanilla $^ $(FIG)/pairwise_traits_biplots
 
 interactions: $(FIG)/mv_trait_dists.png $(FIG)/interaction_barplot.pdf $(TAB)/mv_dist_res.tex $(TAB)/lm_trait-v-phylo-dist_res.tex $(TAB)/mn_outcomes_res.tex $(TAB)/mn_coef_res.tex
+
+# generate interaction_pairs.txt here
+$(DAT)/interaction_pairs.txt: make_interaction_pairs.R 
+	Rscript --vanilla $^ $@
 
 $(FIG)/mv_trait_dists.png $(FIG)/interaction_barplot.pdf $(TAB)/mv_dist_res.tex $(TAB)/lm_trait-v-phylo-dist_res.tex $(TAB)/mn_outcomes_res.tex $(TAB)/mn_coef_res.tex: $(SRC)/make_outcomes_analysis.R $(DAT)/all_traits.txt $(DAT)/interaction_pairs.txt $(DAT)/pca_traits.txt
 	Rscript --vanilla $^
