@@ -98,3 +98,13 @@ facilitations: $(FIG)/facil_plot_summaries.pdf $(FIG)/facil_plot_Psyr_ranks.pdf 
 
 $(FIG)/facil_plot_summaries.pdf $(FIG)/facil_plot_Psyr_ranks.pdf $(FIG)/facil_plot_Pflu_ranks.pdf $(DAT)/facil_effects_summary.csv: $(SRC)/calc_facil_effects.R $(DAT)/c_matrix.txt $(DAT)/i_matrix.txt $(DAT)/all_traits.txt
 	Rscript --vanilla $^ $(DAT)/facil_effects_summary.csv $(FIG)
+
+clean-analysis:
+	rm -f $(FIG)/facil_plot_summaries.pdf $(FIG)/facil_plot_Psyr_ranks.pdf $(FIG)/facil_plot_Pflu_ranks.pdf $(DAT)/facil_effects_summary.csv
+	rm -f $(FIG)/mv_trait_dists.png $(FIG)/interaction_barplot.pdf $(TAB)/mv_dist_res.tex $(TAB)/lm_trait-v-phylo-dist_res.tex $(TAB)/mn_outcomes_res.tex $(TAB)/mn_coef_res.tex
+	rm -f $(DAT)/interaction_pairs.txt
+	rm -f $(FIG)/pairwise_traits_biplots_comp.pdf $(FIG)/pairwise_traits_biplots_growth.pdf $(FIG)/pairwise_traits_biplots_growth_comp.pdf
+	rm -f $(DAT)/all_traits.txt $(DAT)/pca_traits.txt $(TAB)/trait_summary_stats.tex
+	rm -f $(DAT)/comp_traits.csv
+	rm -f $(FIG)/growth_curves.pdf
+	rm -f $(DAT)/growth_traits_fitted.csv

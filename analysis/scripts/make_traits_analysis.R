@@ -150,7 +150,7 @@ plot_trait_distn <- function(dat, the_trait, the_lims, mult = NA) {
 
 
 do_pca <- function(traits_all) {
-  
+
   traits_all %>%
     dplyr::filter(rowSums(is.na(.)) == 0) ->
     traits_all_complete
@@ -160,7 +160,7 @@ do_pca <- function(traits_all) {
     as.matrix() %>%
     prcomp(center = TRUE, scale. = TRUE) ->
     pca_res
-  
+
   pca_dat <- data.frame(pca_res$x,
                         clade = traits_all_complete$clade,
                         strain_id = traits_all_complete$strain_id)
@@ -190,7 +190,7 @@ do_pca <- function(traits_all) {
     scale_x_continuous(limits = c(-5, 5)) +
     scale_y_continuous(limits = c(-5, 5)) ->
     pca_plot
-  
+
   return(pca_plot)
 }
 
@@ -253,22 +253,23 @@ write_summary_stats_table <- function(summary_table) {
 
 
 main <- function(arguments) {
-  
+
   comp      <- readr::read_csv(arguments$comp_traits, col_types = readr::cols())
   growth    <- readr::read_csv(arguments$growth_traits, col_types = readr::cols())
   meta_data <- readr::read_csv(arguments$strain_data, col_types = readr::cols())
-  
+
   if ("clade" %in% names(growth)) {
     growth %>%
       dplyr::select(-clade) ->
       growth
   }
-  if ("z4326" %in% growth$strain_id) {
+
+    if ("z4326" %in% growth$strain_id) {
     growth$strain_id[growth$strain_id == "z4326"] <- "4326"
   }
-  
+
   comp$strain_id <- sapply(comp$strain_id, function(x) gsub("X", "", x))
-  
+
   # combine data.frames and prepare for plot
   suppressWarnings(
     meta_data %>%
@@ -276,7 +277,7 @@ main <- function(arguments) {
       dplyr::left_join(comp, by = "strain_id") ->
       traits_all
   )
-  
+
   traits_all %>%
     dplyr::select(strain_id, clade, phylo_pos,
                   r = r_max,
@@ -284,21 +285,21 @@ main <- function(arguments) {
                   K = K_max,
                   c_o, c_d, c_w, c_r, c_t, i_w) ->
     traits_all
-  
+
   # save traits file as output for subsequent scripts
   readr::write_csv(traits_all, arguments$traits_outfile)
-  
+
   # generate summary for table output
   suppressMessages(
     summary_table <- produce_summary_stats(traits_all)
   )
   write_summary_stats_table(summary_table)
-  
+
   # plot and save heatmap
   pdf(file = "analysis/figs/heatmap_plot.pdf", width = 3.25, height = 6)
   plot_heatmap(traits_all)
   dev.off()
-  
+
   # plot and save heatmap again to capture legend
   pdf(file = "analysis/figs/heatmap_plot_legend.pdf", width = 8, height = 6)
   plot_heatmap(traits_all)
@@ -325,7 +326,7 @@ main <- function(arguments) {
     pdn_9 = plot_trait_distn(dat = traits_all,
                              the_trait = "i_w", the_lims = c(-1, 1))
   )
-  
+
   suppressWarnings(
     gps <- ggpubr::ggarrange(plotlist = growth_plotlist,
                              nrow = length(growth_plotlist),
@@ -340,15 +341,17 @@ main <- function(arguments) {
   pdf(file = "analysis/figs/corr_plot_Psyr.pdf", width = 6, height = 6)
   plot_heatmap_clade(traits_all, the_clade = "Psyr")
   dev.off()
-  
+
   pdf(file = "analysis/figs/corr_plot_Pfluo.pdf", width = 6, height = 6)
   plot_heatmap_clade(traits_all, the_clade = "Pflu")
   dev.off()
 
   # now for PCA
-  pdf(file = "analysis/figs/pca_plot.pdf", width = 6, height = 6)
-  do_pca(traits_all)
-  dev.off()
+  ggsave(do_pca(traits_all),
+         file = "analysis/figs/pca_plot.pdf",
+         device = "pdf",
+         width = 6, height = 6
+  )
 }
 
 # ============ #
@@ -365,8 +368,8 @@ Arguments:
     comp_traits         Input file of competitive traits (csv)
     growth_traits       Input file of growth traits (csv)
     strain_data         Strain meta-data file (csv)
-    traits_outfile      Full path to full traits file (csv)
-    pca_outfile         Full path to pca results file (csv)
+    traits_outfile      Full path to full traits file
+    pca_outfile         Full path to pca results file
     table_s1            Full path to Table S1 results (tex)
 " -> doc
 
