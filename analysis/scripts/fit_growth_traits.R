@@ -34,7 +34,7 @@ base_dir <- "analysis/figs/growth_curves"
 fit_spline <- function(time, y, label, lambda_fit = 1e-5, tsplit = 2000) {
 
     # step 1 ============================================
-    # find r_max, lambda from early slice of trajectory =
+    # find r_max, lambda from early slice of trajectory #
     # ===================================================
 
     # remove zeros by adding pseudocounts.
@@ -69,7 +69,7 @@ fit_spline <- function(time, y, label, lambda_fit = 1e-5, tsplit = 2000) {
     lambda <- -b_max / r_max
 
     # step 2 ==================================
-    # find K_max across the entire trajectory =
+    # find K_max across the entire trajectory #
     # =========================================
 
     fit_for_k <- smooth.spline(time, y, lambda = lambda_fit)
