@@ -18,7 +18,7 @@ bibliography: manuscript/competition.bib
 header-left: "\\textbf{\\textit{Competition in the phyllosphere}}"
 header-center: "\\hspace{1cm}"
 header-right: "Humphrey *et al.* (2020) \\textbf{OSM}"
-footer-left: "v.2020-09-27"
+footer-left: "v.2021-04-07"
 footer-right: "\\thepage"
 ---
 
@@ -32,7 +32,7 @@ Overnight cultures of each strain in MM were spun down for 3 m at $3000 \times \
 
 ## Estimating traits related to growth
 
-We used **R** package `grofit` [@Kahm10a] to fit smoothed functions to the bacterial growth data. Curve fits generated using logistic, Richards, Gompertz, or modified Gompertz equations failed to produce estimates with $r \geq 0.5$ and we therefore used a non-parametric locally-weighted smoothing function to estimate the following growth curve parameters: maximum growth rate $r_m$, lag phase $l$, and maximum yield $K$. Lag phase represents the length of time (min) prior to initiation of exponential growth, while maximum yield is the maximum $\text{OD}_{600}$ attained during 60 h of growth. Curves for long lag-phased strains never leveled off (Fig. S1, e.g., strain `17A`); in these cases, $K$ was set as the final $\text{OD}_{600}$. When growth trajectories exhibited multiple exponential phases (diauxic shifts), $r_m$ was estimated during the initial exponential phase (e.g., strain `20A`; Fig. S1).
+We fit cubic smoothing splines (with smoothing parameter $\lambda = 1e^{-5}$) to estimate the following growth curve parameters: maximum growth rate $r_m$, lag phase $l$, and maximum yield $K$. Lag phase represents the length of time (min) prior to initiation of exponential growth, while maximum yield is the maximum $\text{OD}_{600}$ attained at any point during 60 h of growth. Curves for long lag-phased strains never leveled off (Fig. S1, e.g., strain `17A`); in these cases, $K$ was set as the final $\text{OD}_{600}$. When growth trajectories exhibited multiple exponential phases (diauxic shifts), $r_m$ was estimated during the initial exponential phase (e.g., strain `10A`; Fig. S1).
 
 ## Pairwise competition assays
 
@@ -52,49 +52,56 @@ In 100 mm diameter Petri dishes, we overlaid 4 mL of 0.5% (w/v) soft agar inocul
 <!-- ********* -->
 
 \newpage
-![**Distribution of interaction outcomes within and between *Pseudomonas* clades**. Accompanying outcome counts and statistical results are displayed in Tables S1 and S2, respectively. Total strain pairings = 772 between 40 strains, with the 20 self-interactions and 8 no-data interactions removed. `RI` = reciprocal invasibility; `RNI` = reciprocal non-invasibility; `Asymm.` = asymmetric dominance. \label{figS2}](manuscript/figures/figureS2.png){ width=250px }
+![**Competition assay setup and scoring for example plate.** **a.** An assay spot grid was used to guide spotting of each top strain onto assay plates. Filled circles in spot grid reflect how the assay plate depicted in **b** would be scored (see legend). Only one inhibition interaction was observed on the plate displayed in **b**, as indicated by the red outline of the spot depicted in **a**. \label{figS2}](manuscript/figures/figureS2.png){ width=450px }
 
 <!-- ********* -->
 <!-- FIGURE S3 -->
 <!-- ********* -->
 
 \newpage
-![**Morphological variation observed during pairwise inhibition assays reflects strain-specific induction of motility and inhibition phenotypes in *P. fluorescens*.** **a-c**. Photos of interaction plates against *P. syringae* resident strains against which *P. fluorescens* strain `43A` adopted distinct megacolony morphologies (white arrows). Black arrows denote invading strains producing tox+ halos against the resident strains. **d-f**. close-ups of smooth morph (SM), wrinkly spreader-like (WS-like), and the smooth spreader (SS) morphs from above. **g**. Close-up of putative growth facilitation of non-focal strain via secretion of effectors from 43A, arising from either cell cycle modification by secreted regulators, or competitive release via killing of resident strain. H. Phylogenetic specificity of morphological induction and its relationship with toxicity for strain `43A`. Phylogenetic tree from Fig. 1 (main text). Scale bars in **a–c** = 1 cm; **d–f** = 0.50 cm; **g** = 0.25 cm. \label{figS3}](manuscript/figures/figureS3.png){ width=450px }
+![**Distribution of interaction outcomes within and between *Pseudomonas* clades**. Accompanying outcome counts and statistical results are displayed in Tables S1 and S2, respectively. Total strain pairings = 772 between 40 strains, with the 20 self-interactions and 8 no-data interactions removed. `RI` = reciprocal invasibility; `RNI` = reciprocal non-invasibility; `Asymm.` = asymmetric dominance. \label{figS3}](manuscript/figures/figureS3.png){ width=300px }
 
 <!-- ********* -->
 <!-- FIGURE S4 -->
 <!-- ********* -->
 
 \newpage
-![**Life history trait correlations exhibited by *P. syringae* and *P. fluorescens* strains.** Slopes of clade-wise linear regression are over-plotted in each panel for illustration purposes only regardless of $p$ value of correlation coefficient (see Fig. 1c, main text). \label{figS4}](manuscript/figures/figureS4.png){ width=450px }
+![**Morphological variation observed during pairwise inhibition assays reflects strain-specific induction of motility and inhibition phenotypes in *P. fluorescens*.** **a-c**. Photos of interaction plates against *P. syringae* resident strains against which *P. fluorescens* strain `43A` adopted distinct megacolony morphologies (white arrows). Black arrows denote invading strains producing tox+ halos against the resident strains. **d-f**. close-ups of smooth morph (SM), wrinkly spreader-like (WS-like), and the smooth spreader (SS) morphs from above. **g**. Close-up of putative growth facilitation of non-focal strain via secretion of effectors from 43A, arising from either cell cycle modification by secreted regulators, or competitive release via killing of resident strain. H. Phylogenetic specificity of morphological induction and its relationship with toxicity for strain `43A`. Phylogenetic tree from Fig. 1 (main text). Scale bars in **a–c** = 1 cm; **d–f** = 0.50 cm; **g** = 0.25 cm. \label{figS4}](manuscript/figures/figureS4.png){ width=450px }
 
 <!-- ********* -->
 <!-- FIGURE S5 -->
 <!-- ********* -->
 
 \newpage
-![**Correlations among competitive traits exhibited by *P. syringae* and *P. fluorescens* strains.** Note that $C_{t}$ for *P. syringae* are all 0 because none produced detectable inhibitors scored in our pairwise soft-agar competition assays (see Extended Data Fig. 1, main text). Slopes of clade-wise linear regression are over-plotted in each panel for illustration purposes only regardless of $p$ value of correlation coefficient (see Fig. 1c, main text). \label{figS5}](manuscript/figures/figureS5.png){ width=400px }
+![**Life history trait correlations exhibited by *P. syringae* and *P. fluorescens* strains.** Slopes of clade-wise linear regression are over-plotted in each panel for illustration purposes only regardless of $p$ value of correlation coefficient (see Fig. 1c, main text). \label{figS5}](manuscript/figures/figureS5.png){ width=450px }
 
 <!-- ********* -->
 <!-- FIGURE S6 -->
 <!-- ********* -->
 
 \newpage
-![**Correlations between competitive traits and life-history traits exhibited by *P. syringae* and *P. fluorescens* strains.** Slopes of clade-wise linear regression are over-plotted in each panel for illustration purposes only regardless of $p$ value of correlation coefficient (see Fig. 1c, main text). \label{figS6}](manuscript/figures/figureS6.png){ width=325px }
+![**Correlations among competitive traits exhibited by *P. syringae* and *P. fluorescens* strains.** Note that $C_{t}$ for *P. syringae* are all 0 because none produced detectable inhibitors scored in our pairwise soft-agar competition assays (see Extended Data Fig. 1, main text). Slopes of clade-wise linear regression are over-plotted in each panel for illustration purposes only regardless of $p$ value of correlation coefficient (see Fig. 1c, main text). \label{figS6}](manuscript/figures/figureS6.png){ width=600px }
 
 <!-- ********* -->
 <!-- FIGURE S7 -->
 <!-- ********* -->
 
 \newpage
-![**Multivariate trait dispersion within *P. syringae* and *P. fluorescens* clades**. Pairwise Euclidean distances along trait PCs 1-3 are greater for *P. syringae* strains than among *P. fluorescence* strains (unequal variance two-sample Welch's $t$-test, $t = 8.71; p < 10^{-5}$). \label{figS7}](manuscript/figures/figureS7.png){ width=150px }
+![**Correlations between competitive traits and life-history traits exhibited by *P. syringae* and *P. fluorescens* strains.** Slopes of clade-wise linear regression are over-plotted in each panel for illustration purposes only regardless of $p$ value of correlation coefficient (see Fig. 1c, main text). \label{figS7}](manuscript/figures/figureS7.png){ width=400px }
 
 <!-- ********* -->
 <!-- FIGURE S8 -->
 <!-- ********* -->
 
 \newpage
-![**Strain-wise and overall rank differences with and without indirect interactions from secretion-producing *P. fluorescens* strains**. **a-b.** Indirect effects on *P. syringae* reduce fitness most for strains with high base rank and facilitate weaker strains. Community-wide effects of indirect facilitation is to weaken fitness hierarchies among *P. syringae* strains (base rank versus final rank rank correlation = 0.52). **c-d.** In *P. fluorescens*, fitness ranks are far less affected by intra-clade indirect effects than in *P. syringae* (base rank versus final rank rank correlation $= 0.94$). Strains along the $y$ axis are plotted from high (top) to low (bottom) baseline fitness ($C_{w}$), while *P. fluorescens* strains are plotted from most facilitating (left) to least facilitating (right) along the $x$ axis. \label{figS8}](manuscript/figures/figureS8.png){ width=450px }
+![**Multivariate trait dispersion within *P. syringae* and *P. fluorescens* clades**. Pairwise Euclidean distances along trait PCs 1-3 are greater for *P. syringae* (`Psyr`) strains than among *P. fluorescence* (`Pflu`) strains (unequal variance two-sample Welch's $t$-test, $t = 8.71; p < 10^{-5}$). \label{figS8}](manuscript/figures/figureS8.png){ width=175px }
+
+<!-- ********* -->
+<!-- FIGURE S9 -->
+<!-- ********* -->
+
+\newpage
+![**Strain-wise and overall rank differences with and without indirect interactions from secretion-producing *P. fluorescens* strains**. **a-b.** Indirect effects on *P. syringae* reduce fitness most for strains with high base rank and facilitate weaker strains. Community-wide effects of indirect facilitation is to weaken fitness hierarchies among *P. syringae* strains (base rank versus final rank rank correlation = 0.52). **c-d.** In *P. fluorescens*, fitness ranks are far less affected by intra-clade indirect effects than in *P. syringae* (base rank versus final rank rank correlation $= 0.94$). Strains along the $y$ axis are plotted from high (top) to low (bottom) baseline fitness ($C_{w}$), while *P. fluorescens* strains are plotted from most facilitating (left) to least facilitating (right) along the $x$ axis. \label{figS9}](manuscript/figures/figureS9.png){ width=450px }
 
 \newpage
 
