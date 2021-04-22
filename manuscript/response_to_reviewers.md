@@ -59,7 +59,7 @@ We thank the reviewer for this important perspective on the Introduction. We hav
 
 >In line 48-49, the authors cited a reference about keystone taxa actually. I am not sure this help introduce the background.
 
-The idea behind introducing the concept of keystone taxa was to highlight how some species generate stronger indirect effects in communities than others, and that often the magnitudes of such effects are highly skewed towards one or a small number of taxa. This idea can surely be explained more clearly, and we have strived to achieve this additional clarity in our revision.
+The idea behind introducing the concept of keystone taxa was to highlight how some species generate stronger indirect effects in communities than others; the mention of "keystone" was primarily to signal that often the magnitudes of such effects are highly skewed towards one or a small number of taxa. This idea can surely be explained more clearly, and we have strived to achieve this additional clarity in our revision.
 <br>
 <br>
 
@@ -73,11 +73,44 @@ We have more clearly organized the various gaps addressed be our work.
 
 Thank you for bringing up this important point.
 We are now more clear in the text in that we use $\text{max}[OD_{600}]$ as our measure of maximum yield, rather than the value recorded at $t = 60 h$.
-We have gone back to ensure that this is the case, and the following figure displays the previous $K$ estimates compared to our re-fit estimates of $\text{max}[OD_{600}]$:
+We have gone back and ensured that the growth traits are fitted correctly.
+In doing so, we noted that our the software package previously used (R package `grofit`) is no longer maintained, so we opted to write our own curve fitting routine.
+In this process, we verified that, in fact, $K$ had been correctly calculated as the $\text{max}[OD_{600}]$, rather than the final value (as was the concern of this reviewer).
+We have gone back to ensure that this is the case, and the figure below (Fig. R1) displays the previous $K$ estimates compared to our re-fit estimates of $\text{max}[OD_{600}]$:
 
->insert figure here
+<center>
+<figure>
+    <img src="revision_scripts/k_confirm_plot.png" width="350" height="300">
+    <figcaption>
+        <strong>Fig. R1. Confirming that previous K estimates correspond to max(OD), rather than end-point OD.</strong> Y-axis shows new K estimates, corresponding to max(OD), while X-axis shows the previous K estimates included in the initial submission. The 1:1 line indicates that the values are the same.
+    </figcaption>
+</figure>
+</center>
 
-As you can see, the values are identical, confirming that we did in fact use $\text{max}[OD_{600}]$ as our measure of $K$.
+Along the way, we discovered that the new estimates for $r_{max}$ as well as $L$ differed compared the prior calculation using `grofit`, as can be seen in Figs. R2, R3, below.
+
+<center>
+<figure>
+    <img src="revision_scripts/r_confirm_plot.png" width="350" height="300">
+    <figcaption>
+        <strong>Fig. R2. Comparison between current and previous estiates of r_max.</strong>
+    </figcaption>
+</figure>
+<br>
+<figure>
+    <img src="revision_scripts/lambda_confirm_plot.png" width="350" height="300">
+    <figcaption>
+        <strong>Comparison between current and previous estiates of L (lag)</strong>
+    </figcaption>
+</figure>
+</center>
+
+We strongly believe our new estimates are correct, as we wrote the implementation ourselves (see [code](https://github.com/phumph/competitive_hierarchies/blob/revision/analysis/scripts/fit_growth_traits.R)) and have produced confirmatory plots showing that the fitted values for each strain land where they should along each strain's growth trajectory.
+These plots can be found [here](https://github.com/phumph/competitive_hierarchies/tree/revision/analysis/figs/growth_curves).
+Further, the errors were introduced by us, and not the `grofit` package; thus, our code changes corrected our initial mistake of calculating Lag using the wrong time-point for $r_{max}$.
+
+All downstream analyses have been re-done with these new fitted growth traits, and the relevant figure has been updated (see manuscript Fig. 2).
+All of the results remain qualitatively unchanged.
 
 Regarding replicates, we are comfortable with two replicates, as the variation among curves is remarkably small.
 Had our level of replication _not_ been sufficient (i.e., if noise were to dominate the growth trajectory measurements), we would not detect a signiture of similarity in phenotype among closely related strains.
